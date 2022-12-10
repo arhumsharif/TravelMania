@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="day_sheets" data-name="day sheets" class="cls-1" d="M54,300v5h5v-5H54Zm-1-2h7a1,1,0,0,1,1,1v7a1,1,0,0,1-1,1H53a1,1,0,0,1-1-1v-7A1,1,0,0,1,53,298Zm12,2v5h5v-5H65Zm-1-2h7a1,1,0,0,1,1,1v7a1,1,0,0,1-1,1H64a1,1,0,0,1-1-1v-7A1,1,0,0,1,64,298Zm1,13v5h5v-5H65Zm-1-2h7a1,1,0,0,1,1,1v7a1,1,0,0,1-1,1H64a1,1,0,0,1-1-1v-7A1,1,0,0,1,64,309Zm-10,2v5h5v-5H54Zm-1-2h7a1,1,0,0,1,1,1v7a1,1,0,0,1-1,1H53a1,1,0,0,1-1-1v-7A1,1,0,0,1,53,309Z" transform="translate(-52 -298)"/>
+</svg>
