@@ -18,6 +18,9 @@ export default function Login() {
             if (response === 404)
             {
                 setMessage('block')
+                setTimeout(()=> {
+                    setMessage('hidden')
+                }, 3000)
             }
             else
             {

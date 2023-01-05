@@ -15,8 +15,10 @@ import Login from './components/Credentials/Login';
 import Signup from './components/Credentials/Signup';
 import TourGuideDashboard from './components/TourGuide/Dashboard'
 
-
+// Layout TourGuide
+import Layout from './components/Layout/TourGuideLayout';
 // Higher order component
+const TourGuideDashboardLayout = Layout(TourGuideDashboard);
 
 function App() {
   return (
@@ -25,7 +27,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/tour-guide" element={<TourGuideDashboard />} />
+        <Route path="/tour-guide" element={<TourGuideDashboardLayout />} />
       </Routes>
     </Router>
   );
