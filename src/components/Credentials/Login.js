@@ -26,7 +26,18 @@ export default function Login() {
             {
                 console.log(response)
                 cookies.set("token", response.token);
-                navigate("/tour-guide")
+                if (response.role == 1)
+                {
+                    navigate("/tour-guide")
+                }
+                else if(response.role == 0)
+                {
+                    navigate("/traveler")
+                }
+                else
+                {
+                    navigate("/tour-org")
+                }
             }
       };
 

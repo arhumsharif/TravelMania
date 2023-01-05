@@ -14,11 +14,17 @@ import LandingPage from './components/Credentials/LandingPage';
 import Login from './components/Credentials/Login';
 import Signup from './components/Credentials/Signup';
 import TourGuideDashboard from './components/TourGuide/Dashboard'
+import TourOrgDashboard from './components/Organization/Dashboard'
+import TravelerDashboard from './components/Traveler/Dashboard'
 
 // Layout TourGuide
-import Layout from './components/Layout/TourGuideLayout';
+import TourGuideLayout from './components/Layout/TourGuideLayout'; // for tour guide nav and sidenav
+import TourOrgLayout from './components/Layout/TourOrganizationLayout'; // for tour organization nav and sidenav
+import TravelerLayout from './components/Layout/TravellerLayout'; // for traveler nav and sidenav
 // Higher order component
-const TourGuideDashboardLayout = Layout(TourGuideDashboard);
+const TourGuideDashboardLayout = TourGuideLayout(TourGuideDashboard);
+const TourOrganizationDashboardLayout = TourOrgLayout(TourOrgDashboard);
+const TravelerDashboardLayout = TravelerLayout(TravelerDashboard);
 
 function App() {
   return (
@@ -28,6 +34,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/tour-guide" element={<TourGuideDashboardLayout />} />
+        <Route path="/tour-org" element={<TourOrganizationDashboardLayout />} />
+        <Route path="/traveler" element={<TravelerDashboardLayout />} />
       </Routes>
     </Router>
   );
