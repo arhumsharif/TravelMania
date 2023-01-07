@@ -10,7 +10,7 @@ const layout = (Component) => ({ ...props }) => {
                 <div className="flex h-full mt-20">
                     <SideNav/>
                     {/* Component  */}
-                    <div className="ml-72">
+                    <div className="ml-72 w-full">
                         <Component {...props} />
                     </div>
                     {/* Component end */}

@@ -1,10 +1,54 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
+import { useNavigate } from "react-router-dom";
+import PortfolioModal from './PortfolioModal/PortfolioModal'
+import {viewTourGuidePorfolio} from '../../api/index'
+import Cookies from "universal-cookie";
 
-export default function Dashboard() {
+export default function Portfolio() {
 
-  return (
-    <div>
-      <main className="profile-page">
+  // Cookies to send user_token
+  const cookies = new Cookies();
+  let token = cookies.get("token");
+  let navigate = useNavigate();
+
+  // / UseEffect
+  useEffect(() => {
+    getProfile(token);
+  }, []);
+
+  const getProfile = async (token) => {
+    let response = await viewTourGuidePorfolio(token);
+    if (response == 404) {
+      navigate("/");
+    }
+    console.log(response)
+    setName(response?.data[0]?.name)
+    setAge(response?.data[0]?.age)
+    setCnic(response?.data[0]?.cnic)
+    setPhone(response?.data[0]?.phone_no)
+    setGender(response?.data[0]?.gender)
+    setCity(response?.data[0]?.city)
+    setCountry(response?.data[0]?.country)
+    setAbout(response?.data[0]?.about)
+  };
+
+  const [addModal, setAddModal] = useState('hidden')
+
+  // States for View
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [cnic, setCnic] = useState("");
+  const [phone, setPhone] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+  const [about, setAbout] = useState("");
+
+
+
+    return (
+        <div>
+        <main className="profile-page w-full">
         <section className="relative block" style={{ height: "500px" }}>
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover"
@@ -46,7 +90,7 @@ export default function Dashboard() {
                   <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                     <div className="relative">
                       <img
-                        src={"https://pbs.twimg.com/media/FhC3LvHXkAEMEUZ.png"}
+                      src={"https://pbs.twimg.com/media/FhC3LvHXkAEMEUZ.png"}
                         alt="..."
                         className="shadow-xl rounded-full h-auto align-middle border-none absolute -m-16 -ml-20 lg:-ml-16"
                         style={{ maxWidth: "150px" }}
@@ -56,11 +100,12 @@ export default function Dashboard() {
                   <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                     <div className="py-6 px-3 mt-32 sm:mt-0">
                       <button
-                        className="bg-pink-500 active:bg-pink-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
+                        onClick={()=> setAddModal('block')}
+                        className="bg-[#28282b] uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1"
                         type="button"
                         style={{ transition: "all .15s ease" }}
                       >
-                        Update
+                        Update Portfolio
                       </button>
                     </div>
                   </div>
@@ -83,46 +128,39 @@ export default function Dashboard() {
                 </div>
                 <div className="text-center mt-12">
                   <h3 className="text-4xl font-semibold leading-normal mb-2 text-gray-800 mb-2">
-                    Muhammad Arhum
+                    {name}
                   </h3>
                   <div className="text-sm leading-normal mt-0 mb-2 text-gray-500 font-bold uppercase">
                     <i className="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>{" "}
-                    Los Angeles, California
+                    {city}, {country}
                   </div>
-                  <div className="mb-2 text-gray-700">
+                  <div className="hidden mb-2 text-gray-700">
                     <i className="fas fa-university mr-2 text-lg text-gray-500"></i>
                     University of Computer Science
                   </div>
                   <div className="mb-2 text-gray-700">
                     <i className="fas fa-university mr-2 text-lg text-gray-500"></i>
-                    Phone No: 0300
+                    Phone No: {phone}
                   </div>
                   <div className="mb-2 text-gray-700">
                     <i className="fas fa-university mr-2 text-lg text-gray-500"></i>
-                    Cnic: 03029-2392092-2
+                    Cnic: {cnic}
                   </div>
                   <div className="mb-2 text-gray-700">
                     <i className="fas fa-university mr-2 text-lg text-gray-500"></i>
-                    Age: 30
+                    Age: {age}
                   </div>
                   <div className="mb-2 text-gray-700">
                     <i className="fas fa-university mr-2 text-lg text-gray-500"></i>
-                    Gender: Male
+                    Gender: {gender}
                   </div>
                 </div>
                 <div className="mt-10 py-10 border-t border-gray-300 text-center">
                   <div className="flex flex-wrap justify-center">
                     <div className="w-full lg:w-9/12 px-4">
                       <p className="mb-4 text-lg leading-relaxed text-gray-800">
-            
+                        {about}
                       </p>
-                      <a
-                        href="#pablo"
-                        className="font-normal text-pink-500"
-                        onClick={e => e.preventDefault()}
-                      >
-                        Show more
-                      </a>
                     </div>
                   </div>
                 </div>
@@ -131,7 +169,7 @@ export default function Dashboard() {
           </div>
         </section>
       </main>
-
+      <PortfolioModal modalDisplay={addModal} setmodalDisplay={setAddModal} pname ={name} page={age} pgender={gender} pcnic={cnic} pphone={phone} pcity={city} pcountry={country} pabout={about}/>
     </div>
-  )
+    )
 }
