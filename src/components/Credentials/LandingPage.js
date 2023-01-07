@@ -48,7 +48,7 @@ export default function Login() {
 
                 <div className='mt-8 flex flex-wrap justify-center gap-4'>
                   <button className='bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3'>
-                    <Link to='/signup'>Get Started</Link>
+                    <Link to='/login'>Get Started</Link>
                   </button>
                 </div>
               </div>
@@ -132,24 +132,30 @@ export default function Login() {
                       Web Developer
                     </p>
                     <div className='mt-6'>
-                      <button
-                        className='bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1'
-                        type='button'
-                      >
-                        <i className='fab fa-facebook-f'></i>
-                      </button>
-                      <button
-                        className='bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1'
-                        type='button'
-                      >
-                        <i className='fab fa-github'></i>
-                      </button>
-                      <button
-                        className='bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1'
-                        type='button'
-                      >
-                        <i className='fab fa-linkedin'></i>
-                      </button>
+                      <a href='https://www.facebook.com/abdullah.tariq.71868'>
+                        <button
+                          className='bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1'
+                          type='button'
+                        >
+                          <i className='fab fa-facebook-f'></i>
+                        </button>
+                      </a>
+                      <a href='https://github.com/atariq12382'>
+                        <button
+                          className='bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1'
+                          type='button'
+                        >
+                          <i className='fab fa-github'></i>
+                        </button>
+                      </a>
+                      <a href='https://www.linkedin.com/in/abdullah-tariq-00790221a/'>
+                        <button
+                          className='bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1'
+                          type='button'
+                        >
+                          <i className='fab fa-linkedin'></i>
+                        </button>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -168,24 +174,30 @@ export default function Login() {
                       Web Developer
                     </p>
                     <div className='mt-6'>
-                      <button
-                        className='bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1'
-                        type='button'
-                      >
-                        <i className='fab fa-facebook-f'></i>
-                      </button>
-                      <button
-                        className='bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1'
-                        type='button'
-                      >
-                        <i className='fab fa-github'></i>
-                      </button>
-                      <button
-                        className='bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1'
-                        type='button'
-                      >
-                        <i className='fab fa-linkedin'></i>
-                      </button>
+                      <a href='https://www.facebook.com/muhammad.arhum.7'>
+                        <button
+                          className='bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1'
+                          type='button'
+                        >
+                          <i className='fab fa-facebook-f'></i>
+                        </button>
+                      </a>
+                      <a href='https://github.com/arhumsharif'>
+                        <button
+                          className='bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1'
+                          type='button'
+                        >
+                          <i className='fab fa-github'></i>
+                        </button>
+                      </a>
+                      <a href='https://www.linkedin.com/in/arhum-sharif-283687228/'>
+                        <button
+                          className='bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1'
+                          type='button'
+                        >
+                          <i className='fab fa-linkedin'></i>
+                        </button>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -204,24 +216,28 @@ export default function Login() {
                       Web Developer
                     </p>
                     <div className='mt-6'>
-                      <button
-                        className='bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1'
-                        type='button'
-                      >
-                        <i className='fab fa-facebook-f'></i>
-                      </button>
+                      <a href='https://www.facebook.com/ch.azeem.5201254'>
+                        <button
+                          className='bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1'
+                          type='button'
+                        >
+                          <i className='fab fa-facebook-f'></i>
+                        </button>
+                      </a>
                       <button
                         className='bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1'
                         type='button'
                       >
                         <i className='fab fa-github'></i>
                       </button>
-                      <button
-                        className='bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1'
-                        type='button'
-                      >
-                        <i className='fab fa-linkedin'></i>
-                      </button>
+                      <a href='https://www.linkedin.com/in/m-azeem-166006239/'>
+                        <button
+                          className='bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1'
+                          type='button'
+                        >
+                          <i className='fab fa-linkedin'></i>
+                        </button>
+                      </a>
                     </div>
                   </div>
                 </div>

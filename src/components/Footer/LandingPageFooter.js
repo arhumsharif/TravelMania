@@ -8,7 +8,7 @@ function LandingPageFooter() {
         <div className='flex flex-wrap items-center md:justify-between justify-center'>
           <div className='w-full md:w-4/12 px-4 mx-auto text-center'>
             <div className='text-sm text-gray-600 font-semibold py-1'>
-              Copyright © {new Date().getFullYear()} Three's
+              Copyright © {new Date().getFullYear()} Three's Company
             </div>
           </div>
         </div>
