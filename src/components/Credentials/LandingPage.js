@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 import abdullahpic from '../../assets/abdullahpic.jpg';
 import arhumpic from '../../assets/arhumpic.jpg';
+import azeempic from '../../assets/azeempic.jpg';
 import LandingPageFooter from '../Footer/LandingPageFooter';
 import Logo from '../../assets/realLogo.png';
 
@@ -193,7 +194,7 @@ export default function Login() {
                 <div className='px-6'>
                   <img
                     alt='...'
-                    src={abdullahpic}
+                    src={azeempic}
                     className='shadow-lg rounded-full max-w-full mx-auto'
                     style={{ maxWidth: '120px' }}
                   />
