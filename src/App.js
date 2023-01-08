@@ -2,12 +2,13 @@
 // ============================================================================
 // * Iron Motorsports V1.0
 // ============================================================================
-// * Coded by WeTeck - Talha Noman 
+// * Coded by WeTeck - Talha Noman
 // ============================================================================
 // -->
 
 import './App.css';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 // Components
 import LandingPage from './components/Credentials/LandingPage';
