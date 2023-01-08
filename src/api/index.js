@@ -211,6 +211,52 @@ const authenticateUser = (email, password) => {
   };
 
 
+  const addPackage = (
+    token,
+    title,
+    desc,
+    place,
+    hotel,
+    price,
+    capacity
+  ) => {
+    let promiseOne = new Promise((resolve, reject) => {
+      let myData = fetch(
+        BASEURL + "post/package/add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          Authorization: "Barrier " + token,
+          "Access-Control-Allow-Headers":
+            "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+          "Access-Control-Allow-Methods": "PUT, POST, DELETE, GET",
+          },
+          body: JSON.stringify({
+            Title: title,
+            Desc: desc,
+            Place: place,
+            Hotel: hotel,
+            Price: price,
+            Capacity: capacity,
+
+          }),
+        }
+      ).then((data) => {
+        if (data.status == 200) {
+          return data.json();
+        } else {
+          return 404;
+        }
+      });
+      resolve(myData);
+    });
+    return promiseOne.then((data) => {
+      return data;
+    });
+  };
+
+
   const viewTourGuidePorfolio = (
     token
   ) => {
@@ -293,6 +339,35 @@ const authenticateUser = (email, password) => {
       });
   };
 
+
+  // View Package
+  const viewPackages = (
+    token
+  ) => {
+      let promiseOne = new Promise((resolve, reject) => {
+        let myData = fetch(BASEURL + "get/package/view", {
+          method: "GET",
+          headers: {
+            Authorization: "Barrier " + token,
+            "Access-Control-Allow-Headers":
+              "Origin, X-Requested-With, Content-Type, Accept, Authorization",
+            "Access-Control-Allow-Methods": "PUT, POST, DELETE, GET",
+          },
+        }).then((data) => {
+          if (data.status == 200) {
+            return data.json();
+          } else {
+            return 404;
+          }
+        });
+        resolve(myData);
+      });
+      return promiseOne.then((data) => {
+        return data;
+      });
+  };
+
+
   export {
     addUser,
     authenticateUser,
@@ -302,4 +377,6 @@ const authenticateUser = (email, password) => {
     viewTourGuidePorfolio,
     viewTourOrgPorfolio,
     viewTravelerPorfolio,
+    viewPackages,
+    addPackage,
   }
