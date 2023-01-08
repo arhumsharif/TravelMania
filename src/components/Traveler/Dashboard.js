@@ -1,38 +1,28 @@
-import React from "react";
+import React from 'react';
+import { useRef } from 'react';
+import heroVideo from '../../assets/video.mp4';
 
 export default function Dashboard() {
+  const videoRef = useRef();
+  return (
+    <div className='fixed items-end justify-center w-full h-screen text-center top-14 left-60'>
+      <video
+        ref={videoRef}
+        src={heroVideo}
+        autoPlay
+        loop
+        muted
+        className='object-cover absolute -z-10'
+      ></video>
 
-    return (
-        <div>
-            <div className="bg-gray-200 p-6">
-      <div className="max-w-sm rounded overflow-hidden shadow-lg">
-        <img
-          className="w-full"
-          src="/profile.jpg"
-          alt="Profile picture"
-        />
-        <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">
-            John Doe
-          </div>
-          <p className="text-gray-700 text-base">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque, exercitationem praesentium nihil.
-          </p>
-        </div>
-        <div className="px-6 py-4">
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-            #photography
-          </span>
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-            #travel
-          </span>
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
-            #nature
-          </span>
-        </div>
+      <div
+        className={`p-8 flex flex-col items-center justify-center duration-500 w-full pr-56`}
+      >
+        <h1 className='text-5xl lg:text-7xl text-white'>Welcome to</h1>
+        <h1 className='text-5xl lg:text-7xl capitalize mb-12 text-green-900'>
+          <span className='text-thBlue font-bold'>Pakistan</span>
+        </h1>
       </div>
     </div>
-    
-    </div>
-    )
+  );
 }
