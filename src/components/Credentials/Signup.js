@@ -13,17 +13,37 @@ export default function Signup() {
   const [message, setMessage] = useState('hidden');
 
   const register = async () => {
-    let response = await addUser(
-      email.current.value,
-      password.current.value,
-      userType
-    );
-    if (response == 404) {
-      setMessage('block');
-    } else {
-      navigate('/login');
+    if (password.current.value === confirmPassword.current.value && password.current.value > 0)
+    {  
+      if (validateEmail(email.current.value))
+      {
+        let response = await addUser(
+          email.current.value,
+          password.current.value,
+          userType
+        );
+        if (response == 404) {
+          setMessage('block');
+        } else {
+          navigate('/login');
+        }
+      }
+      else
+      {
+        alert("Invalid Email")
+      }
+    }
+    else
+    {
+      alert("Password Does not matches")
     }
   };
+
+  function validateEmail(email) {
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+  
 
   return (
     <div
@@ -57,6 +77,14 @@ export default function Signup() {
             autoComplete='given-name'
             className='mt-3 mb-3 focus:ring-slate-500 focus:border-slate-500 block shadow-sm sm:text-sm border-gray-300 rounded-xl w-64 h-12 mx-auto placeholder:font-semibold'
             ref={password}
+          />
+
+          <input
+            type='password'
+            placeholder='Confirm Password'
+            autoComplete='given-name'
+            className='mt-3 mb-3 focus:ring-slate-500 focus:border-slate-500 block shadow-sm sm:text-sm border-gray-300 rounded-xl w-64 h-12 mx-auto placeholder:font-semibold'
+            ref={confirmPassword}
           />
           {/* <div className="w-full relative">
                         <label className="absolute left-24">Select Account Type:</label>
