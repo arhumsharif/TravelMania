@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react'
 import { useNavigate } from "react-router-dom";
 // import { addCredentials } from "../../api";
 import Cookies from "universal-cookie";
-import {addTourGuidePorfolio, viewTourGuidePorfolio} from '../../../api/index'
+import {addTourOrgPorfolio, viewTourOrgPorfolio} from '../../../api/index'
 
-export default function PortfolioModal({modalDisplay, setmodalDisplay, getMainProfile, pname, page, pgender, pcnic, pphone, pcity, pcountry, pabout}) {
+export default function PortfolioModal({modalDisplay, setmodalDisplay, getMainProfile}) {
 
     // Cookies to send user_token
   const cookies = new Cookies();
@@ -16,17 +16,14 @@ useEffect(() => {
   }, []);
 
   const getProfile = async (token) => {
-    let response = await viewTourGuidePorfolio(token);
+    let response = await viewTourOrgPorfolio(token);
     if (response == 404) {
       navigate("/");
     }
     console.log(response)
-    setName(response?.data[0]?.name)
-    setAge(response?.data[0]?.age)
-    setCnic(response?.data[0]?.cnic)
+    setName(response?.data[0]?.org_name)
+    setContact(response?.data[0]?.primary_contact)
     setPhone(response?.data[0]?.phone_no)
-    setGender(response?.data[0]?.gender)
-    setCity(response?.data[0]?.city)
     setCountry(response?.data[0]?.country)
     setAbout(response?.data[0]?.about)
   };
@@ -47,18 +44,17 @@ useEffect(() => {
 
   let navigate = useNavigate();
 
+  // States for View
   const [name, setName] = useState("");
-  const [age, setAge] = useState("");
-  const [gender, setGender] = useState("");
-  const [cnic, setCnic] = useState("");
-  const [phone, setPhone] = useState("");
-  const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
+  const [contact, setContact] = useState("");
+  const [phone, setPhone] = useState("");
   const [about, setAbout] = useState("");
 
 
   const addData = async () => {
-    let response = await addTourGuidePorfolio(token,name,age,gender, cnic, phone,city,country,about)
+    
+    let response = await addTourOrgPorfolio(token, name, country, contact, phone, about)
       if (response == 404) {
         navigate("/");
       }
@@ -99,53 +95,18 @@ useEffect(() => {
                                             for="FirstName"
                                             class="block text-sm font-medium text-gray-700"
                                         >
-                                            Age
+                                            Primary Contact
                                         </label>
 
                                         <input
                                             type="text"
-                                            value={age}
-                                            onChange={(e) => setAge(e.target.value)}
+                                            value={contact}
+                                            onChange={(e) => setContact(e.target.value)}
                                             name="first_name"
                                             class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                                         />
                                     </div>
 
-                                    <div class="mt-3">
-                                        <label
-                                            for="FirstName"
-                                            class="block text-sm font-medium text-gray-700"
-                                        >
-                                            Gender
-                                        </label>
-
-                                        <select
-                                            name=""
-                                            className="mt-3 focus:ring-slate-500 focus:border-slate-500 w-full shadow-sm sm:text-sm border-gray-300 rounded-xl h-12 mx-auto placeholder:font-semibold"
-                                            onChange={(e) => setGender(e.target.value)}
-                                            value={gender}
-                                            >
-                                            <option value="Male">{"Male"}</option>
-                                            <option value="Female">{"Female"}</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="mt-3">
-                                        <label
-                                            for="FirstName"
-                                            class="block text-sm font-medium text-gray-700"
-                                        >
-                                            CNIC
-                                        </label>
-
-                                        <input
-                                            type="text"
-                                            value={cnic}
-                                            onChange={(e) => setCnic(e.target.value)}
-                                            name="first_name"
-                                            class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                                        />
-                                    </div>
 
                                     <div class="mt-3">
                                         <label
@@ -159,23 +120,6 @@ useEffect(() => {
                                             type="text"
                                             value={phone}
                                             onChange={(e) => setPhone(e.target.value)}
-                                            name="first_name"
-                                            class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
-                                        />
-                                    </div>
-
-                                    <div class="mt-3">
-                                        <label
-                                            for="FirstName"
-                                            class="block text-sm font-medium text-gray-700"
-                                        >
-                                            City
-                                        </label>
-
-                                        <input
-                                            type="text"
-                                            value={city}
-                                            onChange={(e) => setCity(e.target.value)}
                                             name="first_name"
                                             class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                                         />

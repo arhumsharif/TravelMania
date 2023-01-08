@@ -16,7 +16,9 @@ import Signup from './components/Credentials/Signup';
 import TourGuideDashboard from './components/TourGuide/Dashboard'
 import TourGuidePortfolio from './components/TourGuide/Portfolio'
 import TourOrgDashboard from './components/Organization/Dashboard'
+import TourOrgPortfolio from './components/Organization/Portfolio'
 import TravelerDashboard from './components/Traveler/Dashboard'
+import TravelerPortfolio from './components/Traveler/Portfolio'
 
 // Layout TourGuide
 import TourGuideLayout from './components/Layout/TourGuideLayout'; // for tour guide nav and sidenav
@@ -29,8 +31,10 @@ const TourGuideDashboardLayout = TourGuideLayout(TourGuideDashboard);
 const TourGuidePortfolioLayout = TourGuideLayout(TourGuidePortfolio)
 // Tour Organization
 const TourOrganizationDashboardLayout = TourOrgLayout(TourOrgDashboard);
+const TourOrganizationPortfolioLayout = TourOrgLayout(TourOrgPortfolio);
 // Traveler
 const TravelerDashboardLayout = TravelerLayout(TravelerDashboard);
+const TravelerPortfolioLayout = TravelerLayout(TravelerPortfolio);
 
 function App() {
   return (
@@ -42,7 +46,9 @@ function App() {
         <Route path="/tour-guide" element={<TourGuideDashboardLayout />} />
         <Route path="/tour-guide-portfolio" element={<TourGuidePortfolioLayout />} />
         <Route path="/tour-org" element={<TourOrganizationDashboardLayout />} />
+        <Route path="/tour-org-portfolio" element={<TourOrganizationPortfolioLayout />} />
         <Route path="/traveler" element={<TravelerDashboardLayout />} />
+        <Route path="/traveler-portfolio" element={<TravelerPortfolioLayout />} />
       </Routes>
     </Router>
   );

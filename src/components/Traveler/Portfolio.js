@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import PortfolioModal from './PortfolioModal/PortfolioModal'
-import {viewTourGuidePorfolio} from '../../api/index'
+import {viewTravelerPorfolio} from '../../api/index'
 import Cookies from "universal-cookie";
 
 export default function Portfolio() {
@@ -17,15 +17,16 @@ export default function Portfolio() {
   }, []);
 
   const getProfile = async (token) => {
-    let response = await viewTourGuidePorfolio(token);
+    let response = await viewTravelerPorfolio(token);
     if (response == 404) {
       navigate("/");
     }
     console.log(response)
     setName(response?.data[0]?.name)
-    setAge(response?.data[0]?.age)
+    setPhone(response?.data[0]?.phone)
     setCnic(response?.data[0]?.cnic)
-    setPhone(response?.data[0]?.phone_no)
+    setLanguage(response?.data[0]?.language)
+    setDob(response?.data[0]?.dob)
     setGender(response?.data[0]?.gender)
     setCity(response?.data[0]?.city)
     setCountry(response?.data[0]?.country)
@@ -36,10 +37,11 @@ export default function Portfolio() {
 
   // States for View
   const [name, setName] = useState("");
-  const [age, setAge] = useState("");
-  const [gender, setGender] = useState("");
-  const [cnic, setCnic] = useState("");
   const [phone, setPhone] = useState("");
+  const [cnic, setCnic] = useState("");
+  const [language, setLanguage] = useState("");
+  const [dob, setDob] = useState("");
+  const [gender, setGender] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [about, setAbout] = useState("");
@@ -134,9 +136,9 @@ export default function Portfolio() {
                     <i className="fas fa-map-marker-alt mr-2 text-lg text-gray-500"></i>{" "}
                     {city}, {country}
                   </div>
-                  <div className="hidden mb-2 text-gray-700">
+                  <div className="mb-2 text-gray-700">
                     <i className="fas fa-university mr-2 text-lg text-gray-500"></i>
-                    University of Computer Science
+                    Cnic: {cnic}
                   </div>
                   <div className="mb-2 text-gray-700">
                     <i className="fas fa-university mr-2 text-lg text-gray-500"></i>
@@ -144,15 +146,15 @@ export default function Portfolio() {
                   </div>
                   <div className="mb-2 text-gray-700">
                     <i className="fas fa-university mr-2 text-lg text-gray-500"></i>
-                    Cnic: {cnic}
-                  </div>
-                  <div className="mb-2 text-gray-700">
-                    <i className="fas fa-university mr-2 text-lg text-gray-500"></i>
-                    Age: {age}
-                  </div>
-                  <div className="mb-2 text-gray-700">
-                    <i className="fas fa-university mr-2 text-lg text-gray-500"></i>
                     Gender: {gender}
+                  </div>
+                  <div className="mb-2 text-gray-700">
+                    <i className="fas fa-university mr-2 text-lg text-gray-500"></i>
+                    Date of Birth: {dob}
+                  </div>
+                  <div className="mb-2 text-gray-700">
+                    <i className="fas fa-university mr-2 text-lg text-gray-500"></i>
+                    Language: {language}
                   </div>
                 </div>
                 <div className="mt-10 py-10 border-t border-gray-300 text-center">
@@ -169,7 +171,7 @@ export default function Portfolio() {
           </div>
         </section>
       </main>
-      <PortfolioModal modalDisplay={addModal} setmodalDisplay={setAddModal} getMainProfile={getProfile(token)} pname ={name} page={age} pgender={gender} pcnic={cnic} pphone={phone} pcity={city} pcountry={country} pabout={about}/>
+      <PortfolioModal modalDisplay={addModal} setmodalDisplay={setAddModal} getMainProfile={getProfile(token)}/>
     </div>
     )
 }
