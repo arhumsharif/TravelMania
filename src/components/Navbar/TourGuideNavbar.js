@@ -15,6 +15,8 @@ export default function TourGuideNavbar() {
   let title = "";
   const { pathname } = useLocation();
   const cookies = new Cookies();
+  let token = cookies.get("token");
+
   let navigate = useNavigate();
 
 
@@ -22,7 +24,7 @@ export default function TourGuideNavbar() {
     <div>
         {/* Navbar */}
 
-        <nav className="fixed top-0 w-full bg-gray-800 border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800">
+        <nav className="fixed top-0 w-full z-50 bg-gray-800 border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800">
             <div className="container flex flex-wrap items-center justify-between mx-auto">
                 <Link to="" className="flex items-center">
                     <img src={Logo} className="h-6 mr-3 sm:h-9" alt="Flowbite Logo" />
@@ -45,7 +47,10 @@ export default function TourGuideNavbar() {
                         <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
                     </button>
                     {/* Logout icon */}
-                    <div className="mt-1">
+                    <div onClick={() => {
+                        cookies.set('token', '')
+                        navigate('/login')
+                    }} className="mt-1">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-10 h-7 text-white ">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
                         </svg>
