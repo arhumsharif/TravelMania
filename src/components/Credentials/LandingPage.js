@@ -114,7 +114,7 @@ export default function Login() {
           <div className='container mx-auto px-4'>
             <div className='flex flex-wrap justify-center text-center mb-24'>
               <div className='w-full lg:w-6/12 px-4'>
-                <h2 className='text-4xl font-semibold'>Here are our team</h2>
+                <h2 className='text-4xl font-semibold'>Here is our team</h2>
               </div>
             </div>
             <div className='flex flex-wrap justify-center'>
@@ -169,7 +169,7 @@ export default function Login() {
                     style={{ maxWidth: '120px' }}
                   />
                   <div className='pt-6 text-center'>
-                    <h5 className='text-xl font-bold'>Arhum Shareef</h5>
+                    <h5 className='text-xl font-bold'>Arhum Sharif</h5>
                     <p className='mt-1 text-sm text-gray-500 uppercase font-semibold'>
                       Web Developer
                     </p>
