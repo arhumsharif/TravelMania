@@ -5,11 +5,13 @@ import abdullahpic from '../../assets/abdullahpic.jpg';
 import arhumpic from '../../assets/arhumpic.jpg';
 import azeempic from '../../assets/azeempic.jpg';
 import LandingPageFooter from '../Footer/LandingPageFooter';
+import LandingPageNavbar from '../Navbar/LandingPageNavbar';
 import Logo from '../../assets/realLogo.png';
 
 export default function Login() {
   return (
     <div>
+      <LandingPageNavbar transparent />
       <main>
         <div
           className='relative pt-16 pb-32 flex content-center items-center justify-center'
@@ -21,7 +23,7 @@ export default function Login() {
             className='absolute top-0 w-full h-full bg-center bg-cover'
             style={{
               backgroundImage:
-                "url('https://nomadparadise.com/wp-content/uploads/2021/04/pakistan-places-13-1024x683.jpg')",
+                "url('https://wallpaperaccess.com/full/2767405.jpg')",
             }}
           >
             <span
@@ -33,36 +35,45 @@ export default function Login() {
             <div className='items-center flex flex-wrap'>
               <div className='w-full lg:w-6/12 px-4 ml-auto mr-auto text-center'>
                 <div className='pr-12'>
-                  <img src={Logo} alt='' className='mx-auto mb-10 pl-20' />
                   <h1 className='text-white font-semibold text-5xl'>
-                    &nbsp;&nbsp;&nbsp;TRAVEL MANIA
+                    <img
+                      src={Logo}
+                      alt=''
+                      className='mx-auto mb-6 pl-10 w-52'
+                    />
+                    &nbsp;&nbsp;&nbsp;TravelMania
                   </h1>
-                  <p className='mt-4 sm:text-xl sm:leading-relaxed'>
-                    <span className='text-[#FFFFFF]'>
-                      {' '}
-                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Journey Starts
-                      with Us
-                    </span>
+                  <p className='mt-4 text-lg text-gray-300'>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Your Journey Starts with
+                    Us
                   </p>
-                </div>
-
-                <div className='mt-8 flex flex-wrap justify-center gap-4'>
-                  <button className='bg-white text-gray-800 active:bg-gray-100 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3'>
-                    <Link to='/login'>Get Started</Link>
-                  </button>
                 </div>
               </div>
             </div>
           </div>
+          <div
+            className='top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden'
+            style={{ height: '70px' }}
+          >
+            <svg
+              className='absolute bottom-0 overflow-hidden'
+              xmlns='http://www.w3.org/2000/svg'
+              preserveAspectRatio='none'
+              version='1.1'
+              viewBox='0 0 2560 100'
+              x='0'
+              y='0'
+            ></svg>
+          </div>
         </div>
 
-        <section className='pb-20 bg-gray-300 -mt-24'>
+        <section className='pb-20 bg-gray-100 -mt-24'>
           <div className='container mx-auto px-4'>
             <div className='flex flex-wrap'>
-              <div className='lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center'>
+              <div className='pt-6 w-full md:w-4/12 px-4 text-center'>
                 <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg'>
                   <div className='px-4 py-5 flex-auto'>
-                    <div className='text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400'>
+                    <div className='text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400'>
                       <i className='fas fa-globe'></i>
                     </div>
                     <h6 className='text-xl font-semibold'>
@@ -95,7 +106,7 @@ export default function Login() {
               <div className='pt-6 w-full md:w-4/12 px-4 text-center'>
                 <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg'>
                   <div className='px-4 py-5 flex-auto'>
-                    <div className='text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400'>
+                    <div className='text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400'>
                       <i className='fas fa-fingerprint'></i>
                     </div>
                     <h6 className='text-xl font-semibold'>Verified Company</h6>
@@ -107,10 +118,51 @@ export default function Login() {
                 </div>
               </div>
             </div>
+
+            <div className='flex flex-wrap items-center mt-32'>
+              <div className='w-full md:w-5/12 px-4 mr-auto ml-auto'>
+                <h3 className='text-3xl mb-2 font-semibold leading-normal'>
+                  Pakistan - A Land of Pure
+                </h3>
+                <p className='mt-1 text-sm text-gray-500 font-semibold'>
+                  Pakistan is a country located in South Asia. It has a
+                  coastline along the Arabia Sea and the Gulf of Oman and is
+                  bordered by Afghanistan, China, India, and Iran. The geography
+                  of Pakistan is diverse with the Thar Desert in the east and
+                  the Hindu Kush and Pamir mountain ranges in the north.
+                </p>
+              </div>
+
+              <div className='w-full md:w-4/12 px-4 mr-auto ml-auto'>
+                <div className='relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-blue-400'>
+                  <img
+                    alt='...'
+                    src='https://images.unsplash.com/photo-1627896157734-4d7d4388f28b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8azIlMjBtb3VudGFpbnxlbnwwfHwwfHw%3D&w=1000&q=80'
+                    className='w-full align-middle rounded-t-lg'
+                  />
+                  <blockquote className='relative p-8 mb-4'>
+                    <svg
+                      preserveAspectRatio='none'
+                      xmlns='http://www.w3.org/2000/svg'
+                      viewBox='0 0 583 95'
+                      className='absolute left-0 w-full block'
+                      style={{
+                        height: '95px',
+                        top: '-94px',
+                      }}
+                    ></svg>
+                    <h4 className='text-xl font-bold text-black'>K 2</h4>
+                    <p className='text-md font-light mt-2 text-black'>
+                      Karakoram Range
+                    </p>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
-        <section className='pt-20 pb-48 bg-gray-300'>
+        <section className='pt-20 pb-48 bg-gray-100'>
           <div className='container mx-auto px-4'>
             <div className='flex flex-wrap justify-center text-center mb-24'>
               <div className='w-full lg:w-6/12 px-4'>

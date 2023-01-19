@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Logo from '../../assets/realLogo.png';
 
 function LandingPageNavbar(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
@@ -21,8 +22,21 @@ function LandingPageNavbar(props) {
             }
             to='/'
           >
+            <img src={Logo} alt='' className='w-7 inline mr-2' />
             TravelMania
           </Link>
+          <button
+            className='cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none'
+            type='button'
+            onClick={() => setNavbarOpen(!navbarOpen)}
+          >
+            <i
+              className={
+                (props.transparent ? 'text-white' : 'text-gray-800') +
+                ' fas fa-bars'
+              }
+            ></i>
+          </button>
         </div>
         <div
           className={
@@ -42,96 +56,79 @@ function LandingPageNavbar(props) {
                 }
                 to='/'
               >
-                <i
-                  className={
-                    props.transparent
-                      ? 'lg:text-gray-300 text-gray-500'
-                      : 'text-gray-500'
-                  }
-                />{' '}
                 Home
               </Link>
             </li>
+
             <li className='flex items-center'>
-              <Link
+              <a
                 className={
                   (props.transparent
                     ? 'lg:text-white lg:hover:text-gray-300 text-gray-800'
                     : 'text-gray-800 hover:text-gray-600') +
                   ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
                 }
-                to='#'
+                href='#pablo'
               >
-                <i
-                  className={
-                    props.transparent
-                      ? 'lg:text-gray-300 text-gray-500'
-                      : 'text-gray-500'
-                  }
-                />{' '}
                 Destinations
-              </Link>
+              </a>
             </li>
             <li className='flex items-center'>
-              <Link
+              <a
                 className={
                   (props.transparent
                     ? 'lg:text-white lg:hover:text-gray-300 text-gray-800'
                     : 'text-gray-800 hover:text-gray-600') +
                   ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
                 }
-                to='#'
+                href='#pablo'
               >
-                <i
-                  className={
-                    props.transparent
-                      ? 'lg:text-gray-300 text-gray-500'
-                      : 'text-gray-500'
-                  }
-                />{' '}
+                Packages
+              </a>
+            </li>
+
+            <li className='flex items-center'>
+              <a
+                className={
+                  (props.transparent
+                    ? 'lg:text-white lg:hover:text-gray-300 text-gray-800'
+                    : 'text-gray-800 hover:text-gray-600') +
+                  ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+                }
+                href='#pablo'
+              >
                 Tour Guides
-              </Link>
+              </a>
             </li>
+
             <li className='flex items-center'>
-              <Link
+              <a
                 className={
                   (props.transparent
                     ? 'lg:text-white lg:hover:text-gray-300 text-gray-800'
                     : 'text-gray-800 hover:text-gray-600') +
                   ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
                 }
-                to='#'
+                href='#pablo'
               >
-                <i
-                  className={
-                    props.transparent
-                      ? 'lg:text-gray-300 text-gray-500'
-                      : 'text-gray-500'
-                  }
-                />{' '}
-                Tour Organizations
-              </Link>
+                Organizations
+              </a>
             </li>
+
             <li className='flex items-center'>
-              <Link
+              <a
                 className={
                   (props.transparent
                     ? 'lg:text-white lg:hover:text-gray-300 text-gray-800'
                     : 'text-gray-800 hover:text-gray-600') +
                   ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
                 }
-                to='#'
+                href='#pablo'
               >
-                <i
-                  className={
-                    props.transparent
-                      ? 'lg:text-gray-300 text-gray-500'
-                      : 'text-gray-500'
-                  }
-                />{' '}
-                Tour Packages
-              </Link>
+                Contact Us
+              </a>
             </li>
+
             <li className='flex items-center'>
               <button
                 className={
@@ -144,7 +141,7 @@ function LandingPageNavbar(props) {
                 style={{ transition: 'all .15s ease' }}
               >
                 {' '}
-                Contact Us
+                <Link to='/login'>Login</Link>
               </button>
             </li>
           </ul>
