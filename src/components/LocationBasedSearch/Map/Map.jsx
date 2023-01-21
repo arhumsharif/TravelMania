@@ -7,34 +7,21 @@ import { Rating } from '@material-ui/lab';
 import useStyles from './styles';
 import { geolocated } from 'react-geolocated';
 
-const Map = () => {
-  const [coordinates, setCurrentLocation] = useState({});
-  useEffect(() => {
-    getLocation();
-  }, []);
-  const getLocation = () => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const { latitude, longitude } = position.coords;
-      setCurrentLocation({ latitude, longitude });
-    });
-  };
-  // const coordinates = {lat: 0, lng: 0};
+const Map = ({ setCoordinates, setBounds, coordinates }) => {
   const classes = useStyles();
   const isMobile = useMediaQuery('(min-width:600px)');
   return (
     <div className={classes.mapContainer}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: 'AIzaSyAS0fabteoQUtd14T1BoeTinzVAU6tndKk' }}
-        defaultCenter={{
-          lat: coordinates.latitude,
-          lng: coordinates.longitude,
-        }}
-        center={{
-          lat: coordinates.latitude,
-          lng: coordinates.longitude,
-        }}
+        defaultCenter={coordinates}
+        center={coordinates}
         defaultZoom={14}
         margin={[50, 50, 50, 50]}
+        onChange={(e) => {
+          setCoordinates({ lat: e.center.lat, lng: e.center.lng });
+          setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
+        }}
       ></GoogleMapReact>
     </div>
   );
