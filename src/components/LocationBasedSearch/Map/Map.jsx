@@ -5,7 +5,6 @@ import { Paper, Typography, useMediaQuery } from '@material-ui/core';
 import { LocationOnOutlined } from '@material-ui/icons';
 import { Rating } from '@material-ui/lab';
 import useStyles from './styles';
-import { geolocated } from 'react-geolocated';
 
 const Map = ({
   setCoordinates,
@@ -22,7 +21,7 @@ const Map = ({
   return (
     <div className={classes.mapContainer}>
       <GoogleMapReact
-        bootstrapURLKeys={{ key: 'AIzaSyAS0fabteoQUtd14T1BoeTinzVAU6tndKk' }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_MAPS_API_KEY }}
         defaultCenter={coordinates}
         center={coordinates}
         defaultZoom={14}
