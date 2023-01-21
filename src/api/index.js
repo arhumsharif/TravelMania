@@ -3,22 +3,9 @@ import axios from 'axios';
 var BASEURL = 'http://localhost:5000/';
 
 // Calling api to fetch data regarding location-based-filtering
-const apiURL = 'https://travel-advisor.p.rapidapi.com/hotels/list-in-boundary';
 
-const options = {
-  params: {
-    bl_latitude: '11.847676',
-    bl_longitude: '108.473209',
-    tr_longitude: '109.149359',
-    tr_latitude: '12.838442',
-  },
-  headers: {
-    'X-RapidAPI-Key': '8561269088msh54efca50ba71045p18824bjsn7d347c475f97',
-    'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com',
-  },
-};
-
-const getPlacesData = async (sw, ne) => {
+const getPlacesData = async (type, sw, ne) => {
+  const apiURL = `https://travel-advisor.p.rapidapi.com/${type}/list-in-boundary`;
   try {
     // request
     const {

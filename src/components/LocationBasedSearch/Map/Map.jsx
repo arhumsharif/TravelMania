@@ -7,9 +7,18 @@ import { Rating } from '@material-ui/lab';
 import useStyles from './styles';
 import { geolocated } from 'react-geolocated';
 
-const Map = ({ setCoordinates, setBounds, coordinates }) => {
+const Map = ({
+  setCoordinates,
+  setBounds,
+  coordinates,
+  places,
+  setChildClicked,
+}) => {
   const classes = useStyles();
-  const isMobile = useMediaQuery('(min-width:600px)');
+  const isDesktop = useMediaQuery('(min-width:600px)');
+
+  const hotelimg =
+    'https://images.unsplash.com/photo-1517840901100-8179e982acb7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG90ZWx8ZW58MHx8MHx8&w=1000&q=80';
   return (
     <div className={classes.mapContainer}>
       <GoogleMapReact
@@ -22,7 +31,39 @@ const Map = ({ setCoordinates, setBounds, coordinates }) => {
           setCoordinates({ lat: e.center.lat, lng: e.center.lng });
           setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw });
         }}
-      ></GoogleMapReact>
+        onChildClick={(child) => {
+          setChildClicked(child);
+        }}
+      >
+        {places?.map((place, i) => (
+          <div
+            className={classes.markerContainer}
+            lat={Number(place.latitude)}
+            lng={Number(place.longitude)}
+            key={i}
+          >
+            {!isDesktop ? (
+              <LocationOnOutlined color='primary' fontSize='large' />
+            ) : (
+              <Paper elevation={3} className={classes.paper}>
+                <Typography
+                  className={classes.typography}
+                  variant='subtitle2'
+                  gutterBottom
+                >
+                  {place.name}
+                </Typography>
+                <img
+                  className={classes.pointer}
+                  src={place.photo ? place.photo.images.large.url : hotelimg}
+                  alt={place.name}
+                />
+                <Rating size='small' value={Number(place.rating)} readOnly />
+              </Paper>
+            )}
+          </div>
+        ))}
+      </GoogleMapReact>
     </div>
   );
 };
