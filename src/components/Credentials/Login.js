@@ -4,8 +4,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import Logo from '../../assets/Logo2.png';
 import LandingPageNavbar from '../Navbar/LandingPageNavbar';
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alert';
+import PropTypes from 'prop-types';
+import Alert from '../Layout/Alert';
 
-export default function Login() {
+const Login = ({ setAlert }) => {
   let navigate = useNavigate();
 
   const cookies = new Cookies();
@@ -19,12 +23,8 @@ export default function Login() {
       password.current.value
     );
     if (response === 404) {
-      setMessage('block');
-      setTimeout(() => {
-        setMessage('hidden');
-      }, 3000);
+      setAlert('Invalid Credentials', 'red');
     } else {
-      console.log(response);
       cookies.set('token', response.token);
       if (response.role == 1) {
         navigate('/tour-guide');
@@ -60,6 +60,7 @@ export default function Login() {
                   </div>
                   <div className='flex-auto px-4 lg:px-10 py-10 pt-0'>
                     <form>
+                      <Alert />
                       <div className='relative w-full mb-3'>
                         <label
                           className='block uppercase text-gray-700 text-xs font-bold mb-2'
@@ -132,4 +133,10 @@ export default function Login() {
       </main>
     </>
   );
-}
+};
+
+Login.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+};
+
+export default connect(null, { setAlert })(Login);

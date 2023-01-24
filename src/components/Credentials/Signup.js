@@ -3,14 +3,17 @@ import { addUser } from '../../api';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../../assets/Logo2.png';
 import LandingPageNavbar from '../Navbar/LandingPageNavbar';
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alert';
+import PropTypes from 'prop-types';
+import Alert from '../Layout/Alert';
 
-export default function Signup() {
+const Signup = ({ setAlert }) => {
   let navigate = useNavigate();
 
   const email = useRef();
   const password = useRef();
   const confirmPassword = useRef();
-  const [userType, setUserType] = useState('');
   const [message, setMessage] = useState('hidden');
 
   const register = async () => {
@@ -27,13 +30,16 @@ export default function Signup() {
         if (response == 404) {
           setMessage('block');
         } else {
-          navigate('/login');
+          setAlert('Register successfully', 'green');
+          setTimeout(() => {
+            navigate('/login');
+          }, 3000);
         }
       } else {
-        alert('Invalid Email');
+        setAlert('Invalid Email', 'red');
       }
     } else {
-      alert('Password Does not matches');
+      setAlert('Passwords do not match', 'red');
     }
   };
 
@@ -47,7 +53,7 @@ export default function Signup() {
     <>
       <LandingPageNavbar transparent />
       <main>
-        <section className='absolute w-full h-full pt-12'>
+        <section className='absolute w-full h-full pt-16'>
           <div
             className='absolute top-0 w-full h-full bg-gray-900'
             style={{
@@ -67,6 +73,7 @@ export default function Signup() {
                   </div>
                   <div className='flex-auto px-4 lg:px-10 py-10 pt-0'>
                     <form>
+                      <Alert />
                       <div className='relative w-full mb-3'>
                         <label
                           className='block uppercase text-gray-700 text-xs font-bold mb-2'
@@ -153,4 +160,10 @@ export default function Signup() {
       </main>
     </>
   );
-}
+};
+
+Signup.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+};
+
+export default connect(null, { setAlert })(Signup);

@@ -1,11 +1,3 @@
-// <!--
-// ============================================================================
-// * Iron Motorsports V1.0
-// ============================================================================
-// * Coded by WeTeck - Talha Noman
-// ============================================================================
-// -->
-
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -33,6 +25,10 @@ import TravelerLayout from './components/Layout/TravellerLayout'; // for travele
 // Location Based Searching page need to change design of it according to our application plus layout
 import LocationBasedSearch from './components/LocationBasedSearch/LocationBasedSearch';
 
+// react-redux
+import { Provider } from 'react-redux';
+import store from './store';
+
 // Higher order component
 
 // Tour Guide
@@ -49,37 +45,42 @@ const TravelerPortfolioLayout = TravelerLayout(TravelerPortfolio);
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path='/' element={<LandingPage />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/signup' element={<Signup />} />
-        <Route path='/tour-guide' element={<TourGuideDashboardLayout />} />
-        <Route
-          path='/tour-guide-portfolio'
-          element={<TourGuidePortfolioLayout />}
-        />
-        <Route
-          path='/tour-guide-package'
-          element={<TourGuidePackageBuilderLayout />}
-        />
-        <Route path='/tour-org' element={<TourOrganizationDashboardLayout />} />
-        <Route
-          path='/tour-org-portfolio'
-          element={<TourOrganizationPortfolioLayout />}
-        />
-        <Route
-          path='/tour-org-package'
-          element={<TourOrgPackageBuilderLayout />}
-        />
-        <Route path='/traveler' element={<TravelerDashboardLayout />} />
-        <Route
-          path='/traveler-portfolio'
-          element={<TravelerPortfolioLayout />}
-        />
-        <Route path='/location-based' element={<LocationBasedSearch />} />
-      </Routes>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Routes>
+          <Route path='/' element={<LandingPage />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/signup' element={<Signup />} />
+          <Route path='/tour-guide' element={<TourGuideDashboardLayout />} />
+          <Route
+            path='/tour-guide-portfolio'
+            element={<TourGuidePortfolioLayout />}
+          />
+          <Route
+            path='/tour-guide-package'
+            element={<TourGuidePackageBuilderLayout />}
+          />
+          <Route
+            path='/tour-org'
+            element={<TourOrganizationDashboardLayout />}
+          />
+          <Route
+            path='/tour-org-portfolio'
+            element={<TourOrganizationPortfolioLayout />}
+          />
+          <Route
+            path='/tour-org-package'
+            element={<TourOrgPackageBuilderLayout />}
+          />
+          <Route path='/traveler' element={<TravelerDashboardLayout />} />
+          <Route
+            path='/traveler-portfolio'
+            element={<TravelerPortfolioLayout />}
+          />
+          <Route path='/location-based' element={<LocationBasedSearch />} />
+        </Routes>
+      </Router>
+    </Provider>
   );
 }
 
