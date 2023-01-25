@@ -6,7 +6,7 @@ export default function SideNav() {
     <div>
       {/* Sidenav */}
       <div
-        className='w-64 h-screen fixed left-0 top-9 bottom-0'
+        className='w-64 h-screen relative left-0 top-0 bottom-0'
         aria-label='Sidebar'
       >
         <div className='overflow-y-auto py-4 rounded-3xl px-3 bg-gray-800 dark:bg-gray-800 flex-1 h-full pt-20'>

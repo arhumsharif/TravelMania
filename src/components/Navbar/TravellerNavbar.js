@@ -1,99 +1,223 @@
-// <!--
-// ============================================================================
-// * Iron Motorsports V1.0
-// ============================================================================
-// * Coded by WeTeck - Talha Noman
-// ============================================================================
-// -->
-
-import React from 'react';
+import React, { useState } from 'react';
 import Logo from '../../assets/realLogo.png';
+import { Select, Option } from '@material-tailwind/react';
 // import EmailIcon from '../../assets/Email.svg'
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
-export default function TourGuideNavbar() {
+import {
+  Menu,
+  MenuHandler,
+  MenuList,
+  MenuItem,
+  Button,
+} from '@material-tailwind/react';
+import DropdownRender from './DropDown Button';
+
+export default function TourGuideNavbar(props) {
+  const [navbarOpen, setNavbarOpen] = React.useState(false);
   let title = '';
   const { pathname } = useLocation();
   const cookies = new Cookies();
   let navigate = useNavigate();
 
   return (
-    <div>
-      <nav className='fixed top-0 w-full z-50 bg-gray-800 border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-gray-800'>
-        <div className='container flex flex-wrap items-center justify-between mx-auto'>
-          <Link to='' className='flex items-center'>
-            <img src={Logo} className='h-6 mr-3 sm:h-9' alt='Flowbite Logo' />
-            <span className='self-center text-xl font-semibold whitespace-nowrap dark:text-white'>
-              Travelmania
-            </span>
-          </Link>
-          <div class='flex md:order-2'>
-            <button
-              onClick={() => {
-                cookies.set('token', '');
-                navigate('/login');
-              }}
-              type='button'
-              class='text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-800 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
-            >
-              Log Out
-            </button>
-          </div>
-          <div
-            className='items-center justify-between hidden w-full md:flex md:w-auto md:order-1'
-            id='navbar-search'
+    <nav
+      className={
+        (props.transparent
+          ? 'top-0 absolute z-50 w-full'
+          : 'relative shadow-lg bg-gray-300 shadow-lg') +
+        ' flex flex-wrap items-center justify-between px-2 py-3 '
+      }
+    >
+      <div className='container px-4 mx-auto flex flex-wrap items-center justify-between'>
+        <div className='w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start'>
+          <Link
+            className={
+              (props.transparent ? 'text-white' : 'text-gray-800') +
+              ' text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase'
+            }
+            to='/'
           >
-            <button
-              type='button'
-              data-collapse-toggle='navbar-search'
-              aria-controls='navbar-search'
-              aria-expanded='false'
-              className='md:hidden text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1'
-            >
-              <svg
-                className='w-5 h-5'
-                aria-hidden='true'
-                fill='currentColor'
-                viewBox='0 0 20 20'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <path
-                  fill-rule='evenodd'
-                  d='M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z'
-                  clip-rule='evenodd'
-                ></path>
-              </svg>
-              <span className='sr-only'>Search</span>
-            </button>
-            <div className='relative hidden md:block'>
-              <div className='absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none'>
-                <svg
-                  className='w-5 h-5 text-gray-500'
-                  aria-hidden='true'
-                  fill='currentColor'
-                  viewBox='0 0 20 20'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    fill-rule='evenodd'
-                    d='M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z'
-                    clip-rule='evenodd'
-                  ></path>
-                </svg>
-                <span className='sr-only'>Search icon</span>
-              </div>
-              <input
-                type='text'
-                id='search-navbar'
-                className='block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
-                placeholder='Search...'
-              />
-            </div>
-          </div>
+            <img src={Logo} alt='' className='w-7 inline mr-2' />
+            TravelMania
+          </Link>
+          <button
+            className='cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none'
+            type='button'
+            onClick={() => setNavbarOpen(!navbarOpen)}
+          >
+            <i
+              className={
+                (props.transparent ? 'text-white' : 'text-gray-800') +
+                ' fas fa-bars'
+              }
+            ></i>
+          </button>
         </div>
-      </nav>
+        <div
+          className={
+            'lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none' +
+            (navbarOpen ? ' block rounded shadow-lg' : ' hidden')
+          }
+          id='example-navbar-warning'
+        >
+          <ul className='flex flex-col lg:flex-row list-none lg:ml-auto'>
+            <li className='flex items-center'>
+              <Link
+                className={
+                  (props.transparent
+                    ? 'lg:text-white lg:hover:text-gray-300 text-gray-800'
+                    : 'text-gray-800 hover:text-gray-600') +
+                  ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+                }
+                to='/traveler'
+              >
+                Home
+              </Link>
+            </li>
 
-      {/* Navbar end */}
-    </div>
+            <li className='flex items-center'>
+              <a
+                className={
+                  (props.transparent
+                    ? 'lg:text-white lg:hover:text-gray-300 text-gray-800'
+                    : 'text-gray-800 hover:text-gray-600') +
+                  ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+                }
+                href='#pablo'
+              >
+                Destinations
+              </a>
+            </li>
+            <li className='flex items-center'>
+              <a
+                className={
+                  (props.transparent
+                    ? 'lg:text-white lg:hover:text-gray-300 text-gray-800'
+                    : 'text-gray-800 hover:text-gray-600') +
+                  ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+                }
+                href='#pablo'
+              >
+                Packages
+              </a>
+            </li>
+
+            <li className='flex items-center'>
+              <a
+                className={
+                  (props.transparent
+                    ? 'lg:text-white lg:hover:text-gray-300 text-gray-800'
+                    : 'text-gray-800 hover:text-gray-600') +
+                  ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+                }
+                href='#pablo'
+              >
+                Tour Guides
+              </a>
+            </li>
+
+            <li className='flex items-center'>
+              <a
+                className={
+                  (props.transparent
+                    ? 'lg:text-white lg:hover:text-gray-300 text-gray-800'
+                    : 'text-gray-800 hover:text-gray-600') +
+                  ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+                }
+                href='#pablo'
+              >
+                Organizations
+              </a>
+            </li>
+
+            <li className='flex items-center'>
+              <a
+                className={
+                  (props.transparent
+                    ? 'lg:text-white lg:hover:text-gray-300 text-gray-800'
+                    : 'text-gray-800 hover:text-gray-00') +
+                  ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+                }
+                href='#pablo'
+              >
+                Contact Us
+              </a>
+            </li>
+
+            <li className='flex items-center'>
+              <Menu>
+                <MenuHandler>
+                  <Button
+                    variant='gradient'
+                    className={
+                      (props.transparent
+                        ? 'bg-white text-gray-800 active:bg-gray-100'
+                        : 'bg-gray-800 text-white active:bg-blue-600') +
+                      'dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap'
+                    }
+                  >
+                    Profile
+                    <svg
+                      aria-hidden='true'
+                      focusable='false'
+                      data-prefix='fas'
+                      data-icon='caret-down'
+                      class='w-2 ml-2'
+                      role='img'
+                      xmlns='http://www.w3.org/2000/svg'
+                      viewBox='0 0 320 512'
+                    >
+                      <path
+                        fill='currentColor'
+                        d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'
+                      ></path>
+                    </svg>
+                  </Button>
+                </MenuHandler>
+                <MenuList>
+                  <MenuItem>
+                    <Link
+                      to='/traveler-portfolio'
+                      className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-gray-800 hover:text-white'
+                    >
+                      Portfolio
+                    </Link>
+                  </MenuItem>
+                  <MenuItem>
+                    <Link
+                      to='#'
+                      className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-gray-800 hover:text-white'
+                    >
+                      Inbox
+                    </Link>
+                  </MenuItem>
+                  <MenuItem>
+                    <Link
+                      to='#'
+                      className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-gray-800 hover:text-white'
+                    >
+                      Setting
+                    </Link>
+                  </MenuItem>
+                  <MenuItem>
+                    <button
+                      onClick={() => {
+                        cookies.set('token', '');
+                        navigate('/login');
+                      }}
+                      type='button'
+                      class='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-gray-800 hover:text-white'
+                    >
+                      Log Out
+                    </button>
+                  </MenuItem>
+                </MenuList>
+              </Menu>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 }

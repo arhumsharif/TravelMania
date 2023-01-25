@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import Alert from '../Layout/Alert';
 
 const Signup = ({ setAlert }) => {
+  document.body.style.zoom = '90%';
   let navigate = useNavigate();
 
   const email = useRef();
@@ -51,15 +52,16 @@ const Signup = ({ setAlert }) => {
 
   return (
     <>
-      <LandingPageNavbar transparent />
+      <LandingPageNavbar />
       <main>
-        <section className='absolute w-full h-full pt-16'>
+        <section className='relative w-full h-full pt-16'>
           <div
-            className='absolute top-0 w-full h-full bg-gray-900'
+            className='absolute top-0 w-full bg-gray-900'
             style={{
               backgroundImage:
                 "url('https://images.wallpaperscraft.com/image/single/mountain_peaks_sky_beautiful_scenery_93221_1920x1080.jpg')",
               backgroundRepeat: 'no-repeat',
+              height: '110%',
             }}
           ></div>
           <div className='container mx-auto px-4 h-full'>

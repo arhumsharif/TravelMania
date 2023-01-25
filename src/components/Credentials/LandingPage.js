@@ -9,6 +9,7 @@ import LandingPageNavbar from '../Navbar/LandingPageNavbar';
 import Logo from '../../assets/realLogo.png';
 
 export default function Login() {
+  document.body.style.zoom = '90%';
   return (
     <div>
       <LandingPageNavbar transparent />

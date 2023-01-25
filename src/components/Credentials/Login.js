@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 import Alert from '../Layout/Alert';
 
 const Login = ({ setAlert }) => {
+  document.body.style.zoom = '90%';
   let navigate = useNavigate();
 
   const cookies = new Cookies();
@@ -38,8 +39,8 @@ const Login = ({ setAlert }) => {
 
   return (
     <>
-      <LandingPageNavbar transparent />
-      <main>
+      <LandingPageNavbar />
+      <main style={{ overflow: 'hidden' }}>
         <section className='absolute w-full h-full'>
           <div
             className='absolute top-0 w-full h-full bg-gray-900'
@@ -115,7 +116,7 @@ const Login = ({ setAlert }) => {
                           Login
                         </button>
                         <h6 className='justify-center items-center text-sm font-semibold text-gray-700 pt-3'>
-                          Wanna make an Account
+                          Don't have an Account
                         </h6>
                         <Link to='/signup'>
                           <span className='underline decoration-solid'>
