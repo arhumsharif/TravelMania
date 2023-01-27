@@ -6,6 +6,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import LandingPage from './components/Credentials/LandingPage';
 import Login from './components/Credentials/Login';
 import Signup from './components/Credentials/Signup';
+
 import TourGuideDashboard from './components/TourGuide/Dashboard';
 import TourGuidePortfolio from './components/TourGuide/Portfolio';
 import TourGuidePackageBuilder from './components/TourGuide/PackageBuilder/PackageBuilder';
@@ -16,6 +17,7 @@ import TourOrgPackageBuilder from './components/Organization/PackageBuilder/Pack
 
 import TravelerDashboard from './components/Traveler/Dashboard';
 import TravelerPortfolio from './components/Traveler/Portfolio';
+import { ShowPackage } from './components/Traveler/ShowPackage';
 
 // Layout TourGuide
 import TourGuideLayout from './components/Layout/TourGuideLayout'; // for tour guide nav and sidenav
@@ -78,6 +80,7 @@ function App() {
             element={<TravelerPortfolioLayout />}
           />
           <Route path='/location-based' element={<LocationBasedSearch />} />
+          <Route path='/package-view-all' element={<ShowPackage />} />
         </Routes>
       </Router>
     </Provider>
