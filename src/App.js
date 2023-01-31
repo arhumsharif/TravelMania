@@ -18,6 +18,8 @@ import TourOrgPackageBuilder from './components/Organization/PackageBuilder/Pack
 import TravelerDashboard from './components/Traveler/Dashboard';
 import TravelerPortfolio from './components/Traveler/Portfolio';
 import { ShowPackage } from './components/Traveler/ShowPackage';
+import PackageDisplay from './components/Traveler/PackageDisplay';
+import TourGuideDisplay from './components/Traveler/TourGuideDisplay';
 
 // Layout TourGuide
 import TourGuideLayout from './components/Layout/TourGuideLayout'; // for tour guide nav and sidenav
@@ -80,7 +82,8 @@ function App() {
             element={<TravelerPortfolioLayout />}
           />
           <Route path='/location-based' element={<LocationBasedSearch />} />
-          <Route path='/package-view-all' element={<ShowPackage />} />
+          <Route path='/package-view-all' element={<PackageDisplay />} />
+          <Route path='/tour-guide-view-all' element={<TourGuideDisplay />} />
         </Routes>
       </Router>
     </Provider>
