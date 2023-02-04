@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ShowPackage } from './ShowPackage';
-import { TourGuideCard } from './TourGuideCard';
+import TourGuideCard from './TourGuideCard';
 import { viewAllTourGuides } from '../../api';
 import Cookies from 'universal-cookie';
 import LandingPageNavbar from '../Navbar/LandingPageNavbar';
@@ -53,7 +53,7 @@ export default function TourGuideDisplay() {
                             name='name'
                             type='text'
                             id='job-keyword'
-                            class='form-input filter-input-box bg-gray-50 border-0'
+                            class='form-input filter-input-box bg-gray-100 hover:bg-gray-200 border-gray-300 hover:border-gray-400 text-black w-full !h-12 rounded'
                             placeholder='Search your keywords'
                           />
                         </div>
@@ -119,7 +119,7 @@ export default function TourGuideDisplay() {
                             type='submit'
                             id='search'
                             name='search'
-                            class='btn bg-gray-800 hover:bg-gray-900 border-indigo-600 hover:border-gray-900 text-white searchbtn submit-btn w-full !h-12 rounded'
+                            class='btn bg-gray-800 hover:bg-orange-600 border-indigo-600 hover:border-gray-900 text-white searchbtn submit-btn w-full !h-12 rounded'
                             value='Search'
                           />
                         </div>

@@ -6,10 +6,14 @@ import Cookies from 'universal-cookie';
 import LandingPageNavbar from '../Navbar/LandingPageNavbar';
 import bg from '../../assets/arhumpic.jpg';
 import { Icon } from '@iconify/react';
+import { connect } from 'react-redux';
+import { setAlert } from '../../actions/alert';
+import PropTypes from 'prop-types';
 
-export const TourGuideCard = (props) => {
+const TourGuideCard = (props) => {
   const cookies = new Cookies();
   let token = cookies.get('token');
+  console.log(token);
   let navigate = useNavigate();
 
   const { name, age, city } = props;
@@ -25,7 +29,7 @@ export const TourGuideCard = (props) => {
         <div class='mt-3'>
           <a
             href='page-job-candidate-detail.html'
-            class='text-lg font-medium hover:text-indigo-600 transition duration-500 block'
+            class='text-lg font-medium hover:text-orange-600 transition duration-500 block'
           >
             {name}
           </a>
@@ -52,35 +56,71 @@ export const TourGuideCard = (props) => {
         href=''
         class='bg-gray-100 text-slate-400 text-xs font-medium px-3 py-1 rounded-lg h-[24px] inline-block m-1'
       >
-        PHP
+        Hiking
       </a>
       <a
         href=''
         class='bg-gray-100 text-slate-400 text-xs font-medium px-3 py-1 rounded-lg h-[24px] inline-block m-1'
       >
-        HTML
+        Exploration
       </a>
       <a
         href=''
         class='bg-gray-100 text-slate-400 text-xs font-medium px-3 py-1 rounded-lg h-[24px] inline-block m-1'
       >
-        CSS
+        Management
       </a>
       <a
         href=''
         class='bg-gray-100 text-slate-400 text-xs font-medium px-3 py-1 rounded-lg h-[24px] inline-block m-1'
       >
-        WordPress
+        Leader
       </a>
       <div className='mt-6'>
-        <Link
-          to='#'
-          class='px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
-          style={{ transition: 'all .15s ease' }}
-        >
-          View Profile
-        </Link>
+        {token == undefined ? (
+          <>
+            <Link
+              to='/login'
+              class='px-3 py-3 mx-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
+              style={{ transition: 'all .15s ease' }}
+              onClick={() => props.setAlert('You need to Login First', 'red')}
+            >
+              View Profile
+            </Link>
+            <Link
+              to='/login'
+              class='px-3 py-3 mx-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
+              style={{ transition: 'all .15s ease' }}
+              onClick={() => props.setAlert('You need to Login First', 'red')}
+            >
+              Send Message
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link
+              to='#'
+              class='px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
+              style={{ transition: 'all .15s ease' }}
+            >
+              View Profile
+            </Link>
+            <Link
+              to='#'
+              class='px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
+              style={{ transition: 'all .15s ease' }}
+            >
+              View Profile
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
 };
+
+TourGuideCard.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+};
+
+export default connect(null, { setAlert })(TourGuideCard);
