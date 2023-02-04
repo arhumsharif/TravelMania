@@ -20,6 +20,7 @@ import TravelerPortfolio from './components/Traveler/Portfolio';
 import { ShowPackage } from './components/Traveler/ShowPackage';
 import PackageDisplay from './components/Traveler/PackageDisplay';
 import TourGuideDisplay from './components/Traveler/TourGuideDisplay';
+import ContactUs from './components/Credentials/ContactUs';
 
 // Layout TourGuide
 import TourGuideLayout from './components/Layout/TourGuideLayout'; // for tour guide nav and sidenav
@@ -84,6 +85,7 @@ function App() {
           <Route path='/location-based' element={<LocationBasedSearch />} />
           <Route path='/package-view-all' element={<PackageDisplay />} />
           <Route path='/tour-guide-view-all' element={<TourGuideDisplay />} />
+          <Route path='/contact-us' element={<ContactUs />} />
         </Routes>
       </Router>
     </Provider>

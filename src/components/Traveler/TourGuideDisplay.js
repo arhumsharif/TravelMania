@@ -7,8 +7,10 @@ import Cookies from 'universal-cookie';
 import LandingPageNavbar from '../Navbar/LandingPageNavbar';
 import { Icon } from '@iconify/react';
 import bgImage from '../../assets/bgImagePackage.jpg';
+import LandingPageFooter from '../Footer/LandingPageFooter';
 
 export default function TourGuideDisplay() {
+  document.body.style.zoom = '90%';
   const cookies = new Cookies();
   let token = cookies.get('token');
   let navigate = useNavigate();
@@ -29,7 +31,7 @@ export default function TourGuideDisplay() {
   const [guides, setGuides] = useState([]);
   return (
     <>
-      <LandingPageNavbar />
+      <LandingPageNavbar transparent />
       <div
         className='bg-center bg-no-repeat w-full h-full'
         style={{
@@ -38,7 +40,7 @@ export default function TourGuideDisplay() {
       >
         <div>
           <div>
-            <h3 className='md:text-4xl text-3xl md:leading-normal leading-normal font-medium text-white items-center content-center m-auto text-center pt-16'>
+            <h3 className='md:text-4xl text-3xl md:leading-normal leading-normal font-medium text-white items-center content-center m-auto text-center pt-32'>
               Tour Guides
             </h3>
             <div class='container flex justify-center m-auto mt-16 pb-16 opacity-100 z-50'>
@@ -46,7 +48,7 @@ export default function TourGuideDisplay() {
                 <div class='p-6 bg-white rounded-md shadow-md'>
                   <form action='#'>
                     <div class='registration-form text-dark text-start'>
-                      <div class='grid lg:grid-cols-5 md:grid-cols-2 grid-cols-1 lg:gap-2 gap-6'>
+                      <div class='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-2 gap-6'>
                         <div class='filter-search-form relative filter-border'>
                           <i class='uil uil-search icons'></i>
                           <input
@@ -71,46 +73,6 @@ export default function TourGuideDisplay() {
                             <option>Kashmir</option>
                             <option>Gilgit</option>
                             <option>Swat</option>
-                          </select>
-                        </div>
-
-                        <div class='filter-search-form relative filter-border'>
-                          <i class='uil uil-usd-circle icons'></i>
-                          <select
-                            class='btn bg-gray-100 hover:bg-gray-200 border-gray-300 hover:border-gray-400 text-black w-full !h-12 rounded'
-                            data-trigger
-                            name='choices-min-price'
-                            id='choices-min-price'
-                            aria-label='Default select example'
-                          >
-                            <option>Min Price</option>
-                            <option>500</option>
-                            <option>1000</option>
-                            <option>2000</option>
-                            <option>3000</option>
-                            <option>4000</option>
-                            <option>5000</option>
-                            <option>6000</option>
-                          </select>
-                        </div>
-
-                        <div class='filter-search-form relative'>
-                          <i class='uil uil-usd-circle icons'></i>
-                          <select
-                            class='btn bg-gray-100 hover:bg-gray-200 border-gray-300 hover:border-gray-400 text-black w-full !h-12 rounded'
-                            data-trigger
-                            name='choices-max-price'
-                            id='choices-max-price'
-                            aria-label='Default select example'
-                          >
-                            <option>Max Price</option>
-                            <option>500</option>
-                            <option>1000</option>
-                            <option>2000</option>
-                            <option>3000</option>
-                            <option>4000</option>
-                            <option>5000</option>
-                            <option>6000</option>
                           </select>
                         </div>
 
@@ -220,6 +182,7 @@ export default function TourGuideDisplay() {
           </div>
         </div>
       </section>
+      <LandingPageFooter />
     </>
   );
 }

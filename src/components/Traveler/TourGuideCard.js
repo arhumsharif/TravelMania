@@ -44,12 +44,6 @@ const TourGuideCard = (props) => {
           </i>
           {city}
         </span>
-        <span class='text-slate-400 flex'>
-          <i class='uil uil-map-marker mr-1 pt-1'>
-            <Icon icon='material-symbols:date-range' color='#006'></Icon>
-          </i>
-          {age} years old
-        </span>
       </div>
 
       <a

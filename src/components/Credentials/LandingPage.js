@@ -7,6 +7,7 @@ import azeempic from '../../assets/azeempic.jpg';
 import LandingPageFooter from '../Footer/LandingPageFooter';
 import LandingPageNavbar from '../Navbar/LandingPageNavbar';
 import Logo from '../../assets/realLogo.png';
+import ScrollButton from '../Layout/ScrollButton';
 
 export default function Login() {
   document.body.style.zoom = '90%';
@@ -300,6 +301,7 @@ export default function Login() {
         </section>
       </main>
       <LandingPageFooter />
+      <ScrollButton />
     </div>
   );
 }

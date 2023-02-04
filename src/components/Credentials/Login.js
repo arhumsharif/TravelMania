@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
 import PropTypes from 'prop-types';
 import Alert from '../Layout/Alert';
+import LandingPageFooter from '../Footer/LandingPageFooter';
 
 const Login = ({ setAlert }) => {
   document.body.style.zoom = '90%';
@@ -130,6 +131,7 @@ const Login = ({ setAlert }) => {
               </div>
             </div>
           </div>
+          <LandingPageFooter />
         </section>
       </main>
     </>

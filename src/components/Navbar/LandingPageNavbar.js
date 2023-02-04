@@ -50,8 +50,8 @@ function LandingPageNavbar(props) {
               <Link
                 className={
                   (props.transparent
-                    ? 'lg:text-white lg:hover:text-gray-300 text-gray-800'
-                    : 'text-gray-800 hover:text-gray-600') +
+                    ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
+                    : 'text-gray-800 hover:text-orange-600') +
                   ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
                 }
                 to='/'
@@ -64,8 +64,8 @@ function LandingPageNavbar(props) {
               <a
                 className={
                   (props.transparent
-                    ? 'lg:text-white lg:hover:text-gray-300 text-gray-800'
-                    : 'text-gray-800 hover:text-gray-600') +
+                    ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
+                    : 'text-gray-800 hover:text-orange-600') +
                   ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
                 }
                 href='#pablo'
@@ -77,8 +77,8 @@ function LandingPageNavbar(props) {
               <Link
                 className={
                   (props.transparent
-                    ? 'lg:text-white lg:hover:text-gray-300 text-gray-800'
-                    : 'text-gray-800 hover:text-gray-600') +
+                    ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
+                    : 'text-gray-800 hover:text-orange-600') +
                   ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
                 }
                 to='/package-view-all'
@@ -91,8 +91,8 @@ function LandingPageNavbar(props) {
               <a
                 className={
                   (props.transparent
-                    ? 'lg:text-white lg:hover:text-gray-300 text-gray-800'
-                    : 'text-gray-800 hover:text-gray-600') +
+                    ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
+                    : 'text-gray-800 hover:text-orange-600') +
                   ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
                 }
                 href='/tour-guide-view-all'
@@ -105,8 +105,8 @@ function LandingPageNavbar(props) {
               <a
                 className={
                   (props.transparent
-                    ? 'lg:text-white lg:hover:text-gray-300 text-gray-800'
-                    : 'text-gray-800 hover:text-gray-600') +
+                    ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
+                    : 'text-gray-800 hover:text-orange-600') +
                   ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
                 }
                 href='#pablo'
@@ -119,11 +119,11 @@ function LandingPageNavbar(props) {
               <a
                 className={
                   (props.transparent
-                    ? 'lg:text-white lg:hover:text-gray-300 text-gray-800'
-                    : 'text-gray-800 hover:text-gray-00') +
+                    ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
+                    : 'text-gray-800 hover:text-orange-600') +
                   ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
                 }
-                href='#pablo'
+                href='/contact-us'
               >
                 Contact Us
               </a>
@@ -133,12 +133,12 @@ function LandingPageNavbar(props) {
               <button
                 className={
                   (props.transparent
-                    ? 'bg-white text-gray-800 active:bg-gray-100'
+                    ? 'bg-white text-gray-800 hover:bg-orange-500'
                     : 'bg-gray-800 text-white active:bg-orange-600 hover:bg-orange-600') +
                   ' text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3'
                 }
                 type='button'
-                style={{ transition: 'all .15s ease' }}
+                style={{ transition: 'all .5s ease' }}
               >
                 {' '}
                 <Link to='/login'>Login</Link>

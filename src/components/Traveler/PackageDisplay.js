@@ -6,8 +6,10 @@ import Cookies from 'universal-cookie';
 import LandingPageNavbar from '../Navbar/LandingPageNavbar';
 import { Icon } from '@iconify/react';
 import bgImage from '../../assets/bgImagePackage.jpg';
+import LandingPageFooter from '../Footer/LandingPageFooter';
 
 export default function PackageDisplay() {
+  document.body.style.zoom = '90%';
   const cookies = new Cookies();
   let token = cookies.get('token');
   let navigate = useNavigate();
@@ -28,7 +30,7 @@ export default function PackageDisplay() {
   const [packages, setPackages] = useState([]);
   return (
     <>
-      <LandingPageNavbar />
+      <LandingPageNavbar transparent />
       <div
         className='bg-center bg-no-repeat w-full h-full'
         style={{
@@ -37,7 +39,7 @@ export default function PackageDisplay() {
       >
         <div>
           <div>
-            <h3 className='md:text-4xl text-3xl md:leading-normal leading-normal font-medium text-white items-center content-center m-auto text-center pt-16'>
+            <h3 className='md:text-4xl text-3xl md:leading-normal leading-normal font-medium text-white items-center content-center m-auto text-center pt-32'>
               Tour Packages
             </h3>
             <div class='container flex justify-center m-auto mt-16 pb-16 opacity-100 z-50'>
@@ -222,6 +224,7 @@ export default function PackageDisplay() {
           </div>
         </div>
       </section>
+      <LandingPageFooter />
     </>
   );
 }

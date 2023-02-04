@@ -7,9 +7,9 @@ import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
 import PropTypes from 'prop-types';
 import Alert from '../Layout/Alert';
+import LandingPageFooter from '../Footer/LandingPageFooter';
 
 const Signup = ({ setAlert }) => {
-  document.body.style.zoom = '90%';
   let navigate = useNavigate();
 
   const email = useRef();
@@ -18,6 +18,7 @@ const Signup = ({ setAlert }) => {
   const [message, setMessage] = useState('hidden');
 
   const register = async () => {
+    document.body.style.zoom = '90%';
     if (
       password.current.value === confirmPassword.current.value &&
       password.current.value > 0
@@ -159,6 +160,7 @@ const Signup = ({ setAlert }) => {
             </div>
           </div>
         </section>
+        <LandingPageFooter />
       </main>
     </>
   );
