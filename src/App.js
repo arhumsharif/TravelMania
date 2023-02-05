@@ -10,6 +10,7 @@ import Signup from './components/Credentials/Signup';
 import TourGuideDashboard from './components/TourGuide/Dashboard';
 import TourGuidePortfolio from './components/TourGuide/Portfolio';
 import TourGuidePackageBuilder from './components/TourGuide/PackageBuilder/PackageBuilder';
+import PortfolioDisplay from './components/TourGuide/PortfolioDisplay';
 
 import TourOrgDashboard from './components/Organization/Dashboard';
 import TourOrgPortfolio from './components/Organization/Portfolio';
@@ -86,6 +87,10 @@ function App() {
           <Route path='/package-view-all' element={<PackageDisplay />} />
           <Route path='/tour-guide-view-all' element={<TourGuideDisplay />} />
           <Route path='/contact-us' element={<ContactUs />} />
+          <Route
+            path='/tour-guide-portfolio/:id'
+            element={<PortfolioDisplay />}
+          />
         </Routes>
       </Router>
     </Provider>

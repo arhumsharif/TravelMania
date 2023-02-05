@@ -101,6 +101,7 @@ export default function TourGuideDisplay() {
             {guides?.map((obj, index) => (
               <TourGuideCard
                 key={index}
+                guid={obj.tour_guide_guid}
                 name={obj?.name}
                 age={obj?.age}
                 city={obj?.city}

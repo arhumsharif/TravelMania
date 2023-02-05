@@ -86,12 +86,7 @@ function ContactUs() {
                   Get in touch !
                 </h3>
 
-                <form
-                  method='post'
-                  name='myForm'
-                  id='myForm'
-                  onsubmit='return validateForm()'
-                >
+                <form method='#' name='myForm' id='myForm' onsubmit='#'>
                   <p class='mb-0' id='error-msg'></p>
                   <div id='simple-msg'></div>
                   <div class='grid lg:grid-cols-12 lg:gap-6'>

@@ -16,7 +16,7 @@ const TourGuideCard = (props) => {
   console.log(token);
   let navigate = useNavigate();
 
-  const { name, age, city } = props;
+  const { guid, name, age, city } = props;
   return (
     <div class='group relative p-6 rounded-md shadow  hover:shadow-md bg-white transition duration-500 text-center'>
       <div class='mt-8'>
@@ -27,12 +27,25 @@ const TourGuideCard = (props) => {
         />
 
         <div class='mt-3'>
-          <a
-            href='page-job-candidate-detail.html'
-            class='text-lg font-medium hover:text-orange-600 transition duration-500 block'
-          >
-            {name}
-          </a>
+          {token == undefined ? (
+            <>
+              <Link
+                to='/login'
+                class='text-lg font-medium hover:text-orange-600 transition duration-500 block'
+                style={{ transition: 'all .15s ease' }}
+                onClick={() => props.setAlert('You need to Login First', 'red')}
+              >
+                {name}
+              </Link>
+            </>
+          ) : (
+            <Link
+              to={`/tour-guide-portfolio/${guid}`}
+              class='text-lg font-medium hover:text-orange-600 transition duration-500 block'
+            >
+              {name}
+            </Link>
+          )}
           <span class='block text-sm text-slate-400'>Tour Guide</span>
         </div>
       </div>
@@ -79,14 +92,6 @@ const TourGuideCard = (props) => {
               style={{ transition: 'all .15s ease' }}
               onClick={() => props.setAlert('You need to Login First', 'red')}
             >
-              View Profile
-            </Link>
-            <Link
-              to='/login'
-              class='px-3 py-3 mx-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
-              style={{ transition: 'all .15s ease' }}
-              onClick={() => props.setAlert('You need to Login First', 'red')}
-            >
               Send Message
             </Link>
           </>
@@ -97,14 +102,7 @@ const TourGuideCard = (props) => {
               class='px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
               style={{ transition: 'all .15s ease' }}
             >
-              View Profile
-            </Link>
-            <Link
-              to='#'
-              class='px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
-              style={{ transition: 'all .15s ease' }}
-            >
-              View Profile
+              Send Message
             </Link>
           </>
         )}

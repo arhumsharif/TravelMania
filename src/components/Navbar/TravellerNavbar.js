@@ -90,17 +90,17 @@ export default function TourGuideNavbar(props) {
               </a>
             </li>
             <li className='flex items-center'>
-              <a
+              <Link
                 className={
                   (props.transparent
                     ? 'lg:text-white lg:hover:text-gray-300 text-gray-800'
                     : 'text-gray-800 hover:text-gray-600') +
                   ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
                 }
-                href='#pablo'
+                to='/package-view-all'
               >
                 Packages
-              </a>
+              </Link>
             </li>
 
             <li className='flex items-center'>
@@ -111,7 +111,7 @@ export default function TourGuideNavbar(props) {
                     : 'text-gray-800 hover:text-gray-600') +
                   ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
                 }
-                href='#pablo'
+                href='/tour-guide-view-all'
               >
                 Tour Guides
               </a>
@@ -139,7 +139,7 @@ export default function TourGuideNavbar(props) {
                     : 'text-gray-800 hover:text-gray-00') +
                   ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
                 }
-                href='#pablo'
+                href='/contact-us'
               >
                 Contact Us
               </a>
