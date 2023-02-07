@@ -21,6 +21,7 @@ import TravelerPortfolio from './components/Traveler/Portfolio';
 import { ShowPackage } from './components/Traveler/ShowPackage';
 import PackageDisplay from './components/Traveler/PackageDisplay';
 import TourGuideDisplay from './components/Traveler/TourGuideDisplay';
+import PackageDetails from './components/PackageCard/PackageDetails';
 import ContactUs from './components/Credentials/ContactUs';
 
 // Layout TourGuide
@@ -91,6 +92,7 @@ function App() {
             path='/tour-guide-portfolio/:id'
             element={<PortfolioDisplay />}
           />
+          <Route path='/package/:id' element={<PackageDetails />} />
         </Routes>
       </Router>
     </Provider>

@@ -3,13 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import bg from '../../assets/packagebg.jpg';
 import { Icon } from '@iconify/react';
+import { Link } from 'react-router-dom';
 
 export const ShowPackage = (props) => {
   const cookies = new Cookies();
   let token = cookies.get('token');
   let navigate = useNavigate();
 
-  const { title, description, price, capacity, place, hotel } = props;
+  const { user_guid, guid, title, description, price, capacity, place, hotel } =
+    props;
   return (
     <div class='group rounded-md bg-white shadow hover:shadow-xl overflow-hidden ease-in-out duration-500'>
       <div class='relative'>
@@ -18,14 +20,13 @@ export const ShowPackage = (props) => {
 
       <div class='p-6'>
         <div class='pb-3'>
-          <a
-            href='#'
-            class='text-lg hover:text-indigo-600 font-medium ease-in-out duration-500'
+          <Link
+            to={`/package/${guid}`}
+            className='text-lg hover:text-orange-600 font-medium ease-in-out duration-500'
           >
             {title}
-          </a>
+          </Link>
         </div>
-        <div className='pb-3'>{description}</div>
 
         <ul class='py-6 border-y border-gray-100 flex items-center list-none'>
           <li class='flex items-center mr-4'>
@@ -62,6 +63,16 @@ export const ShowPackage = (props) => {
             <ul class='text-lg font-medium text-amber-400 list-none'>
               <li class='inline text-black'>4.6(8)</li>
             </ul>
+          </li>
+          <li>
+            <Link
+              to='/login'
+              class='px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
+              style={{ transition: 'all .15s ease' }}
+              onClick={() => props.setAlert('You need to Login First', 'red')}
+            >
+              Book
+            </Link>
           </li>
         </ul>
       </div>

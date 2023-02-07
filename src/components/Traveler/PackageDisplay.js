@@ -140,6 +140,8 @@ export default function PackageDisplay() {
             {packages?.map((obj, index) => (
               <ShowPackage
                 key={index}
+                user_guid={obj.user_guid}
+                guid={obj.package_guid}
                 title={obj?.title}
                 description={obj?.description}
                 price={obj?.price}
