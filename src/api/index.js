@@ -381,9 +381,45 @@ const viewAllTourGuides = () => {
   });
 };
 
+const viewAllTourOrganizations = () => {
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'get//tourorg/view/all', {
+      method: 'GET',
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+};
+
 const viewSpecificTourGuidePortfolio = (id) => {
   let promiseOne = new Promise((resolve, reject) => {
     let myData = fetch(BASEURL + 'get//tourguide/portfolio/view/' + id, {
+      method: 'GET',
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+};
+
+const viewSpecificTourOrganizationPortfolio = (id) => {
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'get//tourorg/portfolio/view/' + id, {
       method: 'GET',
     }).then((data) => {
       if (data.status == 200) {
@@ -433,4 +469,6 @@ export {
   viewAllTourGuides,
   viewSpecificTourGuidePortfolio,
   viewSpecificTPackage,
+  viewAllTourOrganizations,
+  viewSpecificTourOrganizationPortfolio,
 };

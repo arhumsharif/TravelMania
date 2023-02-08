@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
-import bgImage from '../../assets/bgImagePackage.jpg';
 import LandingPageNavbar from '../Navbar/LandingPageNavbar';
 import LandingPageFooter from '../Footer/LandingPageFooter';
-import {
-  viewSpecificTourGuidePortfolio,
-  viewSpecificTPackage,
-} from '../../api';
+import { viewSpecificTPackage } from '../../api';
 import PackageDisplayHelper from './PackageDisplayHelper';
 
 function PackageDetails() {
@@ -25,6 +21,11 @@ function PackageDetails() {
   const getPackages = async () => {
     let response = await viewSpecificTPackage(id);
     if (response == 404) {
+      navigate('/');
+    }
+    if (response.data.length == 0) {
+      console.log('Please Dont try to change the URL');
+      alert('Please Dont try to change the URL');
       navigate('/');
     }
     console.log(response.data);

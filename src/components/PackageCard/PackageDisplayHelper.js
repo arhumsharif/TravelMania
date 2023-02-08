@@ -4,6 +4,7 @@ import Cookies from 'universal-cookie';
 import {
   viewSpecificTourGuidePortfolio,
   viewSpecificTPackage,
+  viewSpecificTourOrganizationPortfolio,
 } from '../../api';
 import PackageDisplayCard from './PackageDisplayCard';
 
@@ -24,8 +25,19 @@ function PackageDisplayHelper({ obj }) {
     if (response == 404) {
       navigate('/');
     }
-    console.log(response.data);
-    setPerson(response.data);
+    if (response.data.length == 0) {
+      let response1 = await viewSpecificTourOrganizationPortfolio(
+        obj.user_guid
+      );
+      if (response1 == 404) {
+        navigate('/');
+      }
+      console.log(response1.data);
+      setPerson(response1.data);
+    } else {
+      console.log(response.data);
+      setPerson(response.data);
+    }
   };
 
   const [person, setPerson] = useState();

@@ -1,13 +1,13 @@
 import React from 'react';
 import SideNav from '../Sidenav/TravellerSideNav';
-import Navbar from '../Navbar/TravellerNavbar';
+import LandingPageNavbar from '../Navbar/LandingPageNavbar';
 const layout =
   (Component) =>
   ({ ...props }) => {
     return (
       <>
         <div>
-          <Navbar />
+          <LandingPageNavbar />
           {/* body */}
           {/* Component  */}
           <div className='w-full'>

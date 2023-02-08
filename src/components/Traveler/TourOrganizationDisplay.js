@@ -1,33 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TourGuideCard from './TourGuideCard';
-import { viewAllTourGuides } from '../../api';
+import TourOrganizationCard from './TourOrganizationCard';
+import { viewAllTourOrganizations } from '../../api';
 import Cookies from 'universal-cookie';
 import LandingPageNavbar from '../Navbar/LandingPageNavbar';
 import { Icon } from '@iconify/react';
 import bgImage from '../../assets/bgImagePackage.jpg';
 import LandingPageFooter from '../Footer/LandingPageFooter';
 
-export default function TourGuideDisplay() {
+export default function TourOrganizationDisplay() {
   document.body.style.zoom = '90%';
   const cookies = new Cookies();
   let token = cookies.get('token');
   let navigate = useNavigate();
   // load all the packages
   useEffect(() => {
-    getGuides();
+    getOrganzations();
   }, []);
 
-  const getGuides = async () => {
-    let response = await viewAllTourGuides();
+  const getOrganzations = async () => {
+    let response = await viewAllTourOrganizations();
     if (response == 404) {
       navigate('/');
     }
     console.log(response.data);
-    setGuides(response.data);
+    setOrganizations(response.data);
   };
 
-  const [guides, setGuides] = useState([]);
+  const [organizations, setOrganizations] = useState([]);
   return (
     <>
       <LandingPageNavbar transparent />
@@ -40,7 +41,7 @@ export default function TourGuideDisplay() {
         <div>
           <div>
             <h3 className='md:text-4xl text-3xl md:leading-normal leading-normal font-medium text-white items-center content-center m-auto text-center pt-32'>
-              Tour Guides
+              Tour Organizations
             </h3>
             <div class='container flex justify-center m-auto mt-16 pb-16 opacity-100 z-50'>
               <div class='grid grid-cols-1'>
@@ -97,14 +98,8 @@ export default function TourGuideDisplay() {
       <section class='relative lg:py-18 py-16 flex justify-center m-auto'>
         <div class='container'>
           <div class='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px]'>
-            {guides?.map((obj, index) => (
-              <TourGuideCard
-                key={index}
-                guid={obj.user_guid}
-                name={obj?.name}
-                age={obj?.age}
-                city={obj?.city}
-              />
+            {organizations?.map((obj, index) => (
+              <TourOrganizationCard key={index} obj={obj} />
             ))}
           </div>
 

@@ -1,28 +1,25 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import PackageCard from '../PackageCard/PackageCard';
-import { viewAllPackages } from '../../api/index';
 import Cookies from 'universal-cookie';
-import LandingPageNavbar from '../Navbar/LandingPageNavbar';
 import bg from '../../assets/arhumpic.jpg';
 import { Icon } from '@iconify/react';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
 import PropTypes from 'prop-types';
 
-const TourGuideCard = (props) => {
+const TourOrganizationCard = (props) => {
   const cookies = new Cookies();
   let token = cookies.get('token');
-  console.log(token);
   let navigate = useNavigate();
 
-  const { guid, name, age, city } = props;
+  const { obj } = props;
+  console.log(obj);
   return (
-    <div class='group relative p-6 rounded-md shadow  hover:shadow-md bg-white transition duration-500 text-center'>
-      <div class='mt-8'>
+    <div class='group relative py-6 rounded-md shadow  hover:shadow-md bg-white transition duration-500 text-center'>
+      <div class=''>
         <img
           src={bg}
-          class='rounded-full shadow-md h-20 w-20 mx-auto block'
+          class='rounded shadow-md h-64 w-96 mx-auto block'
           alt=''
         />
 
@@ -35,18 +32,18 @@ const TourGuideCard = (props) => {
                 style={{ transition: 'all .15s ease' }}
                 onClick={() => props.setAlert('You need to Login First', 'red')}
               >
-                {name}
+                {obj.org_name}
               </Link>
             </>
           ) : (
             <Link
-              to={`/tour-guide-portfolio/${guid}`}
+              to={`#`}
               class='text-lg font-medium hover:text-orange-600 transition duration-500 block'
             >
-              {name}
+              {obj.org_name}
             </Link>
           )}
-          <span class='block text-sm text-slate-400'>Tour Guide</span>
+          <span class='block text-sm text-slate-400'>Tour Organization</span>
         </div>
       </div>
 
@@ -55,36 +52,11 @@ const TourGuideCard = (props) => {
           <i class='uil uil-map-marker mr-1 pt-1'>
             <Icon icon='material-symbols:location-on' color='#006' />
           </i>
-          {city}
+          {obj.country}
         </span>
       </div>
-
-      <a
-        href=''
-        class='bg-gray-100 text-slate-400 text-xs font-medium px-3 py-1 rounded-lg h-[24px] inline-block m-1'
-      >
-        Hiking
-      </a>
-      <a
-        href=''
-        class='bg-gray-100 text-slate-400 text-xs font-medium px-3 py-1 rounded-lg h-[24px] inline-block m-1'
-      >
-        Exploration
-      </a>
-      <a
-        href=''
-        class='bg-gray-100 text-slate-400 text-xs font-medium px-3 py-1 rounded-lg h-[24px] inline-block m-1'
-      >
-        Management
-      </a>
-      <a
-        href=''
-        class='bg-gray-100 text-slate-400 text-xs font-medium px-3 py-1 rounded-lg h-[24px] inline-block m-1'
-      >
-        Leader
-      </a>
       <div className='mt-6'>
-        {token == undefined ? (
+        {token == undefined || token == '' ? (
           <>
             <Link
               to='/login'
@@ -111,8 +83,8 @@ const TourGuideCard = (props) => {
   );
 };
 
-TourGuideCard.propTypes = {
+TourOrganizationCard.propTypes = {
   setAlert: PropTypes.func.isRequired,
 };
 
-export default connect(null, { setAlert })(TourGuideCard);
+export default connect(null, { setAlert })(TourOrganizationCard);

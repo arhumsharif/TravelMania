@@ -23,7 +23,7 @@ function PackageDisplayCard({ obj, person }) {
                 to={`/tour-guide-portfolio/${person.user_guid}`}
                 class='hover:text-orange-600 transition duration-500'
               >
-                {person.name}
+                {person.name ? person.name : person.org_name}
               </Link>
             </h4>
             <div class='relative text-center z-10 bottom-5 right-0 left-0 mx-3'>
