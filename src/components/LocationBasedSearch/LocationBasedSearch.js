@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { CssBaseline, Grid } from '@material-ui/core';
 import Header from './Header/Header';
 import List from './List/List';
 import Map from './Map/Map';
 import { getPlacesData } from '../../api';
+import { Navigate } from 'react-router-dom';
 
 function LocationBasedSearch() {
+  let navigate = useNavigate();
+
   const [childClicked, setChildClicked] = useState(null);
   const [places, setPlaces] = useState([]);
   const [coordinates, setCoordinates] = useState({});
@@ -40,6 +44,19 @@ function LocationBasedSearch() {
   }, [type, bounds]);
   return (
     <>
+      {/* {setTimeout(() => {
+        if (
+          window.confirm(
+            'Your Free 5 minutes trial has been expired. Do you wish to continue?'
+          ) == true
+        ) {
+          navigate('/login');
+          clearTimeout();
+        } else {
+          navigate('/');
+          clearTimeout();
+        }
+      }, 5000)} */}
       <CssBaseline />
       <Header setCoordinates={setCoordinates} />
       <Grid container spacing={3} style={{ width: '100%' }}>

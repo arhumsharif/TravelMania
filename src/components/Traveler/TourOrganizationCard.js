@@ -37,7 +37,7 @@ const TourOrganizationCard = (props) => {
             </>
           ) : (
             <Link
-              to={`#`}
+              to={`/tour-org-portfolio/${obj.user_guid}`}
               class='text-lg font-medium hover:text-orange-600 transition duration-500 block'
             >
               {obj.org_name}

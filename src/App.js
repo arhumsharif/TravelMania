@@ -24,6 +24,7 @@ import TourGuideDisplay from './components/Traveler/TourGuideDisplay';
 import PackageDetails from './components/PackageCard/PackageDetails';
 import ContactUs from './components/Credentials/ContactUs';
 import TourOrganizationDisplay from './components/Traveler/TourOrganizationDisplay';
+import OrganizationPortfolioDisplay from './components/Organization/PortfolioDisplay';
 
 // Layout TourGuide
 import TourGuideLayout from './components/Layout/TourGuideLayout'; // for tour guide nav and sidenav
@@ -96,6 +97,10 @@ function App() {
           <Route
             path='/tour-guide-portfolio/:id'
             element={<PortfolioDisplay />}
+          />
+          <Route
+            path='/tour-org-portfolio/:id'
+            element={<OrganizationPortfolioDisplay />}
           />
           <Route path='/package/:id' element={<PackageDetails />} />
         </Routes>

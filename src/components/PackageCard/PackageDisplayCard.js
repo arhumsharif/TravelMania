@@ -4,6 +4,12 @@ import bgImage from '../../assets/bgImagePackage.jpg';
 import { Icon } from '@iconify/react';
 import bg from '../../assets/packagebg.jpg';
 function PackageDisplayCard({ obj, person }) {
+  let linkurl;
+  if (person.name) {
+    linkurl = `/tour-guide-portfolio/${person.user_guid}`;
+  } else {
+    linkurl = `/tour-org-portfolio/${person.user_guid}`;
+  }
   return (
     <>
       <div
@@ -20,7 +26,7 @@ function PackageDisplayCard({ obj, person }) {
             <h4 className=' md:leading-normal leading-normal font-small text-white items-center content-center text-center pb-32'>
               by&nbsp;
               <Link
-                to={`/tour-guide-portfolio/${person.user_guid}`}
+                to={linkurl}
                 class='hover:text-orange-600 transition duration-500'
               >
                 {person.name ? person.name : person.org_name}

@@ -7,7 +7,6 @@ const layout =
     return (
       <>
         <div>
-          <LandingPageNavbar />
           {/* body */}
           {/* Component  */}
           <div className='w-full'>
