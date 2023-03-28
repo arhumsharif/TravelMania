@@ -585,6 +585,10 @@ const viewSpecificTPackage = (id) => {
 
 export {
   addUser,
+  addReqUser,
+  addReqUserOrg,
+  addHelp,
+  verifyOtp,
   authenticateUser,
   addTourGuidePorfolio,
   addTourOrgPorfolio,
