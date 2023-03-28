@@ -32,9 +32,13 @@ const Signup = ({ setAlert }) => {
         if (response == 404) {
           setMessage('block');
         } else {
-          setAlert('Register successfully', 'green');
+          // setAlert('Register successfully', 'green');
           setTimeout(() => {
-            navigate('/login');
+            navigate('/verification', {
+              state: {
+                email: email.current.value
+              }
+            });
           }, 3000);
         }
       } else {

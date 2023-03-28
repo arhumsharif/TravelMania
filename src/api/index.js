@@ -55,6 +55,33 @@ const addUser = (email, password, usertype) => {
   });
 };
 
+// verify otp
+
+const verifyOtp = (email, otp) => {
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'post/user/verify', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        Email: email,
+        OtpCode: otp,
+      }),
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+};
+
 //   Login a user
 
 const authenticateUser = (email, password) => {
@@ -455,6 +482,7 @@ const viewSpecificTPackage = (id) => {
 
 export {
   addUser,
+  verifyOtp,
   authenticateUser,
   addTourGuidePorfolio,
   addTourOrgPorfolio,

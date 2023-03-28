@@ -6,6 +6,7 @@ import '@fortawesome/fontawesome-free/css/all.min.css';
 import LandingPage from './components/Credentials/LandingPage';
 import Login from './components/Credentials/Login';
 import Signup from './components/Credentials/Signup';
+import Verification from './components/Credentials/Verification';
 
 import TourGuideDashboard from './components/TourGuide/Dashboard';
 import TourGuidePortfolio from './components/TourGuide/Portfolio';
@@ -60,6 +61,7 @@ function App() {
           <Route path='/' element={<LandingPage />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
+          <Route path='/verification' element={<Verification />} />
           <Route path='/tour-guide' element={<TourGuideDashboardLayout />} />
           <Route
             path='/tour-guide-portfolio'
