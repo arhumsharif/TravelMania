@@ -10,6 +10,7 @@ import Alert from '../Layout/Alert';
 import LandingPageFooter from '../Footer/LandingPageFooter';
 
 const Signup = ({ setAlert }) => {
+  document.body.style.zoom = '90%';
   let navigate = useNavigate();
 
   const email = useRef();
@@ -18,7 +19,6 @@ const Signup = ({ setAlert }) => {
   const [message, setMessage] = useState('hidden');
 
   const register = async () => {
-    document.body.style.zoom = '90%';
     if (
       password.current.value === confirmPassword.current.value &&
       password.current.value > 0
@@ -30,7 +30,7 @@ const Signup = ({ setAlert }) => {
           'Traveler'
         );
         if (response == 404) {
-          setMessage('block');
+          setAlert('Request Blocked', 'red');
         } else {
           // setAlert('Register successfully', 'green');
           setTimeout(() => {
@@ -136,7 +136,7 @@ const Signup = ({ setAlert }) => {
                           onClick={register}
                           type='button'
                           style={{ transition: 'all .15s ease' }}
-                          className='bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full'
+                          className='bg-gray-800 text-white active:bg-orange-600 hover:bg-orange-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full'
                         >
                           Signup
                         </button>
@@ -149,7 +149,7 @@ const Signup = ({ setAlert }) => {
                           </span>
                         </Link>
                         <h6 className='justify-center items-center text-sm font-semibold text-gray-700 pt-3'>
-                          <Link to='/login'>
+                          <Link to='/auth-signup'>
                             <span className='underline decoration-solid'>
                               Register
                             </span>

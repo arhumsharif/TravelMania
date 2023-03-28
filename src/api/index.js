@@ -82,6 +82,109 @@ const verifyOtp = (email, otp) => {
   });
 };
 
+const addHelp = (name, email, title, desc) => {
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'post/helpportal/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        Name: name,
+        Email: email,
+        Title: title,
+        Desc: desc,
+      }),
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+};
+
+const addReqUser = (email, password, name, cnic, mobile, dob, address) => {
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'post/requser/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        Email: email,
+        Password: password,
+        name: name,
+        cnic: cnic,
+        mobile: mobile,
+        dob: dob,
+        address: address,
+      }),
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+};
+
+const addReqUserOrg = (
+  email,
+  password,
+  name,
+  cnic,
+  mobile,
+  dob,
+  o_name,
+  o_reg_no,
+  o_phone,
+  o_web,
+  o_address
+) => {
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'post/requserorg/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        Email: email,
+        Password: password,
+        name: name,
+        cnic: cnic,
+        mobile: mobile,
+        dob: dob,
+        o_name: o_name,
+        o_reg_no: o_reg_no,
+        o_phone: o_phone,
+        o_web: o_web,
+        o_address: o_address,
+      }),
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+};
+
 //   Login a user
 
 const authenticateUser = (email, password) => {
@@ -482,7 +585,6 @@ const viewSpecificTPackage = (id) => {
 
 export {
   addUser,
-  verifyOtp,
   authenticateUser,
   addTourGuidePorfolio,
   addTourOrgPorfolio,

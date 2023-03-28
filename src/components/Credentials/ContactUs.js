@@ -1,12 +1,41 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import LandingPageNavbar from '../Navbar/LandingPageNavbar';
 import bgImage from '../../assets/bgImagePackage.jpg';
 import contactimg from '../../assets/contact.png';
 import { Icon } from '@iconify/react';
 import LandingPageFooter from '../Footer/LandingPageFooter';
+import { addHelp } from '../../api';
+import { setAlert } from '../../actions/alert';
+import Alert from '../Layout/Alert';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
-function ContactUs() {
+function ContactUs({ setAlert }) {
   document.body.style.zoom = '90%';
+  let navigate = useNavigate();
+
+  const name = useRef();
+  const email = useRef();
+  const title = useRef();
+  const description = useRef();
+
+  const sendData = async () => {
+    let response = await addHelp(
+      name.current.value,
+      email.current.value,
+      title.current.value,
+      description.current.value
+    );
+    if (response === 404) {
+      setAlert('Request Blocked', 'red');
+    } else {
+      setAlert('Your issue has been noted successfully.', 'green');
+      setTimeout(() => {
+        navigate('/contact-us');
+      }, 3000);
+    }
+  };
   return (
     <>
       <LandingPageNavbar transparent />
@@ -86,14 +115,15 @@ function ContactUs() {
                   Get in touch !
                 </h3>
 
-                <form method='#' name='myForm' id='myForm' onsubmit='#'>
+                <form>
                   <p class='mb-0' id='error-msg'></p>
                   <div id='simple-msg'></div>
+                  <Alert />
                   <div class='grid lg:grid-cols-12 lg:gap-6'>
                     <div class='lg:col-span-6 mb-5'>
                       <div class='text-left text-white'>
                         <label for='name' class='font-semibold'>
-                          Your Name:
+                          Name:
                         </label>
                         <div class='form-icon relative mt-2'>
                           <input
@@ -102,6 +132,7 @@ function ContactUs() {
                             type='text'
                             class='form-input filter-input-box bg-gray-100 hover:bg-gray-200 border-gray-300 hover:border-gray-400 text-black w-full !h-12 rounded'
                             placeholder='Name :'
+                            ref={name}
                           />
                         </div>
                       </div>
@@ -110,7 +141,7 @@ function ContactUs() {
                     <div class='lg:col-span-6 mb-5'>
                       <div class='text-left text-white'>
                         <label for='email' class='font-semibold'>
-                          Your Email:
+                          Email:
                         </label>
                         <div class='form-icon relative mt-2'>
                           <input
@@ -119,6 +150,7 @@ function ContactUs() {
                             type='email'
                             class='form-input filter-input-box bg-gray-100 hover:bg-gray-200 border-gray-300 hover:border-gray-400 text-black w-full !h-12 rounded'
                             placeholder='Email :'
+                            ref={email}
                           />
                         </div>
                       </div>
@@ -128,15 +160,16 @@ function ContactUs() {
                   <div class='grid grid-cols-1'>
                     <div class='mb-5'>
                       <div class='text-left text-white'>
-                        <label for='subject' class='font-semibold'>
-                          Your Question:
+                        <label for='title' class='font-semibold'>
+                          Title:
                         </label>
                         <div class='form-icon relative mt-2'>
                           <input
-                            name='subject'
-                            id='subject'
+                            name='title'
+                            id='title'
                             class='form-input filter-input-box bg-gray-100 hover:bg-gray-200 border-gray-300 hover:border-gray-400 text-black w-full !h-12 rounded'
-                            placeholder='Subject :'
+                            placeholder='Title :'
+                            ref={title}
                           />
                         </div>
                       </div>
@@ -144,27 +177,27 @@ function ContactUs() {
 
                     <div class='mb-5'>
                       <div class='text-left text-white'>
-                        <label for='comments' class='font-semibold'>
-                          Your Comment:
+                        <label for='description' class='font-semibold'>
+                          Description:
                         </label>
                         <div class='form-icon relative mt-2'>
-                          <textarea
-                            name='comments'
-                            id='comments'
+                          <input
+                            name='description'
+                            id='description'
                             class='form-input filter-input-box bg-gray-100 hover:bg-gray-200 border-gray-300 hover:border-gray-400 text-black w-full !h-12 rounded'
-                            placeholder='Message :'
-                          ></textarea>
+                            placeholder='Description :'
+                            ref={description}
+                          />
                         </div>
                       </div>
                     </div>
                   </div>
                   <button
-                    type='submit'
-                    id='submit'
-                    name='send'
+                    type='button'
+                    onClick={sendData}
                     class='btn bg-gray-200 hover:bg-orange-600 border-indigo-600 hover:border-gray-900 text-gray-900 searchbtn submit-btn w-full !h-12 rounded duration-500 ease-in-out'
                   >
-                    Send Message
+                    Send
                   </button>
                 </form>
               </div>
@@ -177,4 +210,8 @@ function ContactUs() {
   );
 }
 
-export default ContactUs;
+ContactUs.protoTypes = {
+  setAlert: PropTypes.func.isRequired,
+};
+
+export default connect(null, { setAlert })(ContactUs);

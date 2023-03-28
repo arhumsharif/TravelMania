@@ -9,8 +9,9 @@ import { setAlert } from '../../actions/alert';
 import PropTypes from 'prop-types';
 import Alert from '../Layout/Alert';
 import LandingPageFooter from '../Footer/LandingPageFooter';
+import { login } from '../../actions/auth';
 
-const Login = ({ setAlert }) => {
+const Login = ({ setAlert, login, userType }) => {
   document.body.style.zoom = '90%';
   let navigate = useNavigate();
 
@@ -19,24 +20,18 @@ const Login = ({ setAlert }) => {
   const password = useRef();
   const [message, setMessage] = useState('hidden');
 
-  const login = async () => {
-    let response = await authenticateUser(
-      email.current.value,
-      password.current.value
-    );
-    if (response === 404) {
-      setAlert('Invalid Credentials', 'red');
-    } else {
-      cookies.set('token', response.token);
-      if (response.role == 1) {
-        navigate('/tour-guide');
-      } else if (response.role == 0) {
-        navigate('/traveler');
-      } else {
-        navigate('/tour-org');
-      }
-    }
+  const loginclick = () => {
+    login(email.current.value, password.current.value);
   };
+  console.log(userType);
+  // redirect accordingly
+  if (userType == 0) {
+    navigate('/');
+  } else if (userType == 1) {
+    navigate('/');
+  } else if (userType == 2) {
+    navigate('/');
+  }
 
   return (
     <>
@@ -109,7 +104,7 @@ const Login = ({ setAlert }) => {
 
                       <div className='text-center mt-6'>
                         <button
-                          onClick={login}
+                          onClick={loginclick}
                           type='button'
                           style={{ transition: 'all .15s ease' }}
                           className='bg-gray-900 text-white hover:bg-orange-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full'
@@ -140,6 +135,12 @@ const Login = ({ setAlert }) => {
 
 Login.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
+  userType: PropTypes.number,
 };
 
-export default connect(null, { setAlert })(Login);
+const mapStatetoProps = (state) => ({
+  userType: state.auth.userType,
+});
+
+export default connect(mapStatetoProps, { setAlert, login })(Login);

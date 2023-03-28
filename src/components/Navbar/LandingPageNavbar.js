@@ -9,8 +9,258 @@ import {
   MenuItem,
   Button,
 } from '@material-tailwind/react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { logout } from '../../actions/auth';
 
 function LandingPageNavbar(props) {
+  const generallinks = (
+    <>
+      <li className='flex items-center'>
+        <button
+          className={
+            (props.transparent
+              ? 'bg-white text-gray-800 hover:bg-orange-500'
+              : 'bg-gray-800 text-white active:bg-orange-600 hover:bg-orange-600') +
+            ' text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3'
+          }
+          type='button'
+          style={{ transition: 'all .5s ease' }}
+        >
+          {' '}
+          <Link to='/login'>Login</Link>
+        </button>
+      </li>
+    </>
+  );
+
+  const travellerlinks = (
+    <li className='flex items-center'>
+      <Menu>
+        <MenuHandler>
+          <Button
+            variant='gradient'
+            className={
+              (props.transparent
+                ? 'bg-white text-gray-800 hover:bg-orange-500'
+                : 'bg-gray-800 text-white active:bg-orange-600 hover:bg-orange-600') +
+              'dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap'
+            }
+          >
+            Profile
+            <svg
+              aria-hidden='true'
+              focusable='false'
+              data-prefix='fas'
+              data-icon='caret-down'
+              class='w-2 ml-2'
+              role='img'
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 320 512'
+            >
+              <path
+                fill='currentColor'
+                d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'
+              ></path>
+            </svg>
+          </Button>
+        </MenuHandler>
+        <MenuList>
+          <MenuItem>
+            <Link
+              to='/traveler-portfolio'
+              className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
+            >
+              Portfolio
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link
+              to='#'
+              className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
+            >
+              Inbox
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link
+              to='#'
+              className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
+            >
+              Setting
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <button
+              onClick={() => {
+                props.logout();
+                navigate('/login');
+              }}
+              type='button'
+              class='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
+            >
+              Log Out
+            </button>
+          </MenuItem>
+        </MenuList>
+      </Menu>
+    </li>
+  );
+
+  const tourguidelinks = (
+    <li className='flex items-center'>
+      <Menu>
+        <MenuHandler>
+          <Button
+            variant='gradient'
+            className={
+              (props.transparent
+                ? 'bg-white text-gray-800 hover:bg-orange-500'
+                : 'bg-gray-800 text-white active:bg-orange-600 hover:bg-orange-600') +
+              'dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap'
+            }
+          >
+            Profile
+            <svg
+              aria-hidden='true'
+              focusable='false'
+              data-prefix='fas'
+              data-icon='caret-down'
+              class='w-2 ml-2'
+              role='img'
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 320 512'
+            >
+              <path
+                fill='currentColor'
+                d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'
+              ></path>
+            </svg>
+          </Button>
+        </MenuHandler>
+        <MenuList>
+          <MenuItem>
+            <Link
+              to='/tour-guide-portfolio'
+              className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
+            >
+              My Portfolio
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link
+              to='/tour-guide-package'
+              className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
+            >
+              My Packages
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link
+              to='#'
+              className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
+            >
+              Inbox
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link
+              to='#'
+              className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
+            >
+              Setting
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <button
+              onClick={() => {
+                props.logout();
+                navigate('/login');
+              }}
+              type='button'
+              class='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
+            >
+              Log Out
+            </button>
+          </MenuItem>
+        </MenuList>
+      </Menu>
+    </li>
+  );
+
+  const tourorglinks = (
+    <li className='flex items-center'>
+      <Menu>
+        <MenuHandler>
+          <Button
+            variant='gradient'
+            className={
+              (props.transparent
+                ? 'bg-white text-gray-800 hover:bg-orange-500'
+                : 'bg-gray-800 text-white active:bg-orange-600 hover:bg-orange-600') +
+              'dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap'
+            }
+          >
+            Profile
+            <svg
+              aria-hidden='true'
+              focusable='false'
+              data-prefix='fas'
+              data-icon='caret-down'
+              class='w-2 ml-2'
+              role='img'
+              xmlns='http://www.w3.org/2000/svg'
+              viewBox='0 0 320 512'
+            >
+              <path
+                fill='currentColor'
+                d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'
+              ></path>
+            </svg>
+          </Button>
+        </MenuHandler>
+        <MenuList>
+          <MenuItem>
+            <Link
+              to='/traveler-portfolio'
+              className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
+            >
+              Portfolio
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link
+              to='#'
+              className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
+            >
+              Inbox
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link
+              to='#'
+              className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
+            >
+              Setting
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <button
+              onClick={() => {
+                props.logout();
+                navigate('/login');
+              }}
+              type='button'
+              class='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
+            >
+              Log Out
+            </button>
+          </MenuItem>
+        </MenuList>
+      </Menu>
+    </li>
+  );
+
   const cookies = new Cookies();
   let token = cookies.get('token');
   let navigate = useNavigate();
@@ -59,31 +309,17 @@ function LandingPageNavbar(props) {
         >
           <ul className='flex flex-col lg:flex-row list-none lg:ml-auto'>
             <li className='flex items-center'>
-              {token == undefined || token == '' ? (
-                <Link
-                  className={
-                    (props.transparent
-                      ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
-                      : 'text-gray-800 hover:text-orange-600') +
-                    ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
-                  }
-                  to='/'
-                >
-                  Home
-                </Link>
-              ) : (
-                <Link
-                  className={
-                    (props.transparent
-                      ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
-                      : 'text-gray-800 hover:text-orange-600') +
-                    ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
-                  }
-                  to='/traveler'
-                >
-                  Home
-                </Link>
-              )}
+              <Link
+                className={
+                  (props.transparent
+                    ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
+                    : 'text-gray-800 hover:text-orange-600') +
+                  ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+                }
+                to='/'
+              >
+                Home
+              </Link>
             </li>
 
             <li className='flex items-center'>
@@ -155,96 +391,13 @@ function LandingPageNavbar(props) {
               </a>
             </li>
 
-            {token == undefined || token == '' ? (
-              <>
-                <li className='flex items-center'>
-                  <button
-                    className={
-                      (props.transparent
-                        ? 'bg-white text-gray-800 hover:bg-orange-500'
-                        : 'bg-gray-800 text-white active:bg-orange-600 hover:bg-orange-600') +
-                      ' text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3'
-                    }
-                    type='button'
-                    style={{ transition: 'all .5s ease' }}
-                  >
-                    {' '}
-                    <Link to='/login'>Login</Link>
-                  </button>
-                </li>
-              </>
-            ) : (
-              <li className='flex items-center'>
-                <Menu>
-                  <MenuHandler>
-                    <Button
-                      variant='gradient'
-                      className={
-                        (props.transparent
-                          ? 'bg-white text-gray-800 hover:bg-orange-500'
-                          : 'bg-gray-800 text-white active:bg-orange-600 hover:bg-orange-600') +
-                        'dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap'
-                      }
-                    >
-                      Profile
-                      <svg
-                        aria-hidden='true'
-                        focusable='false'
-                        data-prefix='fas'
-                        data-icon='caret-down'
-                        class='w-2 ml-2'
-                        role='img'
-                        xmlns='http://www.w3.org/2000/svg'
-                        viewBox='0 0 320 512'
-                      >
-                        <path
-                          fill='currentColor'
-                          d='M31.3 192h257.3c17.8 0 26.7 21.5 14.1 34.1L174.1 354.8c-7.8 7.8-20.5 7.8-28.3 0L17.2 226.1C4.6 213.5 13.5 192 31.3 192z'
-                        ></path>
-                      </svg>
-                    </Button>
-                  </MenuHandler>
-                  <MenuList>
-                    <MenuItem>
-                      <Link
-                        to='/traveler-portfolio'
-                        className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
-                      >
-                        Portfolio
-                      </Link>
-                    </MenuItem>
-                    <MenuItem>
-                      <Link
-                        to='#'
-                        className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
-                      >
-                        Inbox
-                      </Link>
-                    </MenuItem>
-                    <MenuItem>
-                      <Link
-                        to='#'
-                        className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
-                      >
-                        Setting
-                      </Link>
-                    </MenuItem>
-                    <MenuItem>
-                      <button
-                        onClick={() => {
-                          cookies.set('token', '');
-                          navigate('/login');
-                        }}
-                        type='button'
-                        class='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
-                      >
-                        Log Out
-                      </button>
-                    </MenuItem>
-                  </MenuList>
-                </Menu>
-              </li>
-            )}
+            {props.userType == -1
+              ? generallinks
+              : props.userType == 0
+              ? travellerlinks
+              : props.userType == 1
+              ? tourguidelinks
+              : tourorglinks}
           </ul>
         </div>
       </div>
@@ -252,4 +405,13 @@ function LandingPageNavbar(props) {
   );
 }
 
-export default LandingPageNavbar;
+LandingPageNavbar.propTypes = {
+  logout: PropTypes.func.isRequired,
+  userType: PropTypes.number,
+};
+
+const mapStatetoProps = (state) => ({
+  userType: state.auth.userType,
+});
+
+export default connect(mapStatetoProps, { logout })(LandingPageNavbar);

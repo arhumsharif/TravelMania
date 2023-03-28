@@ -1,25 +1,19 @@
-import React from "react";
-import SideNav from "../Sidenav/TourOrganizationSideNav";
-import Navbar from "../Navbar/TourOrganizationNavbar";
-const layout = (Component) => ({ ...props }) => {
+import React from 'react';
+const layout =
+  (Component) =>
+  ({ ...props }) => {
     return (
-        <>
-            <div>
-                <Navbar/>
-                {/* body */}
-                <div className="flex h-full mt-20">
-                    <SideNav/>
-                    {/* Component  */}
-                    <div className="ml-72 w-full">
-                        <Component {...props} />
-                    </div>
-                    {/* Component end */}
+      <>
+        <div>
+          {/* body */}
+          {/* Component  */}
+          <div className='w-full'>
+            <Component {...props} />
+            {/* Component end */}
+          </div>
+        </div>
+      </>
+    );
+  };
 
-                </div>
-
-            </div>
-        </>
-    )
-}
-
-export default layout
+export default layout;
