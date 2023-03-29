@@ -6,6 +6,7 @@ import { viewPackages } from '../../../api/index';
 import Cookies from 'universal-cookie';
 import LandingPageNavbar from '../../Navbar/LandingPageNavbar';
 import { Icon } from '@iconify/react';
+import bgImage from '../../../assets/bgImagePackage.jpg';
 
 export default function PackageBuilder() {
   // Cookies to send user_token
@@ -32,22 +33,33 @@ export default function PackageBuilder() {
 
   return (
     <div>
-      <LandingPageNavbar />
+      <LandingPageNavbar transparent />
+      <div
+        className='bg-center bg-no-repeat w-full h-full'
+        style={{
+          backgroundImage: `url(${bgImage})`,
+        }}
+      >
+        <div>
+          <div>
+            <h3 className='md:text-4xl text-3xl md:leading-normal leading-normal font-medium text-white items-center content-center m-auto text-center pt-32 pb-32'>
+              My Packages
+            </h3>
+          </div>
+        </div>
+      </div>
       <div className='flex justify-between'>
-        <h3 className='text-4xl font-medium mx-10 my-10'>My Packages</h3>
-        <div className='mx-10 my-10'>
+        <div className='mx-8 my-5'>
           <button
-            onClick={() => setAddModal('block')}
+            onClick={() => navigate('/package/create')}
             className='px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
             type='button'
             style={{ transition: 'all .15s ease' }}
           >
-            Add a Package
+            Add a new Package
           </button>
         </div>
       </div>
-
-      <hr className='mb-5'></hr>
 
       <section class='relative lg:py-18 py-16 flex justify-center m-auto'>
         <div class='container'>

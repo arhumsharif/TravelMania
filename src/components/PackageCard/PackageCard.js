@@ -55,7 +55,7 @@ export default function PackageCard(props) {
           </li>
           <li>
             <Link
-              to='/login'
+              to='#'
               class='px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
               style={{ transition: 'all .15s ease' }}
               onClick={() => props.setAlert('You need to Login First', 'red')}

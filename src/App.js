@@ -21,6 +21,7 @@ import TourOrgPackageBuilder from './components/Organization/PackageBuilder/Pack
 import TravelerDashboard from './components/Traveler/Dashboard';
 import TravelerPortfolio from './components/Traveler/Portfolio';
 import { ShowPackage } from './components/Traveler/ShowPackage';
+import PackageCreator from './components/PackageCard/PackageCreator';
 import PackageDisplay from './components/Traveler/PackageDisplay';
 import TourGuideDisplay from './components/Traveler/TourGuideDisplay';
 import PackageDetails from './components/PackageCard/PackageDetails';
@@ -105,6 +106,7 @@ function App() {
             element={<OrganizationPortfolioDisplay />}
           />
           <Route path='/package/:id' element={<PackageDetails />} />
+          <Route path='/package/create' element={<PackageCreator />} />
         </Routes>
       </Router>
     </Provider>
