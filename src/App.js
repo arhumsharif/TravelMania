@@ -9,6 +9,8 @@ import Signup from './components/Credentials/Signup';
 import AuthSignUp from './components/Credentials/AuthSignUp';
 import Verification from './components/Credentials/Verification';
 
+import Inbox from './components/Inbox/Inbox'
+
 import TourGuideDashboard from './components/TourGuide/Dashboard';
 import TourGuidePortfolio from './components/TourGuide/Portfolio';
 import TourGuidePackageBuilder from './components/TourGuide/PackageBuilder/PackageBuilder';
@@ -88,6 +90,9 @@ function App() {
             path='/traveler-portfolio'
             element={<TravelerPortfolioLayout />}
           />
+
+          <Route path='/inbox' element={<Inbox />} />
+
           <Route path='/location-based' element={<LocationBasedSearch />} />
           <Route path='/package-view-all' element={<PackageDisplay />} />
           <Route path='/tour-guide-view-all' element={<TourGuideDisplay />} />
