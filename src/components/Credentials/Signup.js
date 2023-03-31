@@ -24,6 +24,8 @@ const Signup = ({ setAlert }) => {
       password.current.value > 0
     ) {
       if (validateEmail(email.current.value)) {
+        alert('ok email')
+        return
         let response = await addUser(
           email.current.value,
           password.current.value,
@@ -50,8 +52,15 @@ const Signup = ({ setAlert }) => {
   };
 
   function validateEmail(email) {
-    const re =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const localPart = email.split('@')[0];
+    const domainPart = email.split('@')[1];
+
+    // Check if local part or domain part contains only numeric characters
+    if (/^\d+$/.test(localPart) || /^\d+$/.test(domainPart.replace(/\./g, ''))) {
+      return false;
+    }
+
     return re.test(String(email).toLowerCase());
   }
 
