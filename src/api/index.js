@@ -373,6 +373,34 @@ const addPackage = (token, title, desc, place, hotel, price, capacity) => {
   });
 };
 
+const addPackageDesc = (token, guid, time, day, event) => {
+  console.log(event);
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'post/package/desc/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        Guid: guid,
+        Day: day,
+        Time: time,
+        Event: event.value,
+      }),
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+};
+
 const viewTourGuidePorfolio = (token) => {
   let promiseOne = new Promise((resolve, reject) => {
     let myData = fetch(BASEURL + 'get/tourguide/portfolio/view', {
@@ -583,6 +611,24 @@ const viewSpecificTPackage = (id) => {
   });
 };
 
+const viewSpecificTPackageDesc = (id) => {
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'get//package/desc/' + id, {
+      method: 'GET',
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+};
+
 export {
   addUser,
   addReqUser,
@@ -596,8 +642,10 @@ export {
   viewTourGuidePorfolio,
   viewTourOrgPorfolio,
   viewTravelerPorfolio,
+  viewSpecificTPackageDesc,
   viewPackages,
   addPackage,
+  addPackageDesc,
   getPlacesData,
   viewAllPackages,
   viewAllTourGuides,

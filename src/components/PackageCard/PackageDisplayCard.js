@@ -1,9 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import bgImage from '../../assets/bgImagePackage.jpg';
 import { Icon } from '@iconify/react';
+import { useParams, useNavigate } from 'react-router-dom';
 import bg from '../../assets/packagebg.jpg';
+import { viewSpecificTPackageDesc } from '../../api';
+import PackageDetailsCard from './PackageDetailsCard';
+
 function PackageDisplayCard({ obj, person }) {
+  let navigate = useNavigate();
+  const params = useParams();
+  const [details, setDetails] = useState();
+
+  useEffect(() => {
+    getDetails();
+  }, []);
+
+  const getDetails = async () => {
+    let response = await viewSpecificTPackageDesc(params.id);
+    if (response == 404) {
+      navigate('/');
+    }
+    setDetails(response.data);
+    console.log(response.data);
+  };
+
+  function showDetail() {
+    const showarr = [];
+    const loopi = details?.length / 3;
+    if (loopi !== NaN) {
+      for (let i = 0; i < loopi; i++) {
+        let mor;
+        let eve;
+        let nigh;
+        for (let j = 0; j < details?.length; j++) {
+          if (details[j].day == i + 1 && details[j].time == 'Morning') {
+            mor = details[j];
+          }
+          if (details[j].day == i + 1 && details[j].time == 'Evening') {
+            eve = details[j];
+          }
+          if (details[j].day == i + 1 && details[j].time == 'Night') {
+            nigh = details[j];
+          }
+        }
+        showarr.push(<PackageDetailsCard mor={mor} eve={eve} nigh={nigh} />);
+      }
+    }
+    return showarr;
+  }
+
   let linkurl;
   if (person.name) {
     linkurl = `/tour-guide-portfolio/${person.user_guid}`;
@@ -113,185 +159,7 @@ function PackageDisplayCard({ obj, person }) {
           </div>
 
           <div class='grid md:grid-cols-2 grid-cols-1 pt-6 gap-[30px]'>
-            <div>
-              <h5 class='text-lg font-semibold mb-5'>Day 1</h5>
-
-              <div class='relative overflow-x-auto block w-full bg-white shadow rounded-md'>
-                <table class='w-full text-left'>
-                  <thead>
-                    <tr>
-                      <th class='px-4 py-5'>Time</th>
-                      <th class='px-4 py-5 text-right'>Event</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr class='border-t border-gray-100'>
-                      <td class='p-4'>Morning</td>
-                      <td class='p-4 text-right text-orange-500 font-bold'>
-                        Breakfast at KallerKahar
-                      </td>
-                    </tr>
-
-                    <tr class='border-t border-gray-100'>
-                      <td class='p-4'>After Noon</td>
-                      <td class='p-4 text-right text-orange-500 font-bold'>
-                        Lunch in Murree
-                      </td>
-                    </tr>
-
-                    <tr class='border-t border-gray-100'>
-                      <td class='p-4'>Evening</td>
-                      <td class='p-4 text-right text-orange-500 font-bold'>
-                        Reach Neelum Valley
-                      </td>
-                    </tr>
-
-                    <tr class='border-t border-gray-100'>
-                      <td class='p-4'>Night</td>
-                      <td class='p-4 text-right text-orange-500 font-bold'>
-                        Stay at Neelum Valley
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div>
-              <h5 class='text-lg font-semibold mb-5'>Day 2</h5>
-
-              <div class='relative overflow-x-auto block w-full bg-white shadow rounded-md'>
-                <table class='w-full text-left'>
-                  <thead>
-                    <tr>
-                      <th class='px-4 py-5'>Time</th>
-                      <th class='px-4 py-5 text-right'>Event</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr class='border-t border-gray-100'>
-                      <td class='p-4'>Morning</td>
-                      <td class='p-4 text-right text-orange-500 font-bold'>
-                        Breakfast at KallerKahar
-                      </td>
-                    </tr>
-
-                    <tr class='border-t border-gray-100'>
-                      <td class='p-4'>After Noon</td>
-                      <td class='p-4 text-right text-orange-500 font-bold'>
-                        Lunch in Murree
-                      </td>
-                    </tr>
-
-                    <tr class='border-t border-gray-100'>
-                      <td class='p-4'>Evening</td>
-                      <td class='p-4 text-right text-orange-500 font-bold'>
-                        Reach Neelum Valley
-                      </td>
-                    </tr>
-
-                    <tr class='border-t border-gray-100'>
-                      <td class='p-4'>Night</td>
-                      <td class='p-4 text-right text-orange-500 font-bold'>
-                        Stay at Neelum Valley
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div>
-              <h5 class='text-lg font-semibold mb-5'>Day 3</h5>
-
-              <div class='relative overflow-x-auto block w-full bg-white rounded-md'>
-                <table class='w-full text-left'>
-                  <thead>
-                    <tr>
-                      <th class='px-4 py-5'>Time</th>
-                      <th class='px-4 py-5 text-right'>Event</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr class='border-t border-gray-100'>
-                      <td class='p-4'>Morning</td>
-                      <td class='p-4 text-right text-orange-500 font-bold'>
-                        Breakfast at KallerKahar
-                      </td>
-                    </tr>
-
-                    <tr class='border-t border-gray-100'>
-                      <td class='p-4'>After Noon</td>
-                      <td class='p-4 text-right text-orange-500 font-bold'>
-                        Lunch in Murree
-                      </td>
-                    </tr>
-
-                    <tr class='border-t border-gray-100'>
-                      <td class='p-4'>Evening</td>
-                      <td class='p-4 text-right text-orange-500 font-bold'>
-                        Reach Neelum Valley
-                      </td>
-                    </tr>
-
-                    <tr class='border-t border-gray-100'>
-                      <td class='p-4'>Night</td>
-                      <td class='p-4 text-right text-orange-500 font-bold'>
-                        Stay at Neelum Valley
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            <div>
-              <h5 class='text-lg font-semibold mb-5'>Day 4</h5>
-
-              <div class='relative overflow-x-auto block w-full bg-white shadow rounded-md'>
-                <table class='w-full text-left'>
-                  <thead>
-                    <tr>
-                      <th class='px-4 py-5'>Time</th>
-                      <th class='px-4 py-5 text-right'>Event</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <tr class='border-t border-gray-100'>
-                      <td class='p-4'>Morning</td>
-                      <td class='p-4 text-right text-orange-500 font-bold'>
-                        Breakfast at KallerKahar
-                      </td>
-                    </tr>
-
-                    <tr class='border-t border-gray-100'>
-                      <td class='p-4'>After Noon</td>
-                      <td class='p-4 text-right text-orange-500 font-bold'>
-                        Lunch in Murree
-                      </td>
-                    </tr>
-
-                    <tr class='border-t border-gray-100'>
-                      <td class='p-4'>Evening</td>
-                      <td class='p-4 text-right text-orange-500 font-bold'>
-                        Reach Neelum Valley
-                      </td>
-                    </tr>
-
-                    <tr class='border-t border-gray-100'>
-                      <td class='p-4'>Night</td>
-                      <td class='p-4 text-right text-orange-500 font-bold'>
-                        Stay at Neelum Valley
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+            {showDetail()}
           </div>
           <h5 class='text-2xl font-semibold mt-16 mb-5'>Some of the views</h5>
 
