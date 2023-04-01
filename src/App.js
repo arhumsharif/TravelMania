@@ -2,6 +2,9 @@ import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
+import { persistReducer, persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
+
 // Components
 import LandingPage from './components/Credentials/LandingPage';
 import Login from './components/Credentials/Login';
@@ -56,64 +59,63 @@ const TourOrgPackageBuilderLayout = TourOrgLayout(TourOrgPackageBuilder);
 // Traveler
 const TravelerDashboardLayout = TravelerLayout(TravelerDashboard);
 const TravelerPortfolioLayout = TravelerLayout(TravelerPortfolio);
-
+const persistir = persistStore(store);
 function App() {
   return (
     <Provider store={store}>
-      <Router>
-        <Routes>
-          <Route path='/' element={<LandingPage />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/signup' element={<Signup />} />
-          <Route path='/tour-guide' element={<TourGuideDashboardLayout />} />
-          <Route
-            path='/tour-guide-portfolio'
-            element={<TourGuidePortfolioLayout />}
-          />
-          <Route
-            path='/tour-guide-package'
-            element={<TourGuidePackageBuilderLayout />}
-          />
-          <Route
-            path='/tour-org'
-            element={<TourOrganizationDashboardLayout />}
-          />
-          <Route
-            path='/tour-org-portfolio'
-            element={<TourOrganizationPortfolioLayout />}
-          />
-          <Route
-            path='/tour-org-package'
-            element={<TourOrgPackageBuilderLayout />}
-          />
-          <Route path='/traveler' element={<TravelerDashboardLayout />} />
-          <Route
-            path='/traveler-portfolio'
-            element={<TravelerPortfolioLayout />}
-          />
-
-          <Route path='/inbox' element={<Inbox />} />
-
-          <Route path='/location-based' element={<LocationBasedSearch />} />
-          <Route path='/package-view-all' element={<PackageDisplay />} />
-          <Route path='/tour-guide-view-all' element={<TourGuideDisplay />} />
-          <Route
-            path='/tour-org-view-all'
-            element={<TourOrganizationDisplay />}
-          />
-          <Route path='/contact-us' element={<ContactUs />} />
-          <Route
-            path='/tour-guide-portfolio/:id'
-            element={<PortfolioDisplay />}
-          />
-          <Route
-            path='/tour-org-portfolio/:id'
-            element={<OrganizationPortfolioDisplay />}
-          />
-          <Route path='/package/:id' element={<PackageDetails />} />
-          <Route path='/package/create' element={<PackageCreator />} />
-        </Routes>
-      </Router>
+      <PersistGate loading={null} persistor={persistir}>
+        <Router>
+          <Routes>
+            <Route path='/' element={<LandingPage />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/signup' element={<Signup />} />
+            <Route path='/tour-guide' element={<TourGuideDashboardLayout />} />
+            <Route
+              path='/tour-guide-portfolio'
+              element={<TourGuidePortfolioLayout />}
+            />
+            <Route
+              path='/tour-guide-package'
+              element={<TourGuidePackageBuilderLayout />}
+            />
+            <Route
+              path='/tour-org'
+              element={<TourOrganizationDashboardLayout />}
+            />
+            <Route
+              path='/tour-org-portfolio'
+              element={<TourOrganizationPortfolioLayout />}
+            />
+            <Route
+              path='/tour-org-package'
+              element={<TourOrgPackageBuilderLayout />}
+            />
+            <Route path='/traveler' element={<TravelerDashboardLayout />} />
+            <Route
+              path='/traveler-portfolio'
+              element={<TravelerPortfolioLayout />}
+            />
+            <Route path='/location-based' element={<LocationBasedSearch />} />
+            <Route path='/package-view-all' element={<PackageDisplay />} />
+            <Route path='/tour-guide-view-all' element={<TourGuideDisplay />} />
+            <Route
+              path='/tour-org-view-all'
+              element={<TourOrganizationDisplay />}
+            />
+            <Route path='/contact-us' element={<ContactUs />} />
+            <Route
+              path='/tour-guide-portfolio/:id'
+              element={<PortfolioDisplay />}
+            />
+            <Route
+              path='/tour-org-portfolio/:id'
+              element={<OrganizationPortfolioDisplay />}
+            />
+            <Route path='/package/:id' element={<PackageDetails />} />
+            <Route path='/package/create' element={<PackageCreator />} />
+          </Routes>
+        </Router>
+      </PersistGate>
     </Provider>
   );
 }

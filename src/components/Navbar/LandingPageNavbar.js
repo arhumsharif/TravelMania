@@ -378,17 +378,17 @@ function LandingPageNavbar(props) {
             </li>
 
             <li className='flex items-center'>
-              <a
+              <Link
                 className={
                   (props.transparent
                     ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
                     : 'text-gray-800 hover:text-orange-600') +
                   ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
                 }
-                href='/contact-us'
+                to='/contact-us'
               >
                 Contact Us
-              </a>
+              </Link>
             </li>
 
             {props.userType == -1
