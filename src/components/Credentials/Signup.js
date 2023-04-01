@@ -24,8 +24,6 @@ const Signup = ({ setAlert }) => {
       password.current.value > 0
     ) {
       if (validateEmail(email.current.value)) {
-        alert('ok email')
-        return
         let response = await addUser(
           email.current.value,
           password.current.value,

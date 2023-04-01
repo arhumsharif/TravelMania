@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { MailIcon } from '@heroicons/react/solid';
 import Cookies from 'universal-cookie';
 import { sendChat,getChats } from '../../api';
@@ -10,6 +10,7 @@ const Inbox = () => {
     let token = cookies.get('token');
 
     let navigate = useNavigate()
+    let location = useLocation()
 
     const [userguid, setUserguid] = useState('')
     const [username, setUserName] = useState('')
@@ -26,7 +27,8 @@ const Inbox = () => {
     }
 
     const myMessages = async () => {
-        let response = await getChats(token, '4f81f409-cb49-4260-a9f6-cbdf275fab5a');
+        let receiverGuid = location.state.userId
+        let response = await getChats(token, receiverGuid);
         if (response == 404) {
             navigate('/');
         }
@@ -44,7 +46,8 @@ const Inbox = () => {
 
     const handleSendMessage = async () => {
         if (message !== '') {
-            let response = await sendChat(token, '4f81f409-cb49-4260-a9f6-cbdf275fab5a', message);
+            let receiverGuid = location.state.userId
+            let response = await sendChat(token, receiverGuid, message);
             if (response == 404) {
                 navigate('/');
             }
@@ -72,8 +75,10 @@ const Inbox = () => {
                                     </div>
                                     <input id="search" name="search" className="block w-full py-2 pl-10 pr-3 leading-5 placeholder-gray-500 bg-gray-50 border border-gray-300 rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:placeholder-gray-400 sm:text-sm" placeholder="Search in your inbox" type="search" />
                                 </div>
-                                <button type="button" className="inline-flex items-center px-3 py-2 ml-4 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                                    Compose
+                                <button type="button" className="inline-flex items-center px-3 py-2 ml-4 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" onClick={() => {
+                                    navigate("/")
+                                }}>
+                                    Back
                                 </button>
                             </div>
                         </div>

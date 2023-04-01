@@ -654,6 +654,31 @@ const getChats = (token, receiverGuid) => {
   });
 };
 
+
+const allChats = (token) => {
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'get/chats', {
+      method: 'GET',
+      headers: {
+        Authorization: 'Barrier ' + token,
+        'Access-Control-Allow-Headers':
+          'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+        'Access-Control-Allow-Methods': 'PUT, POST, DELETE, GET',
+      },
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+};
+
 const sendChat = (token, receiverGuid, message) => {
   let promiseOne = new Promise((resolve, reject) => {
     let myData = fetch(BASEURL + 'post/chat/add', {
@@ -709,5 +734,6 @@ export {
   viewSpecificTourOrganizationPortfolio,
 
   getChats,
-  sendChat
+  sendChat,
+  allChats
 };
