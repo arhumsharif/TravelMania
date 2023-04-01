@@ -34,10 +34,12 @@ const ChatDetails = () => {
 
     return (
         <div className="w-full h-full flex flex-col items-center justify-center bg-gray-100">
-          <h1 className="text-3xl font-bold mb-5">Users</h1>
-          <p className="text-xl mb-5">These users are available for chat</p>
-          <div className="w-full max-w-lg bg-white px-4">
-            <ul className="divide-y divide-gray-300">
+          <div className="w-full max-w-lg bg-[#000000] mt-5">
+            <div className="text-center border border-4 bg-[#FFB52E]">
+                <h1 className="text-3xl font-bold mb-5">Users</h1>
+                <p className="text-xl mb-5">These users are available for chat</p>
+            </div>
+            <ul className="divide-y divide-gray-300 px-3">
               {chats.map((user,index) => (
                 <li
                   key={index}
@@ -45,8 +47,8 @@ const ChatDetails = () => {
                   onClick={() => goToInbox(user.user_guid)}
                 >
                   <div>
-                    <h2 className="text-xl font-bold">{user.email}</h2>
-                    <p className="text-gray-600">{user.user_type}</p>
+                    <h2 className="text-xl text-white font-bold">{user.email}</h2>
+                    <p className="text-gray-300">{user.user_type}</p>
                   </div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
