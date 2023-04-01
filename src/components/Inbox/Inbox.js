@@ -1,39 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { MailIcon } from '@heroicons/react/solid';
+import Cookies from 'universal-cookie';
+import { sendChat,getChats } from '../../api';
 
 const Inbox = () => {
+
+    const cookies = new Cookies();
+    let token = cookies.get('token');
+
+    let navigate = useNavigate()
+
+    const [userguid, setUserguid] = useState('')
+    const [username, setUserName] = useState('')
+
+    useEffect(() => {
+        getIntialData()
+      }, []);
+
+
+    const getIntialData = () => {
+        let tokenAray = token.split(' ')
+        setUserguid(tokenAray[1])
+        myMessages()
+    }
+
+    const myMessages = async () => {
+        let response = await getChats(token, '4f81f409-cb49-4260-a9f6-cbdf275fab5a');
+        if (response == 404) {
+            navigate('/');
+        }
+        setUserName(response?.moreData[0]?.email)
+        setMessages(response?.data)
+        console.log(messages)
+    }
+    
     const [message, setMessage] = useState('');
-    const [messages, setMessages] = useState([{
-        isSentByUser: true,
-        content: "Hi",
-    time: "1:00" 
-    }, 
-{
-    isSentByUser: false,
-    content: "Helo",
-    time: "1:03" 
-}, {
-    isSentByUser: true,
-        content: "How are you",
-    time: "1:04" 
-
-}, 
-{
-    isSentByUser: false,
-        content: "I am Fine",
-    time: "1:06" 
-},
-
-]);
+    const [messages, setMessages] = useState([]);
 
     const handleMessageChange = (event) => {
         setMessage(event.target.value);
     };
 
-    const handleSendMessage = () => {
+    const handleSendMessage = async () => {
         if (message !== '') {
-            setMessages([...messages, message]);
-            setMessage('');
+            let response = await sendChat(token, '4f81f409-cb49-4260-a9f6-cbdf275fab5a', message);
+            if (response == 404) {
+                navigate('/');
+            }
+            setMessage('')
+            myMessages()
         }
     };
 
@@ -43,6 +59,7 @@ const Inbox = () => {
                 <div className="overflow-hidden bg-white shadow-xl sm:rounded-lg h-[90vh] flex flex-col">
                     <div className="bg-white border-b border-gray-200">
                         <div className="px-4 py-5 sm:px-6">
+                            <h2 className="text-lg font-medium leading-6 text-gray-900">{username}</h2>
                             <h3 className="text-lg font-medium leading-6 text-gray-900">Inbox</h3>
                             <p className="mt-1 text-sm text-gray-500">Check your messages.</p>
                         </div>
@@ -66,15 +83,15 @@ const Inbox = () => {
                         <div
                         key={index}
                         className={`flex ${
-                            msg.isSentByUser ? "justify-end" : "justify-start"
+                            msg.sender_guid == userguid ? "justify-end" : "justify-start"
                         } mb-2 mx-2`}
                         >
                         <div
                             className={`relative rounded-lg py-2 px-3 max-w-xs ${
-                            msg.isSentByUser ? "bg-blue-400 text-white ml-auto" : "bg-gray-200"
+                            msg.sender_guid == userguid ? "bg-blue-400 text-white ml-auto" : "bg-gray-200"
                             }`}
                         >
-                            {msg.content}
+                            {msg.message}
                             {/* <span className="text-xs [#000000] absolute bottom-0 right-0">
                                 {msg.time}
                             </span> */}
