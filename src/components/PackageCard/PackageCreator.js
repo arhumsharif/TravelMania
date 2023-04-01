@@ -4,6 +4,15 @@ import LandingPageNavbar from '../Navbar/LandingPageNavbar';
 import bgImage from '../../assets/bgImagePackage.jpg';
 import Cookies from 'universal-cookie';
 import { addPackage, addPackageDesc } from '../../api/index';
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  listAll,
+  list,
+} from "firebase/storage";
+import { storage } from "../../firebase/firebase";
+import { v4 } from "uuid";
 
 const PackageCreator = () => {
   // Cookies to send user_token
@@ -29,6 +38,33 @@ const PackageCreator = () => {
     fields: ['address_components', 'geometry', 'icon', 'name'],
     types: ['(cities)'],
   };
+
+  const [disableState, setDisableState] = useState('hidden')
+  const [imageUpload, setImageUpload] = useState(null);
+  const [imageUrls, setImageUrls] = useState(null);
+
+  const imagesListRef = ref(storage, "images/");
+//   upload file is the function use to upload image on firebase and gives back a link that is (url)
+  const uploadFile = () => {
+    console.log(imageUpload)
+    if (imageUpload.type == 'image/jpeg' || imageUpload.type == 'image/jpg' || imageUpload.type == 'image/png') 
+    {
+      if (imageUpload == null) return;
+      const imageRef = ref(storage, `images/${v4()}`);
+      uploadBytes(imageRef, imageUpload).then((snapshot) => {
+        getDownloadURL(snapshot.ref).then((url) => {
+          console.log(url)
+          setImageUrls(url);
+          setDisableState('')
+        });
+      });
+    }
+    else
+    {
+      alert("Wrong Format for Image")
+    }
+  };
+
   useEffect(() => {
     autoCompleteRef.current = new window.google.maps.places.Autocomplete(
       inputRef.current,
@@ -293,15 +329,15 @@ const PackageCreator = () => {
                 <input
                   type='file'
                   className='block w-1/2 px-4 py-2 mt-2 mb-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring'
-                  // onChange={(event) => {
-                  //   setImageUpload(event.target.files[0]);
-                  // }}
+                  onChange={(event) => {
+                    setImageUpload(event.target.files[0]);
+                  }}
                 />
                 <button
-                  // onClick={uploadFile}
+                  onMouseEnter={uploadFile}
                   className='px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
                 >
-                  {' '}
+                  {/* {' '} */}
                   Upload Image
                 </button>
               </div>
@@ -312,7 +348,7 @@ const PackageCreator = () => {
             <button
               type='button'
               onClick={buttonclick}
-              class='px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
+              class={`px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white ${disableState}`} 
             >
               Create
             </button>

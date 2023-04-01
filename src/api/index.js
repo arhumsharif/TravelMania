@@ -629,6 +629,60 @@ const viewSpecificTPackageDesc = (id) => {
   });
 };
 
+
+const getChats = (token, receiverGuid) => {
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'get/chat/view/' + receiverGuid, {
+      method: 'GET',
+      headers: {
+        Authorization: 'Barrier ' + token,
+        'Access-Control-Allow-Headers':
+          'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+        'Access-Control-Allow-Methods': 'PUT, POST, DELETE, GET',
+      },
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+};
+
+const sendChat = (token, receiverGuid, message) => {
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'post/chat/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Barrier ' + token,
+        'Access-Control-Allow-Headers':
+          'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+        'Access-Control-Allow-Methods': 'PUT, POST, DELETE, GET',
+      },
+      body: JSON.stringify({
+        ReceiverGuid: receiverGuid,
+        Message: message,
+      }),
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+}
+
 export {
   addUser,
   addReqUser,
@@ -653,4 +707,7 @@ export {
   viewSpecificTPackage,
   viewAllTourOrganizations,
   viewSpecificTourOrganizationPortfolio,
+
+  getChats,
+  sendChat
 };
