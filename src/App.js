@@ -15,6 +15,8 @@ import Verification from './components/Credentials/Verification';
 import Inbox from './components/Inbox/Inbox'
 import ChatDetails from './components/Inbox/ChatDetails'
 
+import Payment from './components/Payment/Payment'
+
 import TourGuideDashboard from './components/TourGuide/Dashboard';
 import TourGuidePortfolio from './components/TourGuide/Portfolio';
 import TourGuidePackageBuilder from './components/TourGuide/PackageBuilder/PackageBuilder';
@@ -99,6 +101,8 @@ function App() {
 
             <Route path='/inbox' element={<Inbox />} />
             <Route path='/chats' element={<ChatDetails />} />
+
+            <Route path='/payment' element={<Payment />} />
 
             <Route path='/location-based' element={<LocationBasedSearch />} />
             <Route path='/package-view-all' element={<PackageDisplay />} />

@@ -708,6 +708,41 @@ const sendChat = (token, receiverGuid, message) => {
   });
 }
 
+
+const makePayment = (token, packageGuid, price, email, card, cvc, month, year) => {
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'post/user/payment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Barrier ' + token,
+        'Access-Control-Allow-Headers':
+          'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+        'Access-Control-Allow-Methods': 'PUT, POST, DELETE, GET',
+      },
+      body: JSON.stringify({
+        PackageGuid: packageGuid,
+        Price: price,
+        Email: email,
+        ExpiryMonth: month,
+        ExpiryYear: year,
+        CVC: cvc,
+        Card: card
+      }),
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+}
+
 export {
   addUser,
   addReqUser,
@@ -735,5 +770,7 @@ export {
 
   getChats,
   sendChat,
-  allChats
+  allChats,
+
+  makePayment
 };

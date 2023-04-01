@@ -83,7 +83,7 @@ const Inbox = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-col h-[90vh] overflow-y-scroll">
+                    <div className="flex flex-col h-[90vh] overflow-y-auto">
                     {messages.map((msg, index) => (
                         <div
                         key={index}
