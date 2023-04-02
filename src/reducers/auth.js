@@ -10,9 +10,11 @@ const initialState = {
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
+
   switch (type) {
     case LOGIN_SUCCESS:
-      console.log(payload);
+      cookies.set('token', payload.token);
+      console.log(payload.token);
       return {
         ...state,
         ...payload,

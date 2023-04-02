@@ -809,4 +809,6 @@ export {
   viewSpecificTourOrganizationPortfolio,
   getChats,
   sendChat,
+  makePayment,
+  allChats,
 };

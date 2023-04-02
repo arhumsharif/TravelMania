@@ -4,14 +4,13 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { addFeedback } from '../../api';
 import Cookies from 'universal-cookie';
 
-const FeedbackForm = ({ userID }) => {
-  const cookies = new Cookies();
-  let token = cookies.get('token');
+const FeedbackForm = ({ userID, token }) => {
   const params = useParams();
   const [feedback, setFeedback] = useState('');
   const [rating, setRating] = useState(0);
   console.log(params.id);
   console.log(userID);
+  console.log(token);
 
   const handleSubmit = async () => {
     let response = await addFeedback(

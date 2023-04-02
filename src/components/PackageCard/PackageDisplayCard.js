@@ -17,6 +17,7 @@ function PackageDisplayCard({ obj, person, token }) {
   let navigate = useNavigate();
   const params = useParams();
   const [details, setDetails] = useState();
+  console.log(token);
 
   useEffect(() => {
     getDetails();
@@ -177,7 +178,7 @@ function PackageDisplayCard({ obj, person, token }) {
             </div>
           </div>
           <div class=' mt-2 pb-16 w-100'>
-            <FeedbackForm userID={userID}></FeedbackForm>
+            <FeedbackForm userID={userID} token={token}></FeedbackForm>
           </div>
         </div>
       </section>
