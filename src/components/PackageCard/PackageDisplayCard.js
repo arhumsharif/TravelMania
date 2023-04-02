@@ -6,8 +6,14 @@ import { useParams, useNavigate } from 'react-router-dom';
 import bg from '../../assets/packagebg.jpg';
 import { viewSpecificTPackageDesc } from '../../api';
 import PackageDetailsCard from './PackageDetailsCard';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import FeedbackForm from '../Traveler/FeedbackForm';
 
-function PackageDisplayCard({ obj, person }) {
+function PackageDisplayCard({ obj, person, token }) {
+  const cToken = token;
+  const splitToken = cToken.split(' ');
+  const userID = splitToken[1];
   let navigate = useNavigate();
   const params = useParams();
   const [details, setDetails] = useState();
@@ -170,10 +176,21 @@ function PackageDisplayCard({ obj, person }) {
               <img src={bg} class='rounded-md shadow' alt='' />
             </div>
           </div>
+          <div class=' mt-2 pb-16 w-100'>
+            <FeedbackForm userID={userID}></FeedbackForm>
+          </div>
         </div>
       </section>
     </>
   );
 }
 
-export default PackageDisplayCard;
+PackageDisplayCard.propTypes = {
+  token: PropTypes.string,
+};
+
+const mapStatetoProps = (state) => ({
+  token: state.auth.token,
+});
+
+export default connect(mapStatetoProps, null)(PackageDisplayCard);

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { reject } from 'p-cancelable';
 
 var BASEURL = 'http://localhost:5000/';
 
@@ -373,6 +374,38 @@ const addPackage = (token, title, desc, place, hotel, price, capacity) => {
   });
 };
 
+const addFeedback = (token, userGuid, entityguid, entitytype, desc, rating) => {
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'post/feedback/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Barrier ' + token,
+        'Access-Control-Allow-Headers':
+          'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+        'Access-Control-Allow-Methods': 'PUT, POST, DELETE, GET',
+      },
+      body: JSON.stringify({
+        userGuid: userGuid,
+        EntityGuid: entityguid,
+        EntityType: entitytype,
+        Desc: desc,
+        Rating: rating,
+      }),
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+};
+
 const addPackageDesc = (token, guid, time, day, event) => {
   console.log(event);
   let promiseOne = new Promise((resolve, reject) => {
@@ -629,7 +662,6 @@ const viewSpecificTPackageDesc = (id) => {
   });
 };
 
-
 const getChats = (token, receiverGuid) => {
   let promiseOne = new Promise((resolve, reject) => {
     let myData = fetch(BASEURL + 'get/chat/view/' + receiverGuid, {
@@ -653,7 +685,6 @@ const getChats = (token, receiverGuid) => {
     return data;
   });
 };
-
 
 const allChats = (token) => {
   let promiseOne = new Promise((resolve, reject) => {
@@ -706,10 +737,18 @@ const sendChat = (token, receiverGuid, message) => {
   return promiseOne.then((data) => {
     return data;
   });
-}
+};
 
-
-const makePayment = (token, packageGuid, price, email, card, cvc, month, year) => {
+const makePayment = (
+  token,
+  packageGuid,
+  price,
+  email,
+  card,
+  cvc,
+  month,
+  year
+) => {
   let promiseOne = new Promise((resolve, reject) => {
     let myData = fetch(BASEURL + 'post/user/payment', {
       method: 'POST',
@@ -727,7 +766,7 @@ const makePayment = (token, packageGuid, price, email, card, cvc, month, year) =
         ExpiryMonth: month,
         ExpiryYear: year,
         CVC: cvc,
-        Card: card
+        Card: card,
       }),
     }).then((data) => {
       if (data.status == 200) {
@@ -741,9 +780,10 @@ const makePayment = (token, packageGuid, price, email, card, cvc, month, year) =
   return promiseOne.then((data) => {
     return data;
   });
-}
+};
 
 export {
+  addFeedback,
   addUser,
   addReqUser,
   addReqUserOrg,
@@ -767,10 +807,6 @@ export {
   viewSpecificTPackage,
   viewAllTourOrganizations,
   viewSpecificTourOrganizationPortfolio,
-
   getChats,
   sendChat,
-  allChats,
-
-  makePayment
 };
