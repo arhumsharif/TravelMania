@@ -16,6 +16,14 @@ const TourGuideCard = (props) => {
   console.log(token);
   let navigate = useNavigate();
 
+  const goToInbox = (id) => {
+    navigate('/inbox', {
+        state: {
+          userId: id
+        }
+      });
+  }
+
   const { guid, name, age, city } = props;
   return (
     <div class='group relative p-6 rounded-md shadow  hover:shadow-md bg-white transition duration-500 text-center'>
@@ -97,13 +105,13 @@ const TourGuideCard = (props) => {
           </>
         ) : (
           <>
-            <Link
-              to='#'
+            <button
+              onClick={() => {goToInbox(guid)}}
               class='px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
               style={{ transition: 'all .15s ease' }}
             >
               Send Message
-            </Link>
+            </button>
           </>
         )}
       </div>

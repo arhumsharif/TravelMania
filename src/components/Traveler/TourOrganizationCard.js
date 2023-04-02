@@ -12,6 +12,14 @@ const TourOrganizationCard = (props) => {
   let token = cookies.get('token');
   let navigate = useNavigate();
 
+  const goToInbox = (id) => {
+    navigate('/inbox', {
+        state: {
+          userId: id
+        }
+      });
+  }
+
   const { obj } = props;
   console.log(obj);
   return (
@@ -69,13 +77,13 @@ const TourOrganizationCard = (props) => {
           </>
         ) : (
           <>
-            <Link
-              to='#'
+            <button
+              onClick={() => {goToInbox(obj.user_guid)}}
               class='px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
               style={{ transition: 'all .15s ease' }}
             >
               Send Message
-            </Link>
+            </button>
           </>
         )}
       </div>
