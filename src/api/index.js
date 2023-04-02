@@ -341,7 +341,16 @@ const addTravelerPorfolio = (
   });
 };
 
-const addPackage = (token, title, desc, place, hotel, price, capacity) => {
+const addPackage = (
+  token,
+  title,
+  desc,
+  place,
+  hotel,
+  price,
+  imageURL,
+  capacity
+) => {
   let promiseOne = new Promise((resolve, reject) => {
     let myData = fetch(BASEURL + 'post/package/add', {
       method: 'POST',
@@ -358,6 +367,7 @@ const addPackage = (token, title, desc, place, hotel, price, capacity) => {
         Place: place,
         Hotel: hotel,
         Price: price,
+        ImageURL: imageURL,
         Capacity: capacity,
       }),
     }).then((data) => {
@@ -408,6 +418,7 @@ const addFeedback = (token, userGuid, entityguid, entitytype, desc, rating) => {
 
 const addPackageDesc = (token, guid, time, day, event) => {
   console.log(event);
+  console.log(day.value);
   let promiseOne = new Promise((resolve, reject) => {
     let myData = fetch(BASEURL + 'post/package/desc/add', {
       method: 'POST',
@@ -416,9 +427,9 @@ const addPackageDesc = (token, guid, time, day, event) => {
       },
       body: JSON.stringify({
         Guid: guid,
-        Day: day,
-        Time: time,
-        Event: event.value,
+        Day: day?.value,
+        Time: time?.value,
+        Event: event?.value,
       }),
     }).then((data) => {
       if (data.status == 200) {

@@ -10,9 +10,9 @@ import {
   getDownloadURL,
   listAll,
   list,
-} from "firebase/storage";
-import { storage } from "../../firebase/firebase";
-import { v4 } from "uuid";
+} from 'firebase/storage';
+import { storage } from '../../firebase/firebase';
+import { v4 } from 'uuid';
 
 const PackageCreator = () => {
   // Cookies to send user_token
@@ -39,29 +39,31 @@ const PackageCreator = () => {
     types: ['(cities)'],
   };
 
-  const [disableState, setDisableState] = useState('hidden')
+  const [disableState, setDisableState] = useState('hidden');
   const [imageUpload, setImageUpload] = useState(null);
   const [imageUrls, setImageUrls] = useState(null);
 
-  const imagesListRef = ref(storage, "images/");
-//   upload file is the function use to upload image on firebase and gives back a link that is (url)
+  const imagesListRef = ref(storage, 'images/');
+  //   upload file is the function use to upload image on firebase and gives back a link that is (url)
   const uploadFile = () => {
-    console.log(imageUpload)
-    if (imageUpload.type == 'image/jpeg' || imageUpload.type == 'image/jpg' || imageUpload.type == 'image/png') 
-    {
-      if (imageUpload == null) return;
+    if (imageUpload == null) return;
+    console.log(imageUpload);
+    if (
+      imageUpload.type == 'image/jpeg' ||
+      imageUpload.type == 'image/jpg' ||
+      imageUpload.type == 'image/png'
+    ) {
+      console.log('hello');
       const imageRef = ref(storage, `images/${v4()}`);
       uploadBytes(imageRef, imageUpload).then((snapshot) => {
         getDownloadURL(snapshot.ref).then((url) => {
-          console.log(url)
+          console.log(url);
           setImageUrls(url);
-          setDisableState('')
+          setDisableState('');
         });
       });
-    }
-    else
-    {
-      alert("Wrong Format for Image")
+    } else {
+      alert('Wrong Format for Image');
     }
   };
 
@@ -78,7 +80,15 @@ const PackageCreator = () => {
     setNumBoxes(parseInt(event.target.value) || 0);
   };
 
+  const handleInputChange = (index, event) => {
+    // Update the value of the input at the given index
+    dayNo.current[index].value = event.target.value;
+  };
+
   const renderBoxes = () => {
+    time.current.length = 0;
+    dayNo.current.length = 0;
+    event.current.length = 0;
     const boxes = [];
     for (let i = 0; i < numBoxes; i++) {
       boxes.push(
@@ -90,9 +100,11 @@ const PackageCreator = () => {
             <input
               id='day'
               type='text'
+              key={i}
               value={i + 1}
-              ref={(el) => (dayNo.current[i] = el.value)}
+              ref={(el) => dayNo.current.push(el)}
               placeholder='Title'
+              readOnly
               class='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring'
             />
           </div>
@@ -103,9 +115,9 @@ const PackageCreator = () => {
             <input
               id='time1'
               type='text'
-              value='Morning'
+              defaultValue='Morning'
               placeholder='Title'
-              ref={(el) => time.current.push(el.value)}
+              ref={(el) => time.current.push(el)}
               class='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring'
             />
           </div>
@@ -130,7 +142,7 @@ const PackageCreator = () => {
               type='text'
               value='Evening'
               placeholder='Title'
-              ref={(el) => time.current.push(el.value)}
+              ref={(el) => time.current.push(el)}
               class='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring'
             />
           </div>
@@ -154,7 +166,7 @@ const PackageCreator = () => {
               id='time3'
               type='text'
               value='Night'
-              ref={(el) => time.current.push(el.value)}
+              ref={(el) => time.current.push(el)}
               placeholder='Title'
               class='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring'
             />
@@ -184,6 +196,7 @@ const PackageCreator = () => {
       inputRef.current.value,
       hotel.current.value,
       price.current.value,
+      imageUrls,
       capacity.current.value
     );
     if (response == 404) {
@@ -193,6 +206,15 @@ const PackageCreator = () => {
     let packageguid = response.package_guid;
     packageguid = packageguid.replaceAll('"', '').replaceAll("'", '');
     let j = -1;
+    time.current = time.current.filter((elem) => {
+      return elem !== null && elem !== undefined;
+    });
+    dayNo.current = dayNo.current.filter((elem) => {
+      return elem !== null && elem !== undefined;
+    });
+    event.current = event.current.filter((elem) => {
+      return elem !== null && elem !== undefined;
+    });
     for (let i = 0; i < time.current.length; i++) {
       if (i % 3 == 0) {
         j++;
@@ -206,9 +228,11 @@ const PackageCreator = () => {
       );
       if (response == 404) {
         alert('not ok 1');
-        return;
       }
     }
+    time.current.length = 0;
+    dayNo.current.length = 0;
+    event.current.length = 0;
   };
   return (
     <>
@@ -334,7 +358,8 @@ const PackageCreator = () => {
                   }}
                 />
                 <button
-                  onMouseEnter={uploadFile}
+                  type='button'
+                  onClick={uploadFile}
                   className='px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
                 >
                   {/* {' '} */}
@@ -348,7 +373,7 @@ const PackageCreator = () => {
             <button
               type='button'
               onClick={buttonclick}
-              class={`px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white ${disableState}`} 
+              class={`px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white ${disableState}`}
             >
               Create
             </button>

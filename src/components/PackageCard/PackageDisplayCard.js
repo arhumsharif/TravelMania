@@ -170,12 +170,12 @@ function PackageDisplayCard({ obj, person, token }) {
           </div>
           <h5 class='text-2xl font-semibold mt-16 mb-5'>Some of the views</h5>
 
-          <div class='grid md:grid-cols-2 grid-cols-1 mt-2 pb-16 gap-[30px]'>
-            <img src={bg} class='rounded-md shadow' alt='' />
-
-            <div class='relative'>
-              <img src={bg} class='rounded-md shadow' alt='' />
-            </div>
+          <div class='grid md:grid-cols-2 grid-cols-1 mt-2 pb-16'>
+            <img
+              src={obj.image_url}
+              class='rounded-md shadow flex justify-center'
+              alt=''
+            />
           </div>
           <div class=' mt-2 pb-16 w-100'>
             <FeedbackForm userID={userID} token={token}></FeedbackForm>
