@@ -147,6 +147,7 @@ export default function PackageDisplay() {
                 price={obj?.price}
                 capacity={obj?.capacity}
                 place={obj?.place}
+                image={obj?.image_url}
                 hotel={obj?.hotel}
               />
             ))}

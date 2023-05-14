@@ -4,18 +4,23 @@ import Cookies from 'universal-cookie';
 import bg from '../../assets/packagebg.jpg';
 import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
+import { Height } from '@material-ui/icons';
 
 export const ShowPackage = (props) => {
   const cookies = new Cookies();
   let token = cookies.get('token');
   let navigate = useNavigate();
-
   const { user_guid, guid, title, description, price, capacity, place, hotel } =
     props;
+  let image = props.image;
+  if (image.length === 0) {
+    image = bg;
+  }
+  console.log(image);
   return (
     <div class='group rounded-md bg-white shadow hover:shadow-xl overflow-hidden ease-in-out duration-500'>
       <div class='relative'>
-        <img src={bg} alt='' />
+        <img src={image} alt='' className='w-400 h-80' />
       </div>
 
       <div class='p-6'>

@@ -12,10 +12,10 @@ import Signup from './components/Credentials/Signup';
 import AuthSignUp from './components/Credentials/AuthSignUp';
 import Verification from './components/Credentials/Verification';
 
-import Inbox from './components/Inbox/Inbox'
-import ChatDetails from './components/Inbox/ChatDetails'
+import Inbox from './components/Inbox/Inbox';
+import ChatDetails from './components/Inbox/ChatDetails';
 
-import Payment from './components/Payment/Payment'
+import Payment from './components/Payment/Payment';
 
 import TourGuideDashboard from './components/TourGuide/Dashboard';
 import TourGuidePortfolio from './components/TourGuide/Portfolio';
@@ -107,6 +107,8 @@ function App() {
             <Route path='/location-based' element={<LocationBasedSearch />} />
             <Route path='/package-view-all' element={<PackageDisplay />} />
             <Route path='/tour-guide-view-all' element={<TourGuideDisplay />} />
+            <Route path='/verification' element={<Verification />} />
+            <Route path='/auth-signup' element={<AuthSignUp />} />
             <Route
               path='/tour-org-view-all'
               element={<TourOrganizationDisplay />}
