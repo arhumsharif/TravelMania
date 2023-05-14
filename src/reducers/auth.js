@@ -21,6 +21,12 @@ export default function (state = initialState, action) {
         userType: payload.role,
       };
     case LOGIN_FAIL:
+      cookies.set('token', '');
+      return {
+        ...state,
+        ...payload,
+        userType: -2,
+      };
     case LOGOUT:
       cookies.set('token', '');
       return {

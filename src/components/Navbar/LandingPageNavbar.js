@@ -397,7 +397,9 @@ function LandingPageNavbar(props) {
               ? travellerlinks
               : props.userType == 1
               ? tourguidelinks
-              : tourorglinks}
+              : props.userType == 2
+              ? tourorglinks
+              : generallinks}
           </ul>
         </div>
       </div>

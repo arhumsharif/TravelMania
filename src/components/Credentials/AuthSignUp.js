@@ -53,10 +53,13 @@ const AuthSignUp = ({ setAlert }) => {
           if (response === 404) {
             setAlert('Request Blocked', 'red');
           } else {
-            setAlert('Register successfully', 'green');
+            setAlert(
+              'Request recieved Successfully you will be notified by email',
+              'green'
+            );
             setTimeout(() => {
               navigate('/login');
-            }, 3000);
+            }, 8000);
           }
         } else if (showHide === 'Tour Organization') {
           console.log('headbb');
@@ -76,7 +79,10 @@ const AuthSignUp = ({ setAlert }) => {
           if (response === 404) {
             setAlert('Request Blocked', 'red');
           } else {
-            setAlert('Register successfully', 'green');
+            setAlert(
+              'Request recieved Successfully you will be notified by email',
+              'green'
+            );
             setTimeout(() => {
               navigate('/login');
             }, 3000);

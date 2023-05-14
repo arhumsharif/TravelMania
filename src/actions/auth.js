@@ -20,10 +20,18 @@ export const login = (email, password) => async (dispatch) => {
     resolve(myData);
   });
   return promiseOne.then((data) => {
-    dispatch({
-      type: LOGIN_SUCCESS,
-      payload: data,
-    });
+    if (data == 404) {
+      dispatch({
+        type: LOGIN_FAIL,
+        payload: data,
+      });
+    } else {
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: data,
+      });
+    }
+
     return data;
   });
 };
