@@ -261,6 +261,209 @@ function LandingPageNavbar(props) {
     </li>
   );
 
+  const links = (
+    <ul className='flex flex-col lg:flex-row list-none lg:ml-auto'>
+      <li className='flex items-center'>
+        <Link
+          className={
+            (props.transparent
+              ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
+              : 'text-gray-800 hover:text-orange-600') +
+            ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+          }
+          to='/'
+        >
+          Home
+        </Link>
+      </li>
+
+      <li className='flex items-center'>
+        <Link
+          className={
+            (props.transparent
+              ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
+              : 'text-gray-800 hover:text-orange-600') +
+            ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+          }
+          to='/location-based'
+        >
+          Explore
+        </Link>
+      </li>
+      <li className='flex items-center'>
+        <Link
+          className={
+            (props.transparent
+              ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
+              : 'text-gray-800 hover:text-orange-600') +
+            ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+          }
+          to='/package-view-all'
+        >
+          Packages
+        </Link>
+      </li>
+
+      <li className='flex items-center'>
+        <Link
+          className={
+            (props.transparent
+              ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
+              : 'text-gray-800 hover:text-orange-600') +
+            ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+          }
+          to='/tour-guide-view-all'
+        >
+          Tour Guides
+        </Link>
+      </li>
+
+      <li className='flex items-center'>
+        <Link
+          className={
+            (props.transparent
+              ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
+              : 'text-gray-800 hover:text-orange-600') +
+            ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+          }
+          to='/tour-org-view-all'
+        >
+          Organizations
+        </Link>
+      </li>
+
+      <li className='flex items-center'>
+        <Link
+          className={
+            (props.transparent
+              ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
+              : 'text-gray-800 hover:text-orange-600') +
+            ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+          }
+          to='/contact-us'
+        >
+          Contact Us
+        </Link>
+      </li>
+
+      {props.userType == -1
+        ? generallinks
+        : props.userType == 0
+        ? travellerlinks
+        : props.userType == 1
+        ? tourguidelinks
+        : props.userType == 2
+        ? tourorglinks
+        : generallinks}
+    </ul>
+  );
+
+  const adminLinks = (
+    <ul className='flex flex-col lg:flex-row list-none lg:ml-auto'>
+      <li className='flex items-center'>
+        <Link
+          className={
+            (props.transparent
+              ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
+              : 'text-gray-800 hover:text-orange-600') +
+            ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+          }
+          to='/'
+        >
+          Home
+        </Link>
+      </li>
+
+      <li className='flex items-center'>
+        <Link
+          className={
+            (props.transparent
+              ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
+              : 'text-gray-800 hover:text-orange-600') +
+            ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+          }
+          to='/admin/requests'
+        >
+          Requests
+        </Link>
+      </li>
+      <li className='flex items-center'>
+        <Link
+          className={
+            (props.transparent
+              ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
+              : 'text-gray-800 hover:text-orange-600') +
+            ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+          }
+          to='/package-view-all'
+        >
+          Packages
+        </Link>
+      </li>
+
+      <li className='flex items-center'>
+        <Link
+          className={
+            (props.transparent
+              ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
+              : 'text-gray-800 hover:text-orange-600') +
+            ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+          }
+          to='/tour-guide-view-all'
+        >
+          Tour Guides
+        </Link>
+      </li>
+
+      <li className='flex items-center'>
+        <Link
+          className={
+            (props.transparent
+              ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
+              : 'text-gray-800 hover:text-orange-600') +
+            ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+          }
+          to='/tour-org-view-all'
+        >
+          Organizations
+        </Link>
+      </li>
+
+      <li className='flex items-center'>
+        <Link
+          className={
+            (props.transparent
+              ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
+              : 'text-gray-800 hover:text-orange-600') +
+            ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+          }
+          to='#'
+        >
+          Help Queries
+        </Link>
+      </li>
+      <>
+        <li className='flex items-center'>
+          <button
+            onClick={() => {
+              props.logout();
+              navigate('/login');
+            }}
+            type='button'
+            class={
+              (props.transparent
+                ? 'bg-white text-gray-800 hover:bg-orange-500'
+                : 'bg-gray-800 text-white active:bg-orange-600 hover:bg-orange-600') +
+              ' text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3'
+            }
+          >
+            Log Out
+          </button>
+        </li>
+      </>
+    </ul>
+  );
+
   const cookies = new Cookies();
   let token = cookies.get('token');
   let navigate = useNavigate();
@@ -307,100 +510,7 @@ function LandingPageNavbar(props) {
           }
           id='example-navbar-warning'
         >
-          <ul className='flex flex-col lg:flex-row list-none lg:ml-auto'>
-            <li className='flex items-center'>
-              <Link
-                className={
-                  (props.transparent
-                    ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
-                    : 'text-gray-800 hover:text-orange-600') +
-                  ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
-                }
-                to='/'
-              >
-                Home
-              </Link>
-            </li>
-
-            <li className='flex items-center'>
-              <Link
-                className={
-                  (props.transparent
-                    ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
-                    : 'text-gray-800 hover:text-orange-600') +
-                  ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
-                }
-                to='/location-based'
-              >
-                Explore
-              </Link>
-            </li>
-            <li className='flex items-center'>
-              <Link
-                className={
-                  (props.transparent
-                    ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
-                    : 'text-gray-800 hover:text-orange-600') +
-                  ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
-                }
-                to='/package-view-all'
-              >
-                Packages
-              </Link>
-            </li>
-
-            <li className='flex items-center'>
-              <Link
-                className={
-                  (props.transparent
-                    ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
-                    : 'text-gray-800 hover:text-orange-600') +
-                  ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
-                }
-                to='/tour-guide-view-all'
-              >
-                Tour Guides
-              </Link>
-            </li>
-
-            <li className='flex items-center'>
-              <Link
-                className={
-                  (props.transparent
-                    ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
-                    : 'text-gray-800 hover:text-orange-600') +
-                  ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
-                }
-                to='/tour-org-view-all'
-              >
-                Organizations
-              </Link>
-            </li>
-
-            <li className='flex items-center'>
-              <Link
-                className={
-                  (props.transparent
-                    ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
-                    : 'text-gray-800 hover:text-orange-600') +
-                  ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
-                }
-                to='/contact-us'
-              >
-                Contact Us
-              </Link>
-            </li>
-
-            {props.userType == -1
-              ? generallinks
-              : props.userType == 0
-              ? travellerlinks
-              : props.userType == 1
-              ? tourguidelinks
-              : props.userType == 2
-              ? tourorglinks
-              : generallinks}
-          </ul>
+          {props.userType === 3 ? adminLinks : links}
         </div>
       </div>
     </nav>
