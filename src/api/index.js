@@ -416,6 +416,66 @@ const addFeedback = (token, userGuid, entityguid, entitytype, desc, rating) => {
   });
 };
 
+
+const bookPackage = (token, packageGuid, bookingDate) => {
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'post/booking', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Barrier ' + token,
+        'Access-Control-Allow-Headers':
+          'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+        'Access-Control-Allow-Methods': 'PUT, POST, DELETE, GET',
+      },
+      body: JSON.stringify({
+        PackageGuid: packageGuid,
+        BookingDate: bookingDate
+      }),
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+};
+
+
+const changeAvailability = (token, packageGuid, availability) => {
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'post/package/available', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Barrier ' + token,
+        'Access-Control-Allow-Headers':
+          'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+        'Access-Control-Allow-Methods': 'PUT, POST, DELETE, GET',
+      },
+      body: JSON.stringify({
+        PackageGuid: packageGuid,
+        Availability: availability
+      }),
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+};
+
 const addPackageDesc = (token, guid, time, day, event) => {
   console.log(event);
   console.log(day.value);
@@ -431,6 +491,60 @@ const addPackageDesc = (token, guid, time, day, event) => {
         Time: time?.value,
         Event: event?.value,
       }),
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+};
+
+
+export const changePassword = (token, oldPass, newPass) => {
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'post/password/change', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Barrier ' + token,
+        'Access-Control-Allow-Headers':
+          'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+        'Access-Control-Allow-Methods': 'PUT, POST, DELETE, GET',
+      },
+      body: JSON.stringify({
+        OldPass: oldPass,
+        NewPass: newPass
+      }),
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+};
+
+
+export const getFeedbacks = (packageGuid) => {
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'get/feedback/view/' + packageGuid, {
+      method: 'GET',
+      headers: {
+        'Access-Control-Allow-Headers':
+          'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+        'Access-Control-Allow-Methods': 'PUT, POST, DELETE, GET',
+      },
     }).then((data) => {
       if (data.status == 200) {
         return data.json();
@@ -822,4 +936,6 @@ export {
   sendChat,
   makePayment,
   allChats,
+  bookPackage,
+  changeAvailability
 };

@@ -4,7 +4,7 @@ import bgImage from '../../assets/bgImagePackage.jpg';
 import { Icon } from '@iconify/react';
 import { useParams, useNavigate } from 'react-router-dom';
 import bg from '../../assets/packagebg.jpg';
-import { viewSpecificTPackageDesc } from '../../api';
+import { viewSpecificTPackageDesc, getFeedbacks } from '../../api';
 import PackageDetailsCard from './PackageDetailsCard';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -17,10 +17,12 @@ function PackageDisplayCard({ obj, person, token }) {
   let navigate = useNavigate();
   const params = useParams();
   const [details, setDetails] = useState();
+  const [feedbacks, setFeedbacks] = useState([]);
   console.log(token);
 
   useEffect(() => {
     getDetails();
+    viewFeedbacks()
   }, []);
 
   const getDetails = async () => {
@@ -30,6 +32,15 @@ function PackageDisplayCard({ obj, person, token }) {
     }
     setDetails(response.data);
     console.log(response.data);
+  };
+
+  const viewFeedbacks = async () => {
+    let response = await getFeedbacks(params.id);
+    if (response == 404) {
+      navigate('/');
+    }
+    setFeedbacks(response.data);
+    console.log(response)
   };
 
   function showDetail() {
@@ -138,7 +149,7 @@ function PackageDisplayCard({ obj, person, token }) {
                   </span>
                 </li>
 
-                <li class='inline-block items-center mt-2 mx-3'>
+                {/* <li class='inline-block items-center mt-2 mx-3'>
                   <i class='uil uil-shopping-cart text-white align-middle'></i>
                   <Link
                     to='#'
@@ -147,7 +158,7 @@ function PackageDisplayCard({ obj, person, token }) {
                   >
                     Book
                   </Link>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
@@ -168,8 +179,32 @@ function PackageDisplayCard({ obj, person, token }) {
           <div class='grid md:grid-cols-2 grid-cols-1 pt-6 gap-[30px]'>
             {showDetail()}
           </div>
-          <h5 class='text-2xl font-semibold mt-16 mb-5'>Some of the views</h5>
-
+          <h5 class='text-2xl font-semibold mt-16 mb-5'>Feedbacks</h5>
+            {
+              feedbacks?.map((obj) => (
+                <div className="bg-white rounded-lg shadow-lg p-6 mb-2 flex flex-col">
+                  <h3 className="text-xl font-semibold mb-2">{obj.email}</h3>
+                  <p className="text-gray-600 mb-4">{obj.description}</p>
+                  <div className='flex items-center justify-between mb-2'>
+                    <div className="flex items-center">
+                      <svg
+                        className="w-6 h-6 text-yellow-500 mr-1"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 14.422l4.472 2.74-1.202-5.502L18 7.877l-5.527-.464L10 2 7.527 7.413 2 7.877l4.73 4.783L5.528 17.16 10 14.422z"
+                          clipRule="evenodd"
+                        ></path>
+                      </svg>
+                      <span className="text-yellow-500 font-semibold">{obj.rating}</span>
+                    </div>
+                    <p className="text-gray-500 text-sm">{obj.date_created.split('T')[0]}</p>
+                  </div>
+                </div>
+              ))
+            }
           <div class='grid md:grid-cols-2 grid-cols-1 mt-2 pb-16'>
             <img
               src={obj.image_url}

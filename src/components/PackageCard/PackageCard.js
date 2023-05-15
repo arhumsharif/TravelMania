@@ -1,12 +1,28 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { changeAvailability } from '../../api';
 import bg from '../../assets/packagebg.jpg';
 import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 export default function PackageCard(props) {
-  const { user_guid, guid, title, description, price, capacity, place, hotel } =
+  let cookies = new Cookies()
+  let token = cookies.get('token')
+  let navigate = useNavigate()
+  const { user_guid, guid, title, description, price, capacity, place, hotel, available, getPackage } =
     props;
+
+    const setAvailability = async () => {
+      let is_available = available === 1? 0 : 1
+      let response = await changeAvailability(token, guid, is_available)
+      if (response == 404) {
+        navigate('/');
+      }
+      if (response.message === 'Success')
+      {
+        getPackage(token)
+      }
+    }
 
   return (
     <div class='group rounded-md bg-white shadow hover:shadow-xl overflow-hidden ease-in-out duration-500'>
@@ -52,6 +68,15 @@ export default function PackageCard(props) {
             <ul class='text-lg font-medium text-amber-400 list-none'>
               <li class='inline text-black'>4.6(8)</li>
             </ul>
+          </li>
+          <li>
+              <button
+                  class='px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
+                  style={{ transition: 'all .15s ease' }}
+                  onClick={setAvailability}
+                >
+                  {available === 1? 'Public' : 'Private'}
+              </button>
           </li>
           <li>
             <Link

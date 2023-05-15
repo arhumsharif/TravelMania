@@ -3,12 +3,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import LandingPageNavbar from '../Navbar/LandingPageNavbar';
 import bgImage from '../../assets/bgImagePackage.jpg';
 import Cookies from 'universal-cookie';
-import { makePayment } from '../../api/index';
+import { makePayment, bookPackage } from '../../api/index';
 import Alert from '../Layout/Alert';
 import { setAlert } from '../../actions/alert';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { useNavigate, useLocation } from 'react-router';
 
 const Payment = ({ setAlert }) => {
   // Cookies to send user_token
@@ -16,6 +16,7 @@ const Payment = ({ setAlert }) => {
   let token = cookies.get('token');
 
   let navigate = useNavigate()
+  let location = useLocation()
 
   const [card, setCard] = useState('');
   const [cvc, setCvc] = useState('');
@@ -23,9 +24,24 @@ const Payment = ({ setAlert }) => {
   const [expiryYear, setExpiryYear] = useState('');
   const [email, setEmail] = useState('');
   const [price, setPrice] = useState('');
+  const [bookingDate, setBookingDate] = useState('');
+
+  const packageBooking = async () => {
+    let bookingDateUpdate = bookingDate + ' 12:00:00'
+    console.log(bookingDateUpdate, bookingDate)
+    let response = await bookPackage(token, location.state.package_guid, bookingDateUpdate)
+    if (response == 404) {
+      navigate('/');
+    }
+    console.log(response);
+    if (response.message === 'Success')
+    {
+      handleSubmit()
+    }
+  }
 
   const handleSubmit = async () => {
-    let response = await makePayment(token, '98324-jk-49584-045945k', '900', email, card, cvc, expiryMonth, expiryYear)
+    let response = await makePayment(token, location.state.package_guid, location.state.price, email, card, cvc, expiryMonth, expiryYear)
 
     if (response == 404) {
         navigate('/login');
@@ -166,24 +182,24 @@ const Payment = ({ setAlert }) => {
                 class='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring'
               />
             </div>
-            {/* <div>
+            <div>
               <label class='text-black' for='hotel'>
-                Price :
+                Booking Date :
               </label>
               <input
                 id='hotel'
-                type='number'
-                placeholder='0'
-                value={price}
+                type='date'
+                value={bookingDate}
+                onChange={(e) => {setBookingDate(e.target.value)}}
                 class='block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring'
               />
-            </div> */}
+            </div>
           </div>
 
           <div class='flex justify-end mt-6'>
             <button
               type='button'
-              onClick={handleSubmit}
+              onClick={packageBooking}
               class={`px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white`} 
             >
               Pay

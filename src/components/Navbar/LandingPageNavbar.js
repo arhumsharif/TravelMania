@@ -84,7 +84,7 @@ function LandingPageNavbar(props) {
           </MenuItem>
           <MenuItem>
             <Link
-              to='#'
+              to='/settings'
               className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
             >
               Setting
@@ -165,7 +165,7 @@ function LandingPageNavbar(props) {
           </MenuItem>
           <MenuItem>
             <Link
-              to='#'
+              to='/settings'
               className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
             >
               Setting
@@ -238,7 +238,7 @@ function LandingPageNavbar(props) {
           </MenuItem>
           <MenuItem>
             <Link
-              to='#'
+              to='/settings'
               className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
             >
               Setting

@@ -4,19 +4,31 @@ import Cookies from 'universal-cookie';
 import bg from '../../assets/packagebg.jpg';
 import { Icon } from '@iconify/react';
 import { Link } from 'react-router-dom';
+import { bookPackage } from '../../api';
 import { Height } from '@material-ui/icons';
 
 export const ShowPackage = (props) => {
   const cookies = new Cookies();
   let token = cookies.get('token');
   let navigate = useNavigate();
-  const { user_guid, guid, title, description, price, capacity, place, hotel } =
+  const { user_guid, guid, title, description, price, capacity, place, hotel, available } =
     props;
   let image = props.image;
-  if (image.length === 0) {
+  if (image?.length === 0) {
     image = bg;
   }
   console.log(image);
+
+  const gotoPayment = () => {
+    navigate('/payment', {
+      state: {
+        package_guid: guid,
+        price: price      
+      }
+    });
+  }
+
+
   return (
     <div class='group rounded-md bg-white shadow hover:shadow-xl overflow-hidden ease-in-out duration-500'>
       <div class='relative'>
@@ -70,14 +82,23 @@ export const ShowPackage = (props) => {
             </ul>
           </li>
           <li>
-            <Link
-              to='/login'
-              class='px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
-              style={{ transition: 'all .15s ease' }}
-              onClick={() => props.setAlert('You need to Login First', 'red')}
-            >
-              Book
-            </Link>
+            {
+              available === 1?
+                <button
+                  onClick={gotoPayment}
+                  class='px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
+                  style={{ transition: 'all .15s ease' }}
+                >
+                  Book
+                </button>
+                :
+                <button
+                  class='px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
+                  style={{ transition: 'all .15s ease' }}
+                >
+                  Closed
+                </button>
+            }
           </li>
         </ul>
       </div>

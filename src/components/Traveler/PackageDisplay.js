@@ -149,6 +149,7 @@ export default function PackageDisplay() {
                 place={obj?.place}
                 image={obj?.image_url}
                 hotel={obj?.hotel}
+                available = {obj?.is_available}
               />
             ))}
           </div>
