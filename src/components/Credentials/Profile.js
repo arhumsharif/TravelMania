@@ -22,6 +22,8 @@ const Profile = ({ setAlert }) => {
   const [users, setUsers] = useState([])
   const [organizers, setOrganizers] = useState([])
 
+  const [revenue, setRevenue] = useState(0)
+
   useEffect(() => {
     profileForTraveler()
     profileForOrganizer()
@@ -37,6 +39,13 @@ const Profile = ({ setAlert }) => {
     let response = await organizerProfile(token)
     console.log(response)
     setOrganizers(response.data)
+    let cash = 0
+    response.data.map((obj) => {
+      cash += parseInt(obj.price)
+    })
+
+    setRevenue(cash)
+
   }
 
   
@@ -98,6 +107,12 @@ const Profile = ({ setAlert }) => {
             :
             ""
         }
+        {
+            organizers.length > 0?
+            <h1 class='text-xl font-bold text-black capitalize text-center mb-5 mt-2'>My Revenue: {revenue} RS</h1>
+            :
+            ""
+        }
         <div className='flex justify-center flex-wrap'>
             {
                 organizers?.map((obj) => (        
@@ -122,7 +137,7 @@ const Profile = ({ setAlert }) => {
                             </div>
                             <div>
                                 <p class="text-gray-600">Email:</p>
-                                <p class="font-semibold">${obj?.email}</p>
+                                <p class="font-semibold">{obj?.email}</p>
                             </div>
                         </div>
                         </div>
