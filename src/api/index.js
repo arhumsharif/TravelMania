@@ -835,6 +835,56 @@ const allChats = (token) => {
   });
 };
 
+// get profile for traveler
+export const travelerProfile = (token) => {
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'get/traveler/profile/view', {
+      method: 'GET',
+      headers: {
+        Authorization: 'Barrier ' + token,
+        'Access-Control-Allow-Headers':
+          'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+        'Access-Control-Allow-Methods': 'PUT, POST, DELETE, GET',
+      },
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+};
+
+
+export const organizerProfile = (token) => {
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'get/organizer/profile/view', {
+      method: 'GET',
+      headers: {
+        Authorization: 'Barrier ' + token,
+        'Access-Control-Allow-Headers':
+          'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+        'Access-Control-Allow-Methods': 'PUT, POST, DELETE, GET',
+      },
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+};
+
 const sendChat = (token, receiverGuid, message) => {
   let promiseOne = new Promise((resolve, reject) => {
     let myData = fetch(BASEURL + 'post/chat/add', {

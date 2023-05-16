@@ -46,6 +46,7 @@ import TravelerLayout from './components/Layout/TravellerLayout'; // for travele
 import LocationBasedSearch from './components/LocationBasedSearch/LocationBasedSearch';
 
 import Settings from './components/Credentials/Settings';
+import Profile from './components/Credentials/Profile';
 
 // react-redux
 import { Provider } from 'react-redux';
@@ -79,6 +80,8 @@ function App() {
             <Route path='/verification' element={<Verification />} />
             <Route path='/auth-signup' element={<AuthSignUp />} />
             <Route path='/settings' element={<Settings />} />
+            <Route path='/profile' element={<Profile />} />
+
             <Route
               path='/tour-guide-portfolio'
               element={<TourGuidePortfolioLayout />}

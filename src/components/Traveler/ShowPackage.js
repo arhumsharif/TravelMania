@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'universal-cookie';
 import bg from '../../assets/packagebg.jpg';
@@ -11,7 +13,7 @@ export const ShowPackage = (props) => {
   const cookies = new Cookies();
   let token = cookies.get('token');
   let navigate = useNavigate();
-  const { user_guid, guid, title, description, price, capacity, place, hotel, available } =
+  const { user_guid, guid, title, description, price, capacity, place, hotel, available, rating, number } =
     props;
   let image = props.image;
   if (image?.length === 0) {
@@ -27,6 +29,34 @@ export const ShowPackage = (props) => {
       }
     });
   }
+
+  const confirmation = () => {
+    confirmAlert(options)
+  }
+
+
+  const options = {
+    title: 'Confirmation',
+    message: 'Are you sure? you wont be able to revert',
+    buttons: [
+      {
+        label: 'Proceed',
+        onClick: () => gotoPayment()
+      },
+      {
+        label: 'Cancel',
+      }
+    ],
+    closeOnEscape: true,
+    closeOnClickOutside: true,
+    keyCodeForClose: [8, 32],
+    willUnmount: () => {},
+    afterClose: () => {},
+    onClickOutside: () => {},
+    onKeypress: () => {},
+    onKeypressEscape: () => {},
+    overlayClassName: "overlay-custom-class-name"
+  };
 
 
   return (
@@ -78,14 +108,14 @@ export const ShowPackage = (props) => {
           <li>
             <span class='text-slate-400'>Rating</span>
             <ul class='text-lg font-medium text-amber-400 list-none'>
-              <li class='inline text-black'>4.6(8)</li>
+              <li class='inline text-black'>{rating != null? rating : "NR"}({number})</li>
             </ul>
           </li>
           <li>
             {
               available === 1?
                 <button
-                  onClick={gotoPayment}
+                  onClick={confirmation}
                   class='px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
                   style={{ transition: 'all .15s ease' }}
                 >

@@ -150,6 +150,8 @@ export default function PackageDisplay() {
                 image={obj?.image_url}
                 hotel={obj?.hotel}
                 available = {obj?.is_available}
+                rating = {obj?.Rating}
+                number = {obj?.Number}
               />
             ))}
           </div>

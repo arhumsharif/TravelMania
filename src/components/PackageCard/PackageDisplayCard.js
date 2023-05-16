@@ -129,14 +129,14 @@ function PackageDisplayCard({ obj, person, token }) {
                   </span>
                 </li>
 
-                <li class='inline-block font-semibold items-center mt-2 mx-3'>
+                {/* <li class='inline-block font-semibold items-center mt-2 mx-3'>
                   <Icon
                     icon='material-symbols:star-rate-half'
                     color='orange'
                     className='inline-block mb-1'
                   />
                   <span class='text-white ml-1 inline-block'>4.6(8)</span>
-                </li>
+                </li> */}
 
                 <li class='inline-block font-semibold items-center mt-2 mx-3'>
                   <Icon

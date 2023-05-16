@@ -84,6 +84,14 @@ function LandingPageNavbar(props) {
           </MenuItem>
           <MenuItem>
             <Link
+              to='/profile'
+              className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
+            >
+              Profile
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link
               to='/settings'
               className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
             >
@@ -165,6 +173,14 @@ function LandingPageNavbar(props) {
           </MenuItem>
           <MenuItem>
             <Link
+              to='/profile'
+              className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
+            >
+              Profile
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link
               to='/settings'
               className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
             >
@@ -234,6 +250,14 @@ function LandingPageNavbar(props) {
               className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
             >
               Inbox
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link
+              to='/profile'
+              className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
+            >
+              Profile
             </Link>
           </MenuItem>
           <MenuItem>
@@ -335,19 +359,24 @@ function LandingPageNavbar(props) {
                 Explore
               </Link>
             </li>
-            <li className='flex items-center'>
-              <Link
-                className={
-                  (props.transparent
-                    ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
-                    : 'text-gray-800 hover:text-orange-600') +
-                  ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
-                }
-                to='/package-view-all'
-              >
-                Packages
-              </Link>
-            </li>
+            {
+              props.userType == 0?
+              <li className='flex items-center'>
+                <Link
+                  className={
+                    (props.transparent
+                      ? 'lg:text-white lg:hover:text-orange-500 text-gray-800'
+                      : 'text-gray-800 hover:text-orange-600') +
+                    ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
+                  }
+                  to='/package-view-all'
+                >
+                  Packages
+                </Link>
+              </li>
+              :
+              ""
+            }
 
             <li className='flex items-center'>
               <Link

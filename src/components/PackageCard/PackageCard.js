@@ -9,7 +9,7 @@ export default function PackageCard(props) {
   let cookies = new Cookies()
   let token = cookies.get('token')
   let navigate = useNavigate()
-  const { user_guid, guid, title, description, price, capacity, place, hotel, available, getPackage } =
+  const { user_guid, guid, title, description, price, capacity, place, hotel, available, getPackage, rating, number } =
     props;
 
     const setAvailability = async () => {
@@ -66,7 +66,7 @@ export default function PackageCard(props) {
           <li>
             <span class='text-slate-400'>Rating</span>
             <ul class='text-lg font-medium text-amber-400 list-none'>
-              <li class='inline text-black'>4.6(8)</li>
+              <li class='inline text-black'>{rating != null? rating : "NR"}({number})</li>
             </ul>
           </li>
           <li>
