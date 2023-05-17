@@ -31,6 +31,8 @@ const Login = ({ setAlert, login, userType }) => {
     navigate('/');
   } else if (userType == 2) {
     navigate('/');
+  } else if (userType == 3) {
+    navigate('/');
   } else if (userType == -2) {
     setAlert('Wrong Email or Password', 'red');
   }

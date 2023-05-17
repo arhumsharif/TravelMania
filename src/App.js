@@ -37,6 +37,12 @@ import ContactUs from './components/Credentials/ContactUs';
 import TourOrganizationDisplay from './components/Traveler/TourOrganizationDisplay';
 import OrganizationPortfolioDisplay from './components/Organization/PortfolioDisplay';
 
+// admin pages
+import Requests from './components/Admin/requests';
+import ReqSpecificTourGuide from './components/Admin/reqSpecificTourGuide';
+import ReqSpecificTourOrg from './components/Admin/reqSpecificTourOrg';
+import HelpQueries from './components/Admin/HelpQueries';
+
 // Layout TourGuide
 import TourGuideLayout from './components/Layout/TourGuideLayout'; // for tour guide nav and sidenav
 import TourOrgLayout from './components/Layout/TourOrganizationLayout'; // for tour organization nav and sidenav
@@ -139,6 +145,17 @@ function App() {
             />
             <Route path='/package/:id' element={<PackageDetails />} />
             <Route path='/package/create' element={<PackageCreator />} />
+
+            <Route path='/admin/requests' element={<Requests />} />
+            <Route
+              path='/admin/requests/tourguide/:id'
+              element={<ReqSpecificTourGuide />}
+            />
+            <Route
+              path='/admin/requests/tourorg/:id'
+              element={<ReqSpecificTourOrg />}
+            />
+            <Route path='/admin/help/queries' element={<HelpQueries />} />
           </Routes>
         </Router>
       </PersistGate>
