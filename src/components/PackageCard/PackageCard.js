@@ -65,7 +65,13 @@ export default function PackageCard(props) {
 
           <li>
             <span class='text-slate-400'>Rating</span>
-            <ul class='text-lg font-medium text-amber-400 list-none'>
+            <ul onClick={() => {
+              navigate('/owner-feedback', {
+                state: {
+                  package_guid: guid,
+                }
+              });
+            }} class='text-lg font-medium text-amber-400 list-none hover: cursor-pointer'>
               <li class='inline text-black'>{rating != null? rating : "NR"}({number})</li>
             </ul>
           </li>

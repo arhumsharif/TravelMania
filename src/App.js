@@ -48,6 +48,8 @@ import LocationBasedSearch from './components/LocationBasedSearch/LocationBasedS
 import Settings from './components/Credentials/Settings';
 import Profile from './components/Credentials/Profile';
 
+import OwnerFeedback from "./components/Credentials/OwnerFeedback"
+
 // react-redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -81,6 +83,8 @@ function App() {
             <Route path='/auth-signup' element={<AuthSignUp />} />
             <Route path='/settings' element={<Settings />} />
             <Route path='/profile' element={<Profile />} />
+
+            <Route path='/owner-feedback' element={<OwnerFeedback />} />
 
             <Route
               path='/tour-guide-portfolio'
