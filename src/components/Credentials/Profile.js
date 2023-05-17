@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import LandingPageNavbar from '../Navbar/LandingPageNavbar';
 import bgImage from '../../assets/bgImagePackage.jpg';
 import Cookies from 'universal-cookie';
-import { travelerProfile, organizerProfile } from '../../api/index';
+import { travelerProfile, organizerProfile, cancelBooking } from '../../api/index';
 import Alert from '../Layout/Alert';
 import { setAlert } from '../../actions/alert';
 import bg from '../../assets/bgImagePackage.jpg';
@@ -28,6 +28,15 @@ const Profile = ({ setAlert }) => {
     profileForTraveler()
     profileForOrganizer()
   }, [])
+
+  const cancelMyBooking = async (b_guid) => {
+    let response = await cancelBooking(token, b_guid)
+    if (response.message == "Success")
+    {
+      alert('Succcess')
+      profileForOrganizer()
+    }
+  }
 
   const profileForTraveler = async () => {
     let response = await travelerProfile(token)
@@ -138,6 +147,15 @@ const Profile = ({ setAlert }) => {
                             <div>
                                 <p class="text-gray-600">Email:</p>
                                 <p class="font-semibold">{obj?.email}</p>
+                            </div>
+                            <div className='mt-2 flex justify-end'>
+                              <button
+                                onClick={() => {cancelMyBooking(obj?.booking_guid)}}
+                                class='px-3 py-3 text-white no-underline bg-gray-800 rounded hover:bg-orange-600 font-bold hover:text-white'
+                                style={{ transition: 'all .15s ease' }}
+                              >
+                                Cancel 
+                              </button>
                             </div>
                         </div>
                         </div>

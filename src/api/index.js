@@ -447,6 +447,34 @@ const bookPackage = (token, packageGuid, bookingDate) => {
 };
 
 
+export const cancelBooking = (token, bookingGuid) => {
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'post/booking/cancel', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Barrier ' + token,
+        'Access-Control-Allow-Headers':
+          'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+        'Access-Control-Allow-Methods': 'PUT, POST, DELETE, GET',
+      },
+      body: JSON.stringify({
+        BookingGuid: bookingGuid,
+      }),
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+};
+
 const changeAvailability = (token, packageGuid, availability) => {
   let promiseOne = new Promise((resolve, reject) => {
     let myData = fetch(BASEURL + 'post/package/available', {
