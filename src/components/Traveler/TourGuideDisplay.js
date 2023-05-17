@@ -18,6 +18,27 @@ export default function TourGuideDisplay() {
     getGuides();
   }, []);
 
+  const [filter, setFilter] = useState('')
+
+  const searchFilter = () => {
+    let data = []
+    if (filter.length > 0)
+    {
+      realData.map((obj) => {
+        if (obj?.name.toLowerCase().includes(filter.toLowerCase()))
+        {
+          data.push(obj)
+        }
+      })
+
+      setGuides(data)
+    }
+    else
+    {
+      setGuides(realData)
+    }
+  }
+
   const getGuides = async () => {
     let response = await viewAllTourGuides();
     if (response == 404) {
@@ -25,9 +46,12 @@ export default function TourGuideDisplay() {
     }
     console.log(response.data);
     setGuides(response.data);
+    setRealData(response.data);
   };
 
   const [guides, setGuides] = useState([]);
+  const [realData, setRealData] = useState([]);
+
   return (
     <>
       <LandingPageNavbar transparent />
@@ -45,9 +69,9 @@ export default function TourGuideDisplay() {
             <div class='container flex justify-center m-auto mt-16 pb-16 opacity-100 z-50'>
               <div class='grid grid-cols-1'>
                 <div class='p-6 bg-white rounded-md shadow-md'>
-                  <form action='#'>
+                  <div>
                     <div class='registration-form text-dark text-start'>
-                      <div class='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-2 gap-6'>
+                      <div class='grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 lg:gap-2 gap-6'>
                         <div class='filter-search-form relative filter-border'>
                           <i class='uil uil-search icons'></i>
                           <input
@@ -56,10 +80,12 @@ export default function TourGuideDisplay() {
                             id='job-keyword'
                             class='form-input filter-input-box bg-gray-100 hover:bg-gray-200 border-gray-300 hover:border-gray-400 text-black w-full !h-12 rounded'
                             placeholder='Search your keywords'
+                            value={filter}
+                            onChange={(e) => {setFilter(e.target.value)}}
                           />
                         </div>
 
-                        <div class='filter-search-form relative filter-border'>
+                        {/* <div class='filter-search-form relative filter-border'>
                           <select
                             class='btn bg-gray-100 hover:bg-gray-200 border-gray-300 hover:border-gray-400 text-black w-full !h-12 rounded'
                             data-trigger
@@ -73,20 +99,20 @@ export default function TourGuideDisplay() {
                             <option>Gilgit</option>
                             <option>Swat</option>
                           </select>
-                        </div>
+                        </div> */}
 
                         <div>
-                          <input
-                            type='submit'
-                            id='search'
-                            name='search'
-                            class='btn bg-gray-800 hover:bg-orange-600 border-indigo-600 hover:border-gray-900 text-white searchbtn submit-btn w-full !h-12 rounded'
-                            value='Search'
-                          />
+                          <button
+                            // type='submit'
+                            onClick={searchFilter}
+                            class='btn bg-gray-800 hover:bg-orange-600 border-indigo-600 hover:border-gray-900 text-white searchbtn w-full !h-12 rounded'
+                          >
+                          Search
+                          </button>
                         </div>
                       </div>
                     </div>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>
