@@ -1,10 +1,22 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import bg from '../../assets/arhumpic.jpg';
 import bg1 from '../../assets/packagebg.jpg';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 
 function PortfolioDisplayCard({ obj }) {
+
+  let navigate = useNavigate()
+
+  const goToInbox = (id) => {
+    navigate('/inbox', {
+        state: {
+          userId: id
+        }
+      });
+  }
+
   return (
     <section class='relative md:py-24 py-16'>
       <div class='container'>
@@ -91,7 +103,7 @@ function PortfolioDisplayCard({ obj }) {
                       {obj.phone_no}
                     </li>
                   </ul>
-                  <button
+                  <button onClick={() => {goToInbox(obj.user_guid)}}
                     className='btn bg-gray-800 hover:bg-orange-600 border-indigo-600
                     hover:border-gray-900 text-white searchbtn submit-btn w-1/2
                     !h-12 rounded mt-6'
@@ -99,7 +111,7 @@ function PortfolioDisplayCard({ obj }) {
                     style={{ transition: 'all .5s ease' }}
                   >
                     {' '}
-                    <Link to='#'>Send Message</Link>
+                    <button>Send Message</button>
                   </button>
                 </div>
               </div>

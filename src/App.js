@@ -51,6 +51,13 @@ import TravelerLayout from './components/Layout/TravellerLayout'; // for travele
 // Location Based Searching page need to change design of it according to our application plus layout
 import LocationBasedSearch from './components/LocationBasedSearch/LocationBasedSearch';
 
+import Settings from './components/Credentials/Settings';
+import Profile from './components/Credentials/Profile';
+
+import OwnerFeedback from "./components/Credentials/OwnerFeedback"
+
+import LineChartGraph from './components/Credentials/LineChartGraph';
+
 // react-redux
 import { Provider } from 'react-redux';
 import store from './store';
@@ -79,6 +86,14 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/signup' element={<Signup />} />
             <Route path='/tour-guide' element={<TourGuideDashboardLayout />} />
+
+            <Route path='/verification' element={<Verification />} />
+            <Route path='/auth-signup' element={<AuthSignUp />} />
+            <Route path='/settings' element={<Settings />} />
+            <Route path='/profile' element={<Profile />} />
+
+            <Route path='/owner-feedback' element={<OwnerFeedback />} />
+
             <Route
               path='/tour-guide-portfolio'
               element={<TourGuidePortfolioLayout />}

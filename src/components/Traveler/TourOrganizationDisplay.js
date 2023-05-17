@@ -19,6 +19,27 @@ export default function TourOrganizationDisplay() {
     getOrganzations();
   }, []);
 
+  const [filter, setFilter] = useState('')
+
+  const searchFilter = () => {
+    let data = []
+    if (filter.length > 0)
+    {
+      realData.map((obj) => {
+        if (obj?.org_name.toLowerCase().includes(filter.toLowerCase()))
+        {
+          data.push(obj)
+        }
+      })
+
+      setOrganizations(data)
+    }
+    else
+    {
+      setOrganizations(realData)
+    }
+  }
+
   const getOrganzations = async () => {
     let response = await viewAllTourOrganizations();
     if (response == 404) {
@@ -26,9 +47,11 @@ export default function TourOrganizationDisplay() {
     }
     console.log(response.data);
     setOrganizations(response.data);
+    setRealData(response.data);
   };
 
   const [organizations, setOrganizations] = useState([]);
+  const [realData, setRealData] = useState([]);
   return (
     <>
       <LandingPageNavbar transparent />
@@ -46,9 +69,9 @@ export default function TourOrganizationDisplay() {
             <div class='container flex justify-center m-auto mt-16 pb-16 opacity-100 z-50'>
               <div class='grid grid-cols-1'>
                 <div class='p-6 bg-white rounded-md shadow-md'>
-                  <form action='#'>
+                  <div>
                     <div class='registration-form text-dark text-start'>
-                      <div class='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 lg:gap-2 gap-6'>
+                      <div class='grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 lg:gap-2 gap-6'>
                         <div class='filter-search-form relative filter-border'>
                           <i class='uil uil-search icons'></i>
                           <input
@@ -57,10 +80,12 @@ export default function TourOrganizationDisplay() {
                             id='job-keyword'
                             class='form-input filter-input-box bg-gray-100 hover:bg-gray-200 border-gray-300 hover:border-gray-400 text-black w-full !h-12 rounded'
                             placeholder='Search your keywords'
+                            value={filter}
+                            onChange={(e) => {setFilter(e.target.value)}}
                           />
                         </div>
 
-                        <div class='filter-search-form relative filter-border'>
+                        {/* <div class='filter-search-form relative filter-border'>
                           <select
                             class='btn bg-gray-100 hover:bg-gray-200 border-gray-300 hover:border-gray-400 text-black w-full !h-12 rounded'
                             data-trigger
@@ -74,20 +99,20 @@ export default function TourOrganizationDisplay() {
                             <option>Gilgit</option>
                             <option>Swat</option>
                           </select>
-                        </div>
+                        </div> */}
 
                         <div>
-                          <input
-                            type='submit'
-                            id='search'
-                            name='search'
-                            class='btn bg-gray-800 hover:bg-orange-600 border-indigo-600 hover:border-gray-900 text-white searchbtn submit-btn w-full !h-12 rounded'
-                            value='Search'
-                          />
+                          <button
+                            // type='submit'
+                            onClick={searchFilter}
+                            class='btn bg-gray-800 hover:bg-orange-600 border-indigo-600 hover:border-gray-900 text-white searchbtn w-full !h-12 rounded'
+                          >
+                          Search
+                          </button>
                         </div>
                       </div>
                     </div>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>

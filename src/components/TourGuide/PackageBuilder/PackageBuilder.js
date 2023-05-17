@@ -75,6 +75,10 @@ export default function PackageBuilder() {
                 capacity={obj?.capacity}
                 place={obj?.place}
                 hotel={obj?.hotel}
+                available = {obj?.is_available}
+                getPackage = {getPackage}
+                rating = {obj?.Rating}
+                number = {obj?.Number}
               />
             ))}
           </div>

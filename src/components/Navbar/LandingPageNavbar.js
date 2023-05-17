@@ -84,7 +84,15 @@ function LandingPageNavbar(props) {
           </MenuItem>
           <MenuItem>
             <Link
-              to='#'
+              to='/profile'
+              className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
+            >
+              Profile
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link
+              to='/settings'
               className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
             >
               Setting
@@ -165,7 +173,15 @@ function LandingPageNavbar(props) {
           </MenuItem>
           <MenuItem>
             <Link
-              to='#'
+              to='/profile'
+              className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
+            >
+              Profile
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link
+              to='/settings'
               className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
             >
               Setting
@@ -222,10 +238,18 @@ function LandingPageNavbar(props) {
         <MenuList>
           <MenuItem>
             <Link
-              to='/traveler-portfolio'
+              to='/tour-guide-portfolio'
               className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
             >
-              Portfolio
+              My Portfolio
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link
+              to='/tour-guide-package'
+              className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
+            >
+              My Packages
             </Link>
           </MenuItem>
           <MenuItem>
@@ -238,7 +262,15 @@ function LandingPageNavbar(props) {
           </MenuItem>
           <MenuItem>
             <Link
-              to='#'
+              to='/profile'
+              className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
+            >
+              Profile
+            </Link>
+          </MenuItem>
+          <MenuItem>
+            <Link
+              to='/settings'
               className='dropdown-toggle inline-block px-4 py-2 font-bold text-xs leading-tight uppercase rounded shadow-mdtransition duration-150 ease-in-out flex items-center whitespace-nowrap hover:bg-orange-600 hover:text-white'
             >
               Setting
