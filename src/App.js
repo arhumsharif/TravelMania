@@ -50,6 +50,8 @@ import Profile from './components/Credentials/Profile';
 
 import OwnerFeedback from "./components/Credentials/OwnerFeedback"
 
+import LineChartGraph from './components/Credentials/LineChartGraph';
+
 // react-redux
 import { Provider } from 'react-redux';
 import store from './store';

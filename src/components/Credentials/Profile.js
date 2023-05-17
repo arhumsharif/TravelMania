@@ -10,6 +10,7 @@ import bg from '../../assets/bgImagePackage.jpg';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router';
+import LineChartGraph from './LineChartGraph';
 
 const Profile = ({ setAlert }) => {
   // Cookies to send user_token
@@ -24,10 +25,16 @@ const Profile = ({ setAlert }) => {
 
   const [revenue, setRevenue] = useState(0)
 
+  const [show, setShow] = useState('hidden')
+
   useEffect(() => {
     profileForTraveler()
     profileForOrganizer()
   }, [])
+
+  const seeGraph = () => {
+    setShow(show == 'hidden' ? 'block' : 'hidden')
+  }
 
   const cancelMyBooking = async (b_guid) => {
     let response = await cancelBooking(token, b_guid)
@@ -118,7 +125,11 @@ const Profile = ({ setAlert }) => {
         }
         {
             organizers.length > 0?
-            <h1 class='text-xl font-bold text-black capitalize text-center mb-5 mt-2'>My Revenue: {revenue} RS</h1>
+            <div className='flex justify-center hover:cursor-pointer' onClick={seeGraph}>
+                <h1 class='text-xl font-bold text-black capitalize text-center mb-5 mt-2 mr-3'>My Revenue: {revenue} RS</h1>
+                <h1 class='text-xl text-black text-center mb-5 mt-2 underline'>See Details</h1>
+            </div>
+
             :
             ""
         }
@@ -163,6 +174,7 @@ const Profile = ({ setAlert }) => {
                 ))
             }
         </div>
+        <LineChartGraph graphData={organizers? organizers : []} show={show} setShow = {setShow}/>
     </>
   );
 };
