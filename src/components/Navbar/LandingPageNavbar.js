@@ -437,7 +437,7 @@ function LandingPageNavbar(props) {
               : 'text-gray-800 hover:text-orange-600') +
             ' px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold'
           }
-          to='#'
+          to='/admin/help/queries'
         >
           Help Queries
         </Link>

@@ -1013,7 +1013,32 @@ const rejReqTourOrg = (token, req_guid, email) => {
   });
 };
 
+const viewHelpQueries = (token) => {
+  let promiseOne = new Promise((resolve, reject) => {
+    let myData = fetch(BASEURL + 'admin/get/help/queries', {
+      method: 'GET',
+      headers: {
+        Authorization: 'Barrier ' + token,
+        'Access-Control-Allow-Headers':
+          'Origin, X-Requested-With, Content-Type, Accept, Authorization',
+        'Access-Control-Allow-Methods': 'PUT, POST, DELETE, GET',
+      },
+    }).then((data) => {
+      if (data.status == 200) {
+        return data.json();
+      } else {
+        return 404;
+      }
+    });
+    resolve(myData);
+  });
+  return promiseOne.then((data) => {
+    return data;
+  });
+};
+
 export {
+  viewHelpQueries,
   rejReqTourOrg,
   rejReqTourGuide,
   addReqTourOrg,

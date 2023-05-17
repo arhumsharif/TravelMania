@@ -6,7 +6,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { addReqTourGuide, rejReqTourGuide } from '../../api';
 
 const DisplayReqTourGuide = ({ obj, token }) => {
-  console.log(obj);
+  console.log(obj); 
   let navigate = useNavigate();
   const suucessOnclick = async () => {
     addReqTourGuide(token, obj.req_guid, obj.email, obj.password);

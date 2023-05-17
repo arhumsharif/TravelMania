@@ -41,6 +41,7 @@ import OrganizationPortfolioDisplay from './components/Organization/PortfolioDis
 import Requests from './components/Admin/requests';
 import ReqSpecificTourGuide from './components/Admin/reqSpecificTourGuide';
 import ReqSpecificTourOrg from './components/Admin/reqSpecificTourOrg';
+import HelpQueries from './components/Admin/HelpQueries';
 
 // Layout TourGuide
 import TourGuideLayout from './components/Layout/TourGuideLayout'; // for tour guide nav and sidenav
@@ -139,6 +140,7 @@ function App() {
               path='/admin/requests/tourorg/:id'
               element={<ReqSpecificTourOrg />}
             />
+            <Route path='/admin/help/queries' element={<HelpQueries />} />
           </Routes>
         </Router>
       </PersistGate>

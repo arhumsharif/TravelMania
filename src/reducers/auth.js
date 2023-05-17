@@ -4,7 +4,7 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 const initialState = {
-  token: cookies.get('token'),
+  token: cookies.get('token'), //vhange this to empty string
   userType: -1,
 };
 
